@@ -90,12 +90,12 @@ export function Footer({ isDark = false }: { isDark?: boolean }) {
             <h4 className="font-semibold mb-4">Connect</h4>
             <div className="flex gap-4">
               <SocialButton
-                href="https://github.com/sebastian-garcia-dev"
+                href="https://github.com/SGarcia710"
                 icon={<Github className="w-5 h-5" />}
                 label="GitHub"
               />
               <SocialButton
-                href="https://linkedin.com/in/sebastian-garcia-dev"
+                href="https://www.linkedin.com/in/sebastian-garcia-ospina/"
                 icon={<Linkedin className="w-5 h-5" />}
                 label="LinkedIn"
               />

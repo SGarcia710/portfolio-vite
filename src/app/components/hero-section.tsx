@@ -111,7 +111,7 @@ export function HeroSection() {
               variant="secondary"
               size="xl"
               leftIcon={<Github className="w-5 h-5" />}
-              onClick={() => window.open('https://github.com/sebastian-garcia-dev', '_blank')}
+              onClick={() => window.open('https://github.com/SGarcia710', '_blank')}
             >
               View GitHub
             </Button>
@@ -125,12 +125,12 @@ export function HeroSection() {
             className="flex items-center justify-center gap-6 mb-16"
           >
             <SocialLink
-              href="https://github.com/sebastian-garcia-dev"
+              href="https://github.com/SGarcia710"
               icon={<Github className="w-5 h-5" />}
               label="GitHub"
             />
             <SocialLink
-              href="https://linkedin.com/in/sebastian-garcia-dev"
+              href="https://www.linkedin.com/in/sebastian-garcia-ospina/"
               icon={<Linkedin className="w-5 h-5" />}
               label="LinkedIn"
             />
