@@ -33,6 +33,7 @@ export function TextRevealSection() {
           line,
           {
             xPercent: 110,
+            letterSpacing: '0.5em',
             duration: 1,
             ease: 'power3.out',
           },
