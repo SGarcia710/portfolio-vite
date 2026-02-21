@@ -3,6 +3,7 @@ import { AnimatePresence } from 'motion/react';
 import { Navigation } from './components/navigation';
 import { HeroSection } from './components/hero-section';
 import { Preloader } from './components/preloader';
+import { TextRevealSection } from './components/text-reveal-section';
 import { ScrollToTop } from './components/ui/scroll-to-top';
 import { ToastProvider } from './components/ui/toast';
 import { CustomCursor } from './components/custom-cursor';
@@ -50,6 +51,7 @@ export default function App() {
         
         <main>
           <HeroSection />
+          <TextRevealSection />
           <Suspense>
             <TimelineSection />
             <ProjectsSection />
