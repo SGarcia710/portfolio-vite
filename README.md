@@ -479,7 +479,7 @@ This portfolio design and codebase is proprietary to Sebastián García.
 **Sebastián García**  
 Senior Mobile Developer
 
-- **Email:** sebas.garcia110@icloud.com
+- **Email:** sebas.garcia710@icloud.com
 - **GitHub:** [@SGarcia710](https://github.com/SGarcia710)
 - **LinkedIn:** [/in/sebastian-garcia-ospina](https://www.linkedin.com/in/sebastian-garcia-ospina/)
 

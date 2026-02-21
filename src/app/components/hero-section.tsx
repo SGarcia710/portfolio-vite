@@ -135,7 +135,7 @@ export function HeroSection() {
               label="LinkedIn"
             />
             <SocialLink
-              href="mailto:sebas.garcia110@icloud.com"
+              href="mailto:sebas.garcia710@icloud.com"
               icon={<Mail className="w-5 h-5" />}
               label="Email"
             />

@@ -30,9 +30,9 @@ export function Footer({ isDark = false }: { isDark?: boolean }) {
             <Button
               size="lg"
               leftIcon={<Mail className="w-5 h-5" />}
-              onClick={() => window.location.href = 'mailto:sebas.garcia110@icloud.com'}
+              onClick={() => window.location.href = 'mailto:sebas.garcia710@icloud.com'}
             >
-              sebas.garcia110@icloud.com
+              Get in touch
             </Button>
           </div>
         </motion.div>
@@ -100,7 +100,7 @@ export function Footer({ isDark = false }: { isDark?: boolean }) {
                 label="LinkedIn"
               />
               <SocialButton
-                href="mailto:sebas.garcia110@icloud.com"
+                href="mailto:sebas.garcia710@icloud.com"
                 icon={<Mail className="w-5 h-5" />}
                 label="Email"
               />
