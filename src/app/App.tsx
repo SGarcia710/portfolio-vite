@@ -1,6 +1,7 @@
 import { useState, useEffect, lazy, Suspense } from 'react';
 import { Navigation } from './components/navigation';
 import { HeroSection } from './components/hero-section';
+import { ScrollToTop } from './components/ui/scroll-to-top';
 import { ToastProvider } from './components/ui/toast';
 
 const TimelineSection = lazy(() => import('./components/timeline-section').then(m => ({ default: m.TimelineSection })));
@@ -41,6 +42,8 @@ export default function App() {
         <Suspense>
           <Footer isDark={isDark} />
         </Suspense>
+
+        <ScrollToTop />
       </div>
     </ToastProvider>
   );

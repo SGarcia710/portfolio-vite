@@ -188,7 +188,7 @@ export function ProjectsSection() {
         </div>
 
         {/* Project Counter */}
-        <div className="absolute top-4 md:top-8 left-1/2 md:left-auto md:right-8 -translate-x-1/2 md:translate-x-0 z-20 bg-background/80 backdrop-blur-md px-4 py-2 rounded-full shadow-lg">
+        <div className="absolute top-4 md:top-8 left-1/2 md:left-auto md:right-8 -translate-x-1/2 md:translate-x-0 z-20 bg-background/80 backdrop-blur-md px-4 py-2 rounded-full shadow-lg border border-border">
           <span className="text-sm font-medium">
             <span className="text-2xl font-bold">{String(activeIndex + 1).padStart(2, '0')}</span>
             <span className="text-muted-foreground"> / {String(projects.length).padStart(2, '0')}</span>
