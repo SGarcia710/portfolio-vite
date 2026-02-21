@@ -1,10 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import { Navigation } from './components/navigation';
 import { HeroSection } from './components/hero-section';
-import { TimelineSection } from './components/timeline-section';
-import { ProjectsSection } from './components/projects-section';
-import { Footer } from './components/footer';
 import { ToastProvider } from './components/ui/toast';
+
+const TimelineSection = lazy(() => import('./components/timeline-section').then(m => ({ default: m.TimelineSection })));
+const ProjectsSection = lazy(() => import('./components/projects-section').then(m => ({ default: m.ProjectsSection })));
+const Footer = lazy(() => import('./components/footer').then(m => ({ default: m.Footer })));
 
 export default function App() {
   const [isDark, setIsDark] = useState(false);
@@ -31,11 +32,15 @@ export default function App() {
         
         <main>
           <HeroSection />
-          <TimelineSection />
-          <ProjectsSection />
+          <Suspense>
+            <TimelineSection />
+            <ProjectsSection />
+          </Suspense>
         </main>
 
-        <Footer isDark={isDark} />
+        <Suspense>
+          <Footer isDark={isDark} />
+        </Suspense>
       </div>
     </ToastProvider>
   );
