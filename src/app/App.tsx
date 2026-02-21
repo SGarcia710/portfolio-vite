@@ -3,6 +3,7 @@ import { Navigation } from './components/navigation';
 import { HeroSection } from './components/hero-section';
 import { ScrollToTop } from './components/ui/scroll-to-top';
 import { ToastProvider } from './components/ui/toast';
+import { CustomCursor } from './components/custom-cursor';
 
 const TimelineSection = lazy(() => import('./components/timeline-section').then(m => ({ default: m.TimelineSection })));
 const ProjectsSection = lazy(() => import('./components/projects-section').then(m => ({ default: m.ProjectsSection })));
@@ -28,6 +29,7 @@ export default function App() {
 
   return (
     <ToastProvider>
+      <CustomCursor />
       <div className="min-h-screen bg-background text-foreground antialiased overflow-x-hidden">
         <Navigation isDark={isDark} onThemeToggle={toggleTheme} />
         
