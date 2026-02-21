@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { Loader2 } from 'lucide-react';
 
@@ -40,16 +40,21 @@ export function Button({
 }: ButtonProps) {
   const isDisabled = disabled || isLoading;
 
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
     <motion.button
-      whileHover={!isDisabled ? { scale: 1.02 } : {}}
-      whileTap={!isDisabled ? { scale: 0.98 } : {}}
+      whileHover={!isDisabled ? { scale: 1.02, y: -2 } : {}}
+      whileTap={!isDisabled ? { scale: 0.98, y: 0 } : {}}
       transition={{
         type: 'spring',
         stiffness: 400,
         damping: 20,
       }}
+      onHoverStart={() => !isDisabled && setIsHovered(true)}
+      onHoverEnd={() => setIsHovered(false)}
       className={`
+        relative overflow-hidden
         inline-flex items-center justify-center gap-2
         rounded-xl font-medium
         transition-all duration-200
@@ -63,10 +68,36 @@ export function Button({
       disabled={isDisabled}
       {...props}
     >
+      {/* Shine sweep effect */}
+      <motion.span
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: 'linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.2) 50%, transparent 70%)',
+        }}
+        initial={{ x: '-100%' }}
+        animate={isHovered ? { x: '100%' } : { x: '-100%' }}
+        transition={{ duration: 0.5, ease: 'easeInOut' }}
+      />
       {isLoading && <Loader2 className="w-4 h-4 animate-spin" />}
-      {!isLoading && leftIcon && leftIcon}
+      {!isLoading && leftIcon && (
+        <motion.span
+          className="inline-flex"
+          animate={isHovered ? { x: -2 } : { x: 0 }}
+          transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+        >
+          {leftIcon}
+        </motion.span>
+      )}
       {children}
-      {!isLoading && rightIcon && rightIcon}
+      {!isLoading && rightIcon && (
+        <motion.span
+          className="inline-flex"
+          animate={isHovered ? { x: 2 } : { x: 0 }}
+          transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+        >
+          {rightIcon}
+        </motion.span>
+      )}
     </motion.button>
   );
 }

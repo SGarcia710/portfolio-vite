@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import { ExternalLink, Globe, ChevronLeft, ChevronRight, Smartphone, Monitor } from 'lucide-react';
 import { Badge } from './ui/badge';
 import { IconButton } from './ui/button';
@@ -216,54 +216,13 @@ function ProjectSlide({
     <div className="min-w-full h-screen flex items-center justify-center px-6 md:px-8 lg:px-16 pb-8">
       <div className="w-full max-w-7xl h-full md:h-[85vh] flex flex-col md:flex-row gap-6 md:gap-12 items-center pt-12 md:pt-0 md:py-0">
         {/* Image Side */}
-        <div className="w-full md:w-1/2 h-[40vh] md:h-full relative">
-          <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl">
-            <ImageWithFallback
-              src={project.image}
-              alt={project.title}
-              className="w-full h-full object-cover"
-            />
-
-            {/* Gradient Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-
-            {/* Floating Category Badge */}
-            <div className="absolute top-6 left-6">
-              <Badge variant="primary" className="bg-background/90 backdrop-blur-md text-foreground border-0">
-                {project.category}
-              </Badge>
-            </div>
-
-            {/* Year Badge */}
-            <div className="absolute top-6 right-6">
-              <div className="bg-background/90 backdrop-blur-md px-4 py-2 rounded-full">
-                <span className="text-sm font-bold">{project.year}</span>
-              </div>
-            </div>
-
-            {/* Navigation Arrows at Bottom of Image */}
-            <div className="absolute bottom-6 left-6 right-6 flex items-center justify-center gap-4 z-30">
-              <IconButton
-                variant="secondary"
-                size="lg"
-                onClick={onPrev}
-                disabled={!canGoPrev}
-                className="bg-background/90 backdrop-blur-md hover:bg-background shadow-xl disabled:opacity-30 disabled:cursor-not-allowed"
-              >
-                <ChevronLeft className="w-6 h-6" />
-              </IconButton>
-              <IconButton
-                variant="secondary"
-                size="lg"
-                onClick={onNext}
-                disabled={!canGoNext}
-                className="bg-background/90 backdrop-blur-md hover:bg-background shadow-xl disabled:opacity-30 disabled:cursor-not-allowed"
-              >
-                <ChevronRight className="w-6 h-6" />
-              </IconButton>
-            </div>
-          </div>
-        </div>
+        <FloatingImage
+          project={project}
+          onPrev={onPrev}
+          onNext={onNext}
+          canGoPrev={canGoPrev}
+          canGoNext={canGoNext}
+        />
 
         {/* Content Side */}
         <div className="w-full md:w-1/2 flex flex-col justify-center space-y-3 md:space-y-6">
@@ -340,6 +299,103 @@ function ProjectSlide({
               )}
             </div>
           )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function FloatingImage({
+  project,
+  onPrev,
+  onNext,
+  canGoPrev,
+  canGoNext,
+}: {
+  project: Project;
+  onPrev: () => void;
+  onNext: () => void;
+  canGoPrev: boolean;
+  canGoNext: boolean;
+}) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [imageTransform, setImageTransform] = useState({ x: 0, y: 0 });
+
+  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const rect = container.getBoundingClientRect();
+    // Normalize mouse position to -1 to 1
+    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
+    const y = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
+
+    // Move image in opposite direction for parallax feel (max ~15px shift)
+    setImageTransform({ x: -x * 15, y: -y * 15 });
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
+    setImageTransform({ x: 0, y: 0 });
+  }, []);
+
+  return (
+    <div className="w-full md:w-1/2 h-[40vh] md:h-full relative">
+      <div
+        ref={containerRef}
+        className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl cursor-grab"
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+      >
+        <div
+          className="w-full h-full transition-transform duration-300 ease-out"
+          style={{
+            transform: `scale(1.15) translate(${imageTransform.x}px, ${imageTransform.y}px)`,
+          }}
+        >
+          <ImageWithFallback
+            src={project.image}
+            alt={project.title}
+            className="w-full h-full object-cover"
+          />
+        </div>
+
+        {/* Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+
+        {/* Floating Category Badge */}
+        <div className="absolute top-6 left-6">
+          <Badge variant="primary" className="bg-background/90 backdrop-blur-md text-foreground border-0">
+            {project.category}
+          </Badge>
+        </div>
+
+        {/* Year Badge */}
+        <div className="absolute top-6 right-6">
+          <div className="bg-background/90 backdrop-blur-md px-4 py-2 rounded-full">
+            <span className="text-sm font-bold">{project.year}</span>
+          </div>
+        </div>
+
+        {/* Navigation Arrows at Bottom of Image */}
+        <div className="absolute bottom-6 left-6 right-6 flex items-center justify-center gap-4 z-30">
+          <IconButton
+            variant="secondary"
+            size="lg"
+            onClick={onPrev}
+            disabled={!canGoPrev}
+            className="bg-background/90 backdrop-blur-md hover:bg-background shadow-xl disabled:opacity-30 disabled:cursor-not-allowed"
+          >
+            <ChevronLeft className="w-6 h-6" />
+          </IconButton>
+          <IconButton
+            variant="secondary"
+            size="lg"
+            onClick={onNext}
+            disabled={!canGoNext}
+            className="bg-background/90 backdrop-blur-md hover:bg-background shadow-xl disabled:opacity-30 disabled:cursor-not-allowed"
+          >
+            <ChevronRight className="w-6 h-6" />
+          </IconButton>
         </div>
       </div>
     </div>
