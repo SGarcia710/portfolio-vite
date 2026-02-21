@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ExternalLink, Github, ChevronLeft, ChevronRight, Smartphone } from 'lucide-react';
+import { ExternalLink, Globe, ChevronLeft, ChevronRight, Smartphone, Monitor } from 'lucide-react';
 import { Badge } from './ui/badge';
 import { IconButton } from './ui/button';
 import { ImageWithFallback } from './figma/ImageWithFallback';
@@ -9,13 +9,13 @@ interface Project {
   title: string;
   description: string;
   category: string;
+  type: 'mobile' | 'web';
   tags: string[];
   image: string;
   year: string;
   client?: string;
   links?: {
-    github?: string;
-    demo?: string;
+    website?: string;
     appStore?: string;
     playStore?: string;
   };
@@ -24,51 +24,120 @@ interface Project {
 const projects: Project[] = [
   {
     id: '1',
-    title: 'El Plato',
-    description: 'Complete mobile banking solution with eCommerce integration and financial services. Built with React Native featuring advanced security, real-time transactions, and seamless user experience for thousands of daily users.',
-    category: 'Fintech Platform',
-    year: '2024',
-    client: 'BILDIT',
-    tags: ['React Native', 'TypeScript', 'Azure DevOps', 'Fastlane', 'Security'],
-    image: 'fintech mobile banking app',
+    title: 'Mi Palacio',
+    description: 'Official mobile app for Mexico\'s iconic luxury department store. Features image-based product search, personalized notifications, multiple payment methods including PayPal, loyalty program management, and a seamless shopping experience across fashion, beauty, home, and technology.',
+    category: 'E-Commerce',
+    type: 'mobile',
+    year: '2025',
+    client: 'El Palacio de Hierro',
+    tags: ['React Native', 'TypeScript', 'SFCC', 'E-Commerce', 'Payments', 'Push Notifications'],
+    image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=1000&fit=crop&q=80',
     links: {
-      appStore: '#',
+      website: 'https://www.elpalaciodehierro.com/',
+      appStore: 'https://apps.apple.com/co/app/el-palacio-de-hierro/id6449685817',
+      playStore: 'https://play.google.com/store/apps/details?id=com.eph.superapp',
     },
   },
   {
     id: '2',
-    title: 'E-Commerce Mobile',
-    description: 'High-performance shopping application with seamless checkout experience, advanced product search, personalized recommendations, and real-time inventory management using GraphQL and Shopify integration.',
-    category: 'E-Commerce',
-    year: '2023',
-    client: 'Astound Commerce',
-    tags: ['React Native', 'GraphQL', 'Shopify', 'Redux', 'Performance'],
-    image: 'ecommerce shopping mobile app',
+    title: 'FlyGuys Pilot',
+    description: 'Mobile app for FlyGuys\' nationwide network of FAA-compliant drone pilots. Connects certified operators with clients for aerial imaging, LiDAR, surveying, inspections, and data capture missions across multiple industries.',
+    category: 'Drone Services',
+    type: 'mobile',
+    year: '2024',
+    client: 'FlyGuys',
+    tags: ['React Native', 'TypeScript', 'Maps', 'Real-time', 'GPS'],
+    image: 'https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=800&h=1000&fit=crop&q=80',
     links: {
-      demo: '#',
+      website: 'https://flyguys.com/',
+      appStore: 'https://apps.apple.com/co/app/flyguys-pilots/id6474402860',
+      playStore: 'https://play.google.com/store/apps/details?id=com.flyguys_pilotsapp',
     },
   },
   {
     id: '3',
-    title: 'Novasa Financial',
-    description: 'Mobile and web platforms for innovative financial services by PayPal co-founder Bill Harris. Features include secure transactions, portfolio management, analytics dashboard, and investment tracking.',
-    category: 'Financial Services',
-    year: '2021',
-    client: 'PALO IT',
-    tags: ['React Native', 'MaterialUI', 'Emotion', 'ContextAPI', 'Web'],
-    image: 'financial services app dashboard',
+    title: 'Slab Dream Lab Designer',
+    description: 'Creative design app that transforms photos into custom baseplates for LEGO, DUPLO, and other brick brands. Features image upload, AI-powered object recognition, customizable sizes, and direct-to-manufacturing order flow.',
+    category: 'E-Commerce',
+    type: 'mobile',
+    year: '2023',
+    client: 'Slab Dream Lab',
+    tags: ['React Native', 'AI/ML', 'Image Processing', 'E-Commerce', 'Android'],
+    image: 'https://images.unsplash.com/photo-1585366119957-e9730b6d0f60?w=800&h=1000&fit=crop&q=80',
+    links: {
+      website: 'https://slabdreamlab.com/',
+      playStore: 'https://play.google.com/store/apps/details?id=com.slabmobile',
+    },
   },
   {
     id: '4',
-    title: 'Articly Social',
-    description: 'Feature-rich social platform with real-time messaging, content sharing, community features, and comprehensive admin dashboard. Built for scale with Firebase real-time database and push notifications.',
-    category: 'Social Network',
-    year: '2020',
-    client: '21unicorns',
-    tags: ['React Native', 'Firebase', 'Redux', 'Next.js', 'Real-time'],
-    image: 'social media mobile app interface',
+    title: 'Aritzia eCommerce',
+    description: 'High-performance e-commerce website for the Canadian fashion retailer. Built with modern web technologies delivering a fast, responsive shopping experience with product catalog, search, checkout, and international shipping support.',
+    category: 'E-Commerce',
+    type: 'web',
+    year: '2022',
+    client: 'Aritzia',
+    tags: ['React', 'TypeScript', 'SFCC', 'E-Commerce', 'Performance', 'Web'],
+    image: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800&h=1000&fit=crop&q=80',
     links: {
-      github: '#',
+      website: 'https://www.aritzia.com/intl/en',
+    },
+  },
+  {
+    id: '5',
+    title: 'PayIT Outdoors',
+    description: 'Government digital platform for outdoor recreation licensing and permitting. Enables hunting, fishing, and recreational license purchases, harvest reporting, and event discovery. Serves 100M+ residents across multiple US states and Canadian provinces.',
+    category: 'GovTech',
+    type: 'mobile',
+    year: '2022',
+    client: 'PayIT',
+    tags: ['React Native', 'TypeScript', 'Payments', 'Government', 'Licensing'],
+    image: 'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=800&h=1000&fit=crop&q=80',
+    links: {
+      website: 'https://payitgov.com/outdoors/',
+    },
+  },
+  {
+    id: '6',
+    title: 'MTL Falcon',
+    description: 'Specialized roof measurement tool for Metal-Era and Hickman Edge Systems. Features voice control, geometry manipulation, custom miter support, PDF generation, and project synchronization via Falcon API for fast and accurate roof edge measurements.',
+    category: 'Construction Tech',
+    type: 'mobile',
+    year: '2021',
+    client: 'Metal-Era',
+    tags: ['React Native', 'Voice Control', 'CAD', 'API Integration', 'iOS'],
+    image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&h=1000&fit=crop&q=80',
+    links: {
+      website: 'https://www.metalera.com/',
+      appStore: 'https://apps.apple.com/es/app/mtl-falcon/id1565388274',
+    },
+  },
+  {
+    id: '7',
+    title: 'StageKeep',
+    description: 'Web platform for choreographers and production creators. Streamlines formation design, music synchronization, budget optimization, and team collaboration from pre-production through performance. Used by Toronto Raptors\' entertainment crew.',
+    category: 'Entertainment Tech',
+    type: 'web',
+    year: '2020',
+    client: 'StageKeep',
+    tags: ['React', 'Next.js', 'TypeScript', 'Real-time', 'Web App'],
+    image: 'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&h=1000&fit=crop&q=80',
+    links: {
+      website: 'https://stagekeep.com/',
+    },
+  },
+  {
+    id: '8',
+    title: 'Universidad Santiago de Cali',
+    description: 'Institutional website for one of Colombia\'s leading universities. Built major portions of the platform including academic program pages, student services portal, virtual classrooms integration, and faculty directories serving thousands of students.',
+    category: 'Education',
+    type: 'web',
+    year: '2019',
+    client: 'USC',
+    tags: ['React', 'Next.js', 'CMS', 'SEO', 'Web'],
+    image: 'https://images.unsplash.com/photo-1562774053-701939374585?w=800&h=1000&fit=crop&q=80',
+    links: {
+      website: 'https://www.usc.edu.co/',
     },
   },
 ];
@@ -150,7 +219,7 @@ function ProjectSlide({
         <div className="w-full md:w-1/2 h-[40vh] md:h-full relative">
           <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl">
             <ImageWithFallback
-              src={`https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&h=1000&fit=crop&q=80`}
+              src={project.image}
               alt={project.title}
               className="w-full h-full object-cover"
             />
@@ -207,9 +276,17 @@ function ProjectSlide({
           )}
 
           {/* Title */}
-          <h3 className="text-3xl md:text-5xl lg:text-6xl font-bold">
-            {project.title}
-          </h3>
+          <div className="flex items-center gap-3 md:gap-4">
+            <h3 className="text-3xl md:text-5xl lg:text-6xl font-bold">
+              {project.title}
+            </h3>
+            <div className="flex-shrink-0 w-8 h-8 md:w-10 md:h-10 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center">
+              {project.type === 'mobile'
+                ? <Smartphone className="w-4 h-4 md:w-5 md:h-5 text-accent" />
+                : <Monitor className="w-4 h-4 md:w-5 md:h-5 text-accent" />
+              }
+            </div>
+          </div>
 
           {/* Description */}
           <p className="text-base md:text-xl text-foreground-secondary leading-relaxed">
@@ -228,26 +305,15 @@ function ProjectSlide({
           {/* Links */}
           {project.links && (
             <div className="flex flex-wrap gap-3 pt-2">
-              {project.links.github && (
+              {project.links.website && (
                 <a
-                  href={project.links.github}
+                  href={project.links.website}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-xl font-medium shadow-lg hover:shadow-xl transition-shadow"
                 >
-                  <Github className="w-5 h-5" />
-                  View Code
-                </a>
-              )}
-              {project.links.demo && (
-                <a
-                  href={project.links.demo}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-secondary text-secondary-foreground rounded-xl font-medium border border-border hover:bg-secondary/80 transition-colors"
-                >
-                  <ExternalLink className="w-5 h-5" />
-                  Live Demo
+                  <Globe className="w-5 h-5" />
+                  Website
                 </a>
               )}
               {project.links.appStore && (
@@ -259,6 +325,17 @@ function ProjectSlide({
                 >
                   <Smartphone className="w-5 h-5" />
                   App Store
+                </a>
+              )}
+              {project.links.playStore && (
+                <a
+                  href={project.links.playStore}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-secondary text-secondary-foreground rounded-xl font-medium border border-border hover:bg-secondary/80 transition-colors"
+                >
+                  <ExternalLink className="w-5 h-5" />
+                  Play Store
                 </a>
               )}
             </div>
