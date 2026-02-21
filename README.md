@@ -120,20 +120,20 @@ This portfolio communicates:
 git clone <repository-url>
 
 # Install dependencies
-pnpm install
+npm install
 
 # Start development server
-pnpm dev
+npm run dev
 ```
 
 ### Build for Production
 
 ```bash
 # Create optimized production build
-pnpm build
+npm run build
 
 # Preview production build locally
-pnpm preview
+npm run preview
 ```
 
 ---
@@ -449,40 +449,6 @@ Before deployment:
 - [ ] All links work (internal and external)
 - [ ] Meta tags and OG images present
 - [ ] Lighthouse scores meet targets
-
----
-
-## 📦 Deployment
-
-### Vercel (Recommended)
-
-```bash
-# Install Vercel CLI
-npm i -g vercel
-
-# Deploy
-vercel
-```
-
-### Netlify
-
-```bash
-# Build command
-pnpm build
-
-# Publish directory
-dist
-```
-
-### Custom Server
-
-```bash
-# Build
-pnpm build
-
-# Serve the /dist directory
-# Use any static file server (nginx, Apache, etc.)
-```
 
 ---
 
