@@ -77,9 +77,7 @@ export function Navigation({ logo = 'SG', isDark = false, onThemeToggle }: Navig
             </div>
 
             {/* Mobile Menu Button */}
-            <div className="md:hidden flex items-center gap-2">
-              <ThemeToggle isDark={isDark ?? false} onToggle={onThemeToggle ?? (() => {})} />
-              
+            <div className="md:hidden flex items-center">
               <IconButton
                 variant="ghost"
                 size="sm"
@@ -117,6 +115,14 @@ export function Navigation({ logo = 'SG', isDark = false, onThemeToggle }: Navig
                     {link.label}
                   </motion.a>
                 ))}
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: navLinks.length * 0.1 }}
+                  className="pt-2"
+                >
+                  <ThemeToggle isDark={isDark ?? false} onToggle={onThemeToggle ?? (() => {})} />
+                </motion.div>
               </div>
             </div>
           </motion.div>

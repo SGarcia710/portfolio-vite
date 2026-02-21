@@ -26,7 +26,7 @@ export default function App() {
 
   return (
     <ToastProvider>
-      <div className="min-h-screen bg-background text-foreground antialiased">
+      <div className="min-h-screen bg-background text-foreground antialiased overflow-x-hidden">
         <Navigation isDark={isDark} onThemeToggle={toggleTheme} />
         
         <main>
