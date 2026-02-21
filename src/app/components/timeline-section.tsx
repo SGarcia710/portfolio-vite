@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
-import { Calendar, MapPin, Briefcase } from 'lucide-react';
+import { Calendar, MapPin, Briefcase, Linkedin } from 'lucide-react';
 import { Badge } from './ui/badge';
 
 interface ExperienceItem {
@@ -44,16 +44,6 @@ const experiences: ExperienceItem[] = [
     description: 'Semi Senior Mobile Developer for Novasa by Bill Harris (PayPal co-founder). Developed variety of features for the Mobile App and Backoffice.',
     skills: ['React Native', 'MaterialUI', 'Emotion', 'ContextAPI', 'TypeScript'],
     color: '#ff922b',
-  },
-  {
-    id: '4',
-    role: 'Mid. Frontend Developer',
-    company: '21unicorns',
-    location: 'Madrid, Spain',
-    period: 'Jun 2020 - Jan 2021',
-    description: 'Developed main features for Articly mobile app and social network. Built users and push notification management dashboard.',
-    skills: ['React Native', 'Next.js', 'TailwindCSS', 'Firebase', 'Redux Thunk'],
-    color: '#51cf66',
   },
 ];
 
@@ -105,6 +95,52 @@ export function TimelineSection() {
                 isEven={index % 2 === 0}
               />
             ))}
+
+            {/* LinkedIn CTA */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-100px' }}
+              transition={{ duration: 0.6, delay: experiences.length * 0.1 }}
+              className="relative flex flex-col items-center pt-4"
+            >
+              {/* Timeline Dot with breathing glow */}
+              <div className="absolute left-4 md:left-1/2 md:-ml-3 z-10">
+                <motion.div
+                  initial={{ boxShadow: '0 0 0 0 rgba(51, 154, 240, 0)' }}
+                  whileInView={{
+                    boxShadow: [
+                      '0 0 4px 2px rgba(51, 154, 240, 0.3)',
+                      '0 0 12px 6px rgba(51, 154, 240, 0.6)',
+                      '0 0 4px 2px rgba(51, 154, 240, 0.3)',
+                    ],
+                    scale: [1, 1.15, 1],
+                  }}
+                  viewport={{ once: false }}
+                  transition={{
+                    duration: 2.5,
+                    repeat: Infinity,
+                    ease: 'easeInOut',
+                  }}
+                  className="w-6 h-6 rounded-full border-4 border-background bg-accent"
+                />
+              </div>
+
+              <div className="ml-16 md:ml-0 text-center max-w-md pt-10">
+                <p className="text-foreground-secondary mb-4">
+                  Want to see my full career path? Check out my complete experience on LinkedIn.
+                </p>
+                <a
+                  href="https://www.linkedin.com/in/sebastian-garcia-ospina/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-xl font-medium shadow-lg hover:shadow-xl transition-shadow"
+                >
+                  <Linkedin className="w-5 h-5" />
+                  View full experience
+                </a>
+              </div>
+            </motion.div>
           </div>
         </div>
       </div>
