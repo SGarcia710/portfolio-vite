@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Menu, X, Moon, Sun } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { IconButton } from './ui/button';
+import { ThemeToggle } from './ui/theme-toggle';
 import logoWhite from '../../../assets/LogoSG-IconWhite.svg';
 import logoBlack from '../../../assets/LogoSG-IconBlack.svg';
 
@@ -53,7 +54,7 @@ export function Navigation({ logo = 'SG', isDark = false, onThemeToggle }: Navig
               <img
                 src={isDark ? logoWhite : logoBlack}
                 alt="SG Logo"
-                className="h-8 w-auto"
+                className="h-9 w-auto"
               />
             </motion.a>
 
@@ -72,26 +73,12 @@ export function Navigation({ logo = 'SG', isDark = false, onThemeToggle }: Navig
                 </motion.a>
               ))}
               
-              <IconButton
-                variant="ghost"
-                size="sm"
-                onClick={onThemeToggle}
-                aria-label="Toggle theme"
-              >
-                {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-              </IconButton>
+              <ThemeToggle isDark={isDark ?? false} onToggle={onThemeToggle ?? (() => {})} />
             </div>
 
             {/* Mobile Menu Button */}
             <div className="md:hidden flex items-center gap-2">
-              <IconButton
-                variant="ghost"
-                size="sm"
-                onClick={onThemeToggle}
-                aria-label="Toggle theme"
-              >
-                {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-              </IconButton>
+              <ThemeToggle isDark={isDark ?? false} onToggle={onThemeToggle ?? (() => {})} />
               
               <IconButton
                 variant="ghost"
