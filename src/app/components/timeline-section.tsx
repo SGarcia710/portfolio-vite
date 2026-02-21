@@ -105,7 +105,7 @@ export function TimelineSection() {
               className="relative flex flex-col items-center pt-4"
             >
               {/* Timeline Dot with breathing glow */}
-              <div className="absolute left-4 md:left-1/2 md:-ml-3 z-10">
+              <div className="absolute left-4 md:left-1/2 -ml-3 z-10">
                 <motion.div
                   initial={{ boxShadow: '0 0 0 0 rgba(51, 154, 240, 0)' }}
                   whileInView={{
@@ -173,7 +173,7 @@ function TimelineItem({
         whileInView={{ scale: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.4, delay: index * 0.1 + 0.2 }}
-        className="absolute left-4 md:left-1/2 md:-ml-3 w-6 h-6 rounded-full border-4 border-background z-10"
+        className="absolute left-4 md:left-1/2 -ml-3 w-6 h-6 rounded-full border-4 border-background z-10"
         style={{ backgroundColor: experience.color }}
       />
 
@@ -181,7 +181,7 @@ function TimelineItem({
       <motion.div
         whileHover={{ scale: 1.02, y: -4 }}
         transition={{ type: 'spring', stiffness: 300 }}
-        className={`w-full md:w-[calc(50%-2rem)] ml-16 md:ml-0 ${
+        className={`w-[calc(100%-4rem)] md:w-[calc(50%-2rem)] ml-16 md:ml-0 ${
           isEven ? 'md:pr-8' : 'md:pl-8'
         }`}
       >
