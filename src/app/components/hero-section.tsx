@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { ArrowDown, Github, Linkedin, Mail } from 'lucide-react';
 import { Button } from './ui/button';
+import { FloatingLogos } from './floating-logos';
 
 export function HeroSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -22,6 +23,9 @@ export function HeroSection() {
       {/* Gradient Mesh Background */}
       <div className="absolute inset-0 gradient-mesh opacity-50" />
       
+      {/* Floating Pixel Art Logos */}
+      <FloatingLogos />
+
       {/* Animated Orbs */}
       <motion.div
         animate={{
