@@ -410,6 +410,7 @@ function FloatingImage({
             size="lg"
             onClick={onPrev}
             disabled={!canGoPrev}
+            aria-label="Previous project"
             className="pointer-events-auto bg-background/90 backdrop-blur-md hover:bg-background shadow-xl disabled:opacity-30 disabled:cursor-not-allowed"
           >
             <ChevronLeft className="w-6 h-6" />
@@ -420,6 +421,7 @@ function FloatingImage({
             size="lg"
             onClick={onNext}
             disabled={!canGoNext}
+            aria-label="Next project"
             className="pointer-events-auto bg-background/90 backdrop-blur-md hover:bg-background shadow-xl disabled:opacity-30 disabled:cursor-not-allowed"
           >
             <ChevronRight className="w-6 h-6" />

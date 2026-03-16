@@ -114,6 +114,7 @@ function ToastItem({
           variant="ghost"
           size="sm"
           onClick={() => onRemove(toast.id)}
+          aria-label="Dismiss notification"
           className="flex-shrink-0"
         >
           <X className="w-4 h-4" />

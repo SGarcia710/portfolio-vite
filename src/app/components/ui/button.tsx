@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { motion } from 'motion/react';
+import React from 'react';
 import { Loader2 } from 'lucide-react';
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -36,30 +35,22 @@ export function Button({
   className = '',
   disabled,
   children,
+  type = 'button',
   ...props
 }: ButtonProps) {
   const isDisabled = disabled || isLoading;
 
-  const [isHovered, setIsHovered] = useState(false);
-
   return (
-    <motion.button
-      whileHover={!isDisabled ? { scale: 1.02, y: -2 } : {}}
-      whileTap={!isDisabled ? { scale: 0.98, y: 0 } : {}}
-      transition={{
-        type: 'spring',
-        stiffness: 400,
-        damping: 20,
-      }}
-      onHoverStart={() => !isDisabled && setIsHovered(true)}
-      onHoverEnd={() => setIsHovered(false)}
+    <button
+      type={type}
       className={`
-        relative overflow-hidden
+        group relative overflow-hidden
         inline-flex items-center justify-center gap-2
         rounded-xl font-medium
         transition-all duration-200
         focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2
         disabled:opacity-50 disabled:cursor-not-allowed
+        enabled:hover:-translate-y-0.5 enabled:active:translate-y-0 enabled:active:scale-[0.98]
         ${variantStyles[variant]}
         ${sizeStyles[size]}
         ${fullWidth ? 'w-full' : ''}
@@ -68,37 +59,23 @@ export function Button({
       disabled={isDisabled}
       {...props}
     >
-      {/* Shine sweep effect */}
-      <motion.span
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: 'linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.2) 50%, transparent 70%)',
-        }}
-        initial={{ x: '-100%' }}
-        animate={isHovered ? { x: '100%' } : { x: '-100%' }}
-        transition={{ duration: 0.5, ease: 'easeInOut' }}
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 -translate-x-full bg-[linear-gradient(120deg,transparent_30%,rgba(255,255,255,0.2)_50%,transparent_70%)] transition-transform duration-500 ease-in-out group-hover:translate-x-full"
       />
       {isLoading && <Loader2 className="w-4 h-4 animate-spin" />}
       {!isLoading && leftIcon && (
-        <motion.span
-          className="inline-flex"
-          animate={isHovered ? { x: -2 } : { x: 0 }}
-          transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-        >
+        <span className="inline-flex transition-transform duration-200 group-hover:-translate-x-0.5">
           {leftIcon}
-        </motion.span>
+        </span>
       )}
       {children}
       {!isLoading && rightIcon && (
-        <motion.span
-          className="inline-flex"
-          animate={isHovered ? { x: 2 } : { x: 0 }}
-          transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-        >
+        <span className="inline-flex transition-transform duration-200 group-hover:translate-x-0.5">
           {rightIcon}
-        </motion.span>
+        </span>
       )}
-    </motion.button>
+    </button>
   );
 }
 
@@ -107,6 +84,7 @@ export function IconButton({
   size = 'md',
   className = '',
   children,
+  type = 'button',
   ...props
 }: ButtonProps) {
   const iconSizes = {
@@ -117,20 +95,15 @@ export function IconButton({
   };
 
   return (
-    <motion.button
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
-      transition={{
-        type: 'spring',
-        stiffness: 400,
-        damping: 20,
-      }}
+    <button
+      type={type}
       className={`
         inline-flex items-center justify-center
         rounded-xl font-medium
         transition-all duration-200
         focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2
         disabled:opacity-50 disabled:cursor-not-allowed
+        enabled:hover:-translate-y-0.5 enabled:hover:scale-[1.03] enabled:active:translate-y-0 enabled:active:scale-[0.97]
         ${variantStyles[variant]}
         ${iconSizes[size]}
         ${className}
@@ -138,6 +111,6 @@ export function IconButton({
       {...props}
     >
       {children}
-    </motion.button>
+    </button>
   );
 }

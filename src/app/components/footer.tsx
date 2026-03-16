@@ -66,7 +66,7 @@ export function Footer({ isDark = false }: { isDark?: boolean }) {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <h4 className="font-semibold mb-4">Quick Links</h4>
+            <h3 className="font-semibold mb-4 text-2xl">Quick Links</h3>
             <div className="flex flex-col gap-2">
               <a href="#experience" className="text-foreground-secondary hover:text-foreground transition-colors">
                 Work Experience
@@ -87,7 +87,7 @@ export function Footer({ isDark = false }: { isDark?: boolean }) {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            <h4 className="font-semibold mb-4">Connect</h4>
+            <h3 className="font-semibold mb-4 text-2xl">Connect</h3>
             <div className="flex gap-4">
               <SocialButton
                 href="https://github.com/SGarcia710"

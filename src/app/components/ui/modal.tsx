@@ -50,7 +50,7 @@ export function Modal({ isOpen, onClose, title, children, size = 'md' }: ModalPr
               {title && (
                 <div className="flex items-center justify-between p-6 border-b border-border">
                   <h2 className="text-2xl font-bold">{title}</h2>
-                  <IconButton variant="ghost" size="sm" onClick={onClose}>
+                  <IconButton variant="ghost" size="sm" onClick={onClose} aria-label="Close dialog">
                     <X className="w-5 h-5" />
                   </IconButton>
                 </div>
@@ -60,7 +60,7 @@ export function Modal({ isOpen, onClose, title, children, size = 'md' }: ModalPr
               <div className={title ? 'p-6' : 'p-6'}>
                 {!title && (
                   <div className="absolute top-4 right-4">
-                    <IconButton variant="ghost" size="sm" onClick={onClose}>
+                    <IconButton variant="ghost" size="sm" onClick={onClose} aria-label="Close dialog">
                       <X className="w-5 h-5" />
                     </IconButton>
                   </div>
