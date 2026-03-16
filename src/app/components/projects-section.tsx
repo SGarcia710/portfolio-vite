@@ -1,4 +1,5 @@
 import React, { useState, useRef, useCallback } from 'react';
+import { AnimatePresence, motion } from 'motion/react';
 import { ExternalLink, Globe, ChevronLeft, ChevronRight, Smartphone, Monitor } from 'lucide-react';
 import { Badge } from './ui/badge';
 import { IconButton } from './ui/button';
@@ -142,21 +143,41 @@ const projects: Project[] = [
   },
 ];
 
+const slideVariants = {
+  enter: (direction: number) => ({
+    opacity: 0,
+    x: direction >= 0 ? 48 : -48,
+  }),
+  center: {
+    opacity: 1,
+    x: 0,
+  },
+  exit: (direction: number) => ({
+    opacity: 0,
+    x: direction >= 0 ? -48 : 48,
+  }),
+};
+
 export function ProjectsSection() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [direction, setDirection] = useState(1);
 
   const handlePrev = () => {
+    setDirection(-1);
     setActiveIndex((prev) => Math.max(0, prev - 1));
   };
 
   const handleNext = () => {
+    setDirection(1);
     setActiveIndex((prev) => Math.min(projects.length - 1, prev + 1));
   };
 
+  const activeProject = projects[activeIndex];
+
   return (
-    <section id="projects" className="relative min-h-screen flex flex-col">
+    <section id="projects" className="relative py-12 md:py-20 bg-background">
       {/* Section Header */}
-      <div className="py-12 md:py-20 bg-background">
+      <div className="pb-12 md:pb-20">
         <div className="container-premium">
           <div className="text-center">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
@@ -170,29 +191,34 @@ export function ProjectsSection() {
       </div>
 
       {/* Carousel */}
-      <div className="flex-1 relative overflow-hidden">
-        <div
-          className="flex h-full transition-transform duration-500 ease-in-out"
-          style={{ transform: `translateX(-${activeIndex * 100}%)` }}
-        >
-          {projects.map((project, index) => (
-            <ProjectSlide
-              key={project.id}
-              project={project}
-              onPrev={handlePrev}
-              onNext={handleNext}
-              canGoPrev={activeIndex > 0}
-              canGoNext={activeIndex < projects.length - 1}
-            />
-          ))}
-        </div>
-
-        {/* Project Counter */}
-        <div className="absolute top-4 md:top-8 left-1/2 md:left-auto md:right-8 -translate-x-1/2 md:translate-x-0 z-20 bg-background/80 backdrop-blur-md px-4 py-2 rounded-full shadow-lg border border-border">
+      <div className="container-premium relative">
+        <div className="absolute top-0 left-1/2 md:left-auto md:right-0 -translate-x-1/2 md:translate-x-0 z-20 bg-background/80 backdrop-blur-md px-4 py-2 rounded-full shadow-lg border border-border">
           <span className="text-sm font-medium">
             <span className="text-2xl font-bold">{String(activeIndex + 1).padStart(2, '0')}</span>
             <span className="text-muted-foreground"> / {String(projects.length).padStart(2, '0')}</span>
           </span>
+        </div>
+
+        <div className="pt-8 md:pt-10 overflow-hidden">
+          <AnimatePresence mode="wait" initial={false} custom={direction}>
+            <motion.div
+              key={activeProject.id}
+              custom={direction}
+              variants={slideVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{ duration: 0.45, ease: 'easeInOut' }}
+            >
+              <ProjectSlide
+                project={activeProject}
+                onPrev={handlePrev}
+                onNext={handleNext}
+                canGoPrev={activeIndex > 0}
+                canGoNext={activeIndex < projects.length - 1}
+              />
+            </motion.div>
+          </AnimatePresence>
         </div>
       </div>
     </section>
@@ -213,8 +239,8 @@ function ProjectSlide({
   canGoNext: boolean;
 }) {
   return (
-    <div className="min-w-full h-screen flex items-center justify-center px-6 md:px-8 lg:px-16 pb-8">
-      <div className="w-full max-w-7xl h-full md:h-[85vh] flex flex-col md:flex-row gap-6 md:gap-12 items-center pt-12 md:pt-0 md:py-0">
+    <div className="relative mx-auto w-full max-w-7xl">
+      <div className="flex flex-col md:flex-row gap-6 md:gap-12 items-start">
         {/* Image Side */}
         <FloatingImage
           project={project}
@@ -225,7 +251,7 @@ function ProjectSlide({
         />
 
         {/* Content Side */}
-        <div className="w-full md:w-1/2 flex flex-col justify-center space-y-3 md:space-y-6">
+        <div className="w-full md:w-1/2 flex flex-col justify-start space-y-3 md:space-y-6">
           {/* Client */}
           {project.client && (
             <div className="flex items-center gap-2 text-accent font-medium">
@@ -339,10 +365,10 @@ function FloatingImage({
   }, []);
 
   return (
-    <div className="w-full md:w-1/2 h-[40vh] md:h-full relative">
+    <div className="w-full md:w-1/2 self-start">
       <div
         ref={containerRef}
-        className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl cursor-grab"
+        className="relative w-full aspect-[5/4] md:aspect-[5/6] lg:aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl cursor-grab"
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
       >
@@ -376,23 +402,25 @@ function FloatingImage({
           </div>
         </div>
 
-        {/* Navigation Arrows at Bottom of Image */}
-        <div className="absolute bottom-6 left-6 right-6 flex items-center justify-center gap-4 z-30">
+        {/* Navigation Arrows */}
+        <div className="pointer-events-none absolute inset-y-0 left-0 right-0 z-20 flex items-center justify-between px-4 md:px-6">
           <IconButton
+            type="button"
             variant="secondary"
             size="lg"
             onClick={onPrev}
             disabled={!canGoPrev}
-            className="bg-background/90 backdrop-blur-md hover:bg-background shadow-xl disabled:opacity-30 disabled:cursor-not-allowed"
+            className="pointer-events-auto bg-background/90 backdrop-blur-md hover:bg-background shadow-xl disabled:opacity-30 disabled:cursor-not-allowed"
           >
             <ChevronLeft className="w-6 h-6" />
           </IconButton>
           <IconButton
+            type="button"
             variant="secondary"
             size="lg"
             onClick={onNext}
             disabled={!canGoNext}
-            className="bg-background/90 backdrop-blur-md hover:bg-background shadow-xl disabled:opacity-30 disabled:cursor-not-allowed"
+            className="pointer-events-auto bg-background/90 backdrop-blur-md hover:bg-background shadow-xl disabled:opacity-30 disabled:cursor-not-allowed"
           >
             <ChevronRight className="w-6 h-6" />
           </IconButton>
