@@ -11,20 +11,26 @@ import { CustomCursor } from './components/custom-cursor';
 const TimelineSection = lazy(() => import('./components/timeline-section').then(m => ({ default: m.TimelineSection })));
 const ProjectsSection = lazy(() => import('./components/projects-section').then(m => ({ default: m.ProjectsSection })));
 const Footer = lazy(() => import('./components/footer').then(m => ({ default: m.Footer })));
+const LIGHT_FAVICON = '/assets/LogoSG-IconBlack.svg';
+const DARK_FAVICON = '/assets/LogoSG-IconWhite.svg';
 
 export default function App() {
   const [isDark, setIsDark] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Check system preference
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     setIsDark(prefersDark);
-
-    if (prefersDark) {
-      document.documentElement.classList.add('dark');
-    }
   }, []);
+
+  useEffect(() => {
+    document.documentElement.classList.toggle('dark', isDark);
+
+    const favicon = document.getElementById('app-favicon') as HTMLLinkElement | null;
+    if (favicon) {
+      favicon.href = isDark ? DARK_FAVICON : LIGHT_FAVICON;
+    }
+  }, [isDark]);
 
   useEffect(() => {
     if (isLoading) {
@@ -47,8 +53,7 @@ export default function App() {
   }, [isLoading]);
 
   const toggleTheme = () => {
-    setIsDark(!isDark);
-    document.documentElement.classList.toggle('dark');
+    setIsDark(current => !current);
   };
 
   return (
