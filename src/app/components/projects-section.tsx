@@ -31,7 +31,7 @@ const projects: Project[] = [
     type: 'mobile',
     year: '2026',
     client: 'Cast & Crew',
-    tags: ['React Native', 'TypeScript', 'OKTA', 'Expo', 'Fastlane', 'Figma', 'Claude Code'],
+    tags: ['React Native', 'TypeScript', 'OKTA', 'Expo', 'Fastlane', 'Figma', 'Claude Code', 'iOS', 'Android', 'Push Notifications'],
     image: 'https://www.castandcrew.com/wp-content/uploads/2024/01/HeroImage03New_1800px-1-1.webp',
     links: {
       website: 'https://www.castandcrew.com/',
@@ -45,7 +45,7 @@ const projects: Project[] = [
     type: 'mobile',
     year: '2025',
     client: 'El Palacio de Hierro',
-    tags: ['React Native', 'TypeScript', 'SFCC', 'E-Commerce', 'Payments', 'Push Notifications'],
+    tags: ['React Native', 'TypeScript', 'SFCC', 'E-Commerce', 'Payments', 'Push Notifications', 'iOS', 'Android'],
     image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=1000&fit=crop&q=80',
     links: {
       website: 'https://www.elpalaciodehierro.com/',
@@ -61,7 +61,7 @@ const projects: Project[] = [
     type: 'mobile',
     year: '2024',
     client: 'FlyGuys',
-    tags: ['React Native', 'TypeScript', 'Maps', 'Real-time', 'GPS'],
+    tags: ['React Native', 'TypeScript', 'Maps', 'Real-time', 'GPS', 'iOS', 'Android', 'Push Notifications'],
     image: 'https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=800&h=1000&fit=crop&q=80',
     links: {
       website: 'https://flyguys.com/',
@@ -77,7 +77,7 @@ const projects: Project[] = [
     type: 'mobile',
     year: '2023',
     client: 'Slab Dream Lab',
-    tags: ['React Native', 'AI/ML', 'Image Processing', 'E-Commerce', 'Android'],
+    tags: ['React Native', 'AI/ML', 'Image Processing', 'E-Commerce', 'Android', 'iOS', 'Push Notifications'],
     image: 'https://images.unsplash.com/photo-1585366119957-e9730b6d0f60?w=800&h=1000&fit=crop&q=80',
     links: {
       website: 'https://slabdreamlab.com/',
@@ -106,7 +106,7 @@ const projects: Project[] = [
     type: 'mobile',
     year: '2022',
     client: 'PayIT',
-    tags: ['React Native', 'TypeScript', 'Payments', 'Government', 'Licensing'],
+    tags: ['React Native', 'TypeScript', 'Payments', 'Government', 'Licensing', 'iOS', 'Android', 'Push Notifications'],
     image: 'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=800&h=1000&fit=crop&q=80',
     links: {
       website: 'https://payitgov.com/outdoors/',
@@ -120,7 +120,7 @@ const projects: Project[] = [
     type: 'mobile',
     year: '2021',
     client: 'Metal-Era',
-    tags: ['React Native', 'Voice Control', 'CAD', 'API Integration', 'iOS'],
+    tags: ['React Native', 'Voice Control', 'CAD', 'API Integration', 'iOS', 'Android', 'Push Notifications'],
     image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&h=1000&fit=crop&q=80',
     links: {
       website: 'https://www.metalera.com/',
