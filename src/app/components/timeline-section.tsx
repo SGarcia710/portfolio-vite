@@ -67,6 +67,16 @@ const experiences: ExperienceItem[] = [
   {
     id: '6',
     role: 'Jr. Fullstack Engineer',
+    company: 'We Are Angular',
+    type: 'Full-time',
+    period: 'Oct 2019 – Jun 2020',
+    description:
+      'Developed different platforms for clients in the education, engineering, and fashion industry. Innovative interactive strategies focused on user-centered design in Cali, Colombia.',
+    skills: ['React', 'React Native', 'Three.js', 'Bootstrap', 'Material UI', 'Redux', 'Redux Thunk', 'SCSS', 'Node.js', 'Express.js', 'TypeScript'],
+  },
+  {
+    id: '7',
+    role: 'Jr. Fullstack Engineer',
     company: 'Santiago de Cali University',
     type: 'Full-time',
     period: 'Jun 2018 – Oct 2019',
