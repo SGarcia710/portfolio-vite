@@ -46,7 +46,7 @@ export function HeroSection() {
             Crafting exceptional mobile experiences with{' '}
             <span className="text-foreground font-semibold">React Native</span> and{' '}
             <span className="text-foreground font-semibold">modern technologies</span>.
-            7 years of building high-performance apps that users love.
+            8 years of building high-performance apps that users love.
           </p>
 
           {/* CTAs */}

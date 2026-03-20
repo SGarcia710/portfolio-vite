@@ -16,7 +16,7 @@ interface ExperienceItem {
 const experiences: ExperienceItem[] = [
   {
     id: '1',
-    role: 'Tech Lead',
+    role: 'Lead Mobile Engineer',
     company: 'Perficient',
     type: 'Full-time',
     period: 'Oct 2025 – Present',
@@ -69,7 +69,7 @@ const experiences: ExperienceItem[] = [
     role: 'Jr. Fullstack Engineer',
     company: 'Santiago de Cali University',
     type: 'Full-time',
-    period: 'Jun 2017 – Oct 2019',
+    period: 'Jun 2018 – Oct 2019',
     description:
       "Developed different websites and web apps, managed different platforms for the university's Library, Editorial, and Research area.",
     skills: ['React.js', 'WordPress', 'Joomla', 'Node.js', 'PHP', 'React Native'],
@@ -203,7 +203,7 @@ export function TimelineSection() {
               ( My Career )
             </span>
             <p className="text-foreground-secondary leading-relaxed">
-              7 years of building exceptional mobile applications across fintech, e-commerce, and entertainment. Focused on React Native, leading teams, and delivering products that scale.
+              8 years of building exceptional mobile applications across fintech, e-commerce, and entertainment. Focused on React Native, leading teams, and delivering products that scale.
             </p>
           </motion.div>
 
