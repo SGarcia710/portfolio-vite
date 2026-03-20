@@ -8,8 +8,8 @@ const CustomCursor = lazy(() => import('./components/custom-cursor').then(m => (
 const TimelineSection = lazy(() => import('./components/timeline-section').then(m => ({ default: m.TimelineSection })));
 const ProjectsSection = lazy(() => import('./components/projects-section').then(m => ({ default: m.ProjectsSection })));
 const Footer = lazy(() => import('./components/footer').then(m => ({ default: m.Footer })));
-const LIGHT_FAVICON = '/assets/LogoSG-IconBlack.svg';
-const DARK_FAVICON = '/assets/LogoSG-IconWhite.svg';
+const LIGHT_FAVICON = '/assets/favicon-black.ico';
+const DARK_FAVICON = '/assets/favicon-white.ico';
 
 export default function App() {
   const [isDark, setIsDark] = useState(false);
