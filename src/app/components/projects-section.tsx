@@ -24,6 +24,20 @@ interface Project {
 
 const projects: Project[] = [
   {
+    id: '9',
+    title: 'Workforce Management App',
+    description: 'Large-scale mobile platform supporting workforce operations for the entertainment industry\'s leading payroll and HR services provider. Features onboarding flows, time tracking, document management, and project assignment capabilities for a distributed workforce. Built with a focus on scalable architecture, performance optimization, and robust CI/CD pipelines.',
+    category: 'HR Tech',
+    type: 'mobile',
+    year: '2026',
+    client: 'Cast & Crew',
+    tags: ['React Native', 'TypeScript', 'OKTA', 'Expo', 'Fastlane', 'Figma', 'Claude Code'],
+    image: 'https://www.castandcrew.com/wp-content/uploads/2024/01/HeroImage03New_1800px-1-1.webp',
+    links: {
+      website: 'https://www.castandcrew.com/',
+    },
+  },
+  {
     id: '1',
     title: 'Mi Palacio',
     description: 'Official mobile app for Mexico\'s iconic luxury department store. Features image-based product search, personalized notifications, multiple payment methods including PayPal, loyalty program management, and a seamless shopping experience across fashion, beauty, home, and technology.',
