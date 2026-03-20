@@ -6,6 +6,10 @@
      Apple-inspired Design Foundations
      ============================================ */
 
+  /* Font Families */
+  --font-sans: 'Geist Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'Geist Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
+
   /* Base Font Size */
   --font-size: 16px;
 
@@ -338,6 +342,8 @@
    TAILWIND INTEGRATION
    ============================================ */
 @theme inline {
+  --font-sans: 'Geist Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'Geist Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -388,7 +394,7 @@
 
   body {
     @apply bg-background text-foreground;
-    font-feature-settings: "rlig" 1, "calt" 1;
+    font-feature-settings: "rlig" 1, "calt" 1, "ss01" 1;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -397,7 +403,12 @@
   /* Typography Base Styles */
   html {
     font-size: var(--font-size);
+    font-family: var(--font-sans);
     scroll-behavior: smooth;
+  }
+
+  code, kbd, samp, pre {
+    font-family: var(--font-mono);
   }
 
   /* Headings with premium styling */
