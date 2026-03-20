@@ -46,7 +46,7 @@ const projects: Project[] = [
     year: '2025',
     client: 'El Palacio de Hierro',
     tags: ['React Native', 'TypeScript', 'SFCC', 'E-Commerce', 'Payments', 'Push Notifications', 'iOS', 'Android'],
-    image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=1000&fit=crop&q=80',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/7/7f/Palacio_de_Hierro_Mexico.jpg',
     links: {
       website: 'https://www.elpalaciodehierro.com/',
       appStore: 'https://apps.apple.com/co/app/el-palacio-de-hierro/id6449685817',
@@ -136,7 +136,7 @@ const projects: Project[] = [
     year: '2020',
     client: 'StageKeep',
     tags: ['React', 'Next.js', 'TypeScript', 'Real-time', 'Web App'],
-    image: 'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&h=1000&fit=crop&q=80',
+    image: 'https://www.billboard.com/wp-content/uploads/2025/05/Jennifer-Lopez-03-ama-show-2025-billboard-1548.jpg?w=942&h=628&crop=1',
     links: {
       website: 'https://stagekeep.com/',
     },
@@ -150,7 +150,7 @@ const projects: Project[] = [
     year: '2019',
     client: 'USC',
     tags: ['React', 'Next.js', 'CMS', 'SEO', 'Web'],
-    image: 'https://images.unsplash.com/photo-1562774053-701939374585?w=800&h=1000&fit=crop&q=80',
+    image: 'https://cloudfront-us-east-1.images.arcpublishing.com/semana/QX5NFBSHIJBDPJWLPZ7D4T5QGQ.jpeg',
     links: {
       website: 'https://www.usc.edu.co/',
     },

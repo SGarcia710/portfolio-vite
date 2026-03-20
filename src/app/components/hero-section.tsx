@@ -35,7 +35,7 @@ export function HeroSection() {
             className="text-2xl md:text-4xl lg:text-5xl font-semibold mb-8 text-foreground-secondary hero-reveal"
             style={revealStyle('0.25s')}
           >
-            Senior Mobile Developer
+            Senior Mobile Engineer
           </div>
 
           {/* Value Proposition */}

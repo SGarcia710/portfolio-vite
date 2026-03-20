@@ -1,17 +1,16 @@
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'motion/react';
-import { Calendar, MapPin, Briefcase, Linkedin } from 'lucide-react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
+import { Plus } from 'lucide-react';
 import { Badge } from './ui/badge';
 
 interface ExperienceItem {
   id: string;
   role: string;
   company: string;
-  location: string;
+  type: string;
   period: string;
   description: string;
   skills: string[];
-  color: string;
 }
 
 const experiences: ExperienceItem[] = [
@@ -19,223 +18,207 @@ const experiences: ExperienceItem[] = [
     id: '1',
     role: 'Tech Lead',
     company: 'Perficient',
-    location: 'Remote',
-    period: 'Oct 2025 - Present',
+    type: 'Full-time',
+    period: 'Oct 2025 – Present',
     description:
       "Tech Lead and principal mobile engineer for Cast & Crew, leading the React Native app across iOS and Android. I drive architecture, delivery, and release strategy while partnering across product and engineering to build reliable mobile experiences for a company that supports payroll, finance, and production workflows in the entertainment industry.",
     skills: ['React Native', 'TypeScript', 'Swift', 'Kotlin', 'TanStack Query', 'Zustand', 'Tailwind', 'Fastlane', 'Azure DevOps', 'GitHub', 'Claude'],
-    color: '#339af0',
   },
   {
     id: '2',
     role: 'Senior Mobile Engineer',
     company: 'BILDIT',
-    location: 'Remote',
-    period: 'Oct 2024 - Oct 2025',
+    type: 'Full-time',
+    period: 'Oct 2024 – Oct 2025',
     description:
       "As the main React Native developer for El Palacio de Hierro's mobile app, I led the development of a unified platform combining eCommerce and financial services. I designed and implemented robust integrations across multiple systems, ensuring high performance, security, and a seamless user experience in close coordination with cross-functional teams.",
     skills: ['React Native', 'TypeScript', 'Kotlin', 'Swift', 'TanStack Query', 'Tailwind', 'Azure DevOps', 'Fastlane', 'CircleCI', 'Expo Updates and Notifications', 'Firebase', 'SFCC', 'Reanimated', 'Zustand', 'ContextAPI'],
-    color: '#845ef7',
   },
   {
     id: '3',
     role: 'Senior Mobile Engineer',
     company: 'Astound Digital',
-    location: 'Remote',
-    period: 'Oct 2021 - Oct 2024',
+    type: 'Full-time',
+    period: 'Oct 2021 – Oct 2024',
     description:
-      "Senior Mobile Developer in the company's new Mobile Department, building React Native e-commerce projects for enterprise clients. I also helped establish the standards, tooling, and engineering guidelines the team followed when developing scalable mobile apps with React Native.",
+      "Senior Mobile Engineer in the company's new Mobile Department, building React Native e-commerce projects for enterprise clients. I also helped establish the standards, tooling, and engineering guidelines the team followed when developing scalable mobile apps with React Native.",
     skills: ['React Native', 'TypeScript', 'Kotlin', 'Swift', 'TanStack Query', 'Tailwind', 'Azure DevOps', 'Fastlane', 'Expo Updates and Notifications', 'Firebase', 'SFCC', 'Reanimated', 'Zustand', 'ContextAPI', 'Redux', 'Redux Sagas', 'Java', 'Objective-C'],
-    color: '#ff922b',
+  },
+  {
+    id: '4',
+    role: 'Ssr. React Native Engineer',
+    company: 'PaloIT',
+    type: 'Full-time',
+    period: 'Jan 2021 – Oct 2021',
+    description:
+      'Semi Senior Mobile Engineer for Nirvana, the new neobank by Bill Harris (PayPal co-founder). Different fixes and development of a variety of features for the Mobile App and Backoffice for Movistar Uruguay.',
+    skills: ['React Native'],
+  },
+  {
+    id: '5',
+    role: 'Mid. Frontend Engineer',
+    company: '21unicorns',
+    type: 'Full-time',
+    period: 'Jun 2020 – Jan 2021',
+    description:
+      'Developed many features for Adictic mobile app, a fashion social network. Developed the entire users and push notification management dashboard. Developed the web version for the social network.',
+    skills: ['React Native', 'Next.js'],
+  },
+  {
+    id: '6',
+    role: 'Jr. Fullstack Engineer',
+    company: 'Santiago de Cali University',
+    type: 'Full-time',
+    period: 'Jun 2017 – Oct 2019',
+    description:
+      "Developed different websites and web apps, managed different platforms for the university's Library, Editorial, and Research area.",
+    skills: ['React.js', 'WordPress', 'Joomla', 'Node.js', 'PHP', 'React Native'],
   },
 ];
 
-export function TimelineSection() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start end', 'end start'],
-  });
-
-  const lineHeight = useTransform(scrollYProgress, [0, 1], ['0%', '100%']);
+function ResumeRow({ experience, index }: { experience: ExperienceItem; index: number }) {
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <section id="experience" ref={sectionRef} className="py-20 md:py-32 relative">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-50px' }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+    >
+      {/* Row */}
+      <button
+        type="button"
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full group cursor-pointer"
+      >
+        {/* Desktop layout */}
+        <div className="hidden md:flex items-center gap-6 py-8">
+          <span className="text-base text-foreground-tertiary whitespace-nowrap min-w-[180px] text-left">
+            {experience.period}
+          </span>
+          <h3 className="text-2xl lg:text-3xl font-bold flex-1 text-left">
+            {experience.role}
+          </h3>
+          <span className="text-base text-foreground-secondary whitespace-nowrap">
+            {experience.type} at {experience.company}
+          </span>
+          <motion.div
+            animate={{ rotate: isOpen ? 45 : 0 }}
+            transition={{ duration: 0.2 }}
+            className="flex-shrink-0 w-8 h-8 flex items-center justify-center text-foreground-tertiary group-hover:text-foreground transition-colors"
+          >
+            <Plus className="w-5 h-5" />
+          </motion.div>
+        </div>
+
+        {/* Mobile layout - stacked */}
+        <div className="flex md:hidden flex-col gap-1 py-6">
+          <span className="text-sm text-foreground-tertiary text-left">
+            {experience.period}
+          </span>
+          <div className="flex items-center justify-between gap-4">
+            <h3 className="text-xl font-bold text-left">
+              {experience.role}
+            </h3>
+            <motion.div
+              animate={{ rotate: isOpen ? 45 : 0 }}
+              transition={{ duration: 0.2 }}
+              className="flex-shrink-0 w-8 h-8 flex items-center justify-center text-foreground-tertiary group-hover:text-foreground transition-colors"
+            >
+              <Plus className="w-5 h-5" />
+            </motion.div>
+          </div>
+          <span className="text-sm text-foreground-secondary text-left">
+            {experience.type} at {experience.company}
+          </span>
+        </div>
+      </button>
+
+      {/* Expandable Details */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
+            className="overflow-hidden"
+          >
+            <div className="pb-6 md:pb-8 pl-0 md:pl-[196px]">
+              <p className="text-foreground-secondary leading-relaxed mb-4 max-w-2xl">
+                {experience.description}
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {experience.skills.map((skill) => (
+                  <Badge key={skill} variant="secondary" size="sm">
+                    {skill}
+                  </Badge>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Separator */}
+      <div className="h-px bg-border" />
+    </motion.div>
+  );
+}
+
+export function TimelineSection() {
+  return (
+    <section id="experience" className="py-20 md:py-32 relative">
       <div className="container-premium">
-        {/* Section Header */}
+        {/* Section Title */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-20"
+          className="mb-16 md:mb-24"
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-            Work Experience
-          </h2>
-          <p className="text-xl text-foreground-secondary max-w-2xl mx-auto">
-            7 years of building exceptional mobile applications across fintech, e-commerce, and social platforms
-          </p>
+          <div className="flex items-start gap-2">
+            <h2 className="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight">
+              Resume
+            </h2>
+            <span className="text-lg md:text-xl text-foreground-secondary mt-1">
+              (From 2017)
+            </span>
+          </div>
         </motion.div>
 
-        {/* Timeline */}
-        <div className="relative max-w-4xl mx-auto">
-          {/* Timeline Line */}
-          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-border md:-ml-px">
-            <motion.div
-              style={{ height: lineHeight }}
-              className="w-full bg-gradient-to-b from-accent via-purple-500 to-orange-500"
-            />
-          </div>
+        {/* Two Column Layout */}
+        <div className="flex flex-col lg:flex-row gap-12 lg:gap-20">
+          {/* Left Column - Description */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="lg:w-[280px] flex-shrink-0"
+          >
+            <span className="text-sm text-foreground-tertiary mb-4 block">
+              ( My Career )
+            </span>
+            <p className="text-foreground-secondary leading-relaxed">
+              7 years of building exceptional mobile applications across fintech, e-commerce, and entertainment. Focused on React Native, leading teams, and delivering products that scale.
+            </p>
+          </motion.div>
 
-          {/* Timeline Items */}
-          <div className="space-y-12">
+          {/* Right Column - Experience Rows */}
+          <div className="flex-1">
+            {/* Top separator */}
+            <div className="h-px bg-border" />
+
             {experiences.map((exp, index) => (
-              <TimelineItem
-                key={exp.id}
-                experience={exp}
-                index={index}
-                isEven={index % 2 === 0}
-              />
+              <ResumeRow key={exp.id} experience={exp} index={index} />
             ))}
 
-            {/* LinkedIn CTA */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-100px' }}
-              transition={{ duration: 0.6, delay: experiences.length * 0.1 }}
-              className="relative flex flex-col items-center pt-4"
-            >
-              {/* Timeline Dot with breathing glow */}
-              <div className="absolute left-4 md:left-1/2 -ml-3 z-10">
-                <motion.div
-                  initial={{ boxShadow: '0 0 0 0 rgba(51, 154, 240, 0)' }}
-                  whileInView={{
-                    boxShadow: [
-                      '0 0 4px 2px rgba(51, 154, 240, 0.3)',
-                      '0 0 12px 6px rgba(51, 154, 240, 0.6)',
-                      '0 0 4px 2px rgba(51, 154, 240, 0.3)',
-                    ],
-                    scale: [1, 1.15, 1],
-                  }}
-                  viewport={{ once: false }}
-                  transition={{
-                    duration: 2.5,
-                    repeat: Infinity,
-                    ease: 'easeInOut',
-                  }}
-                  className="w-6 h-6 rounded-full border-4 border-background bg-accent"
-                />
-              </div>
-
-              <div className="ml-16 md:ml-0 text-center max-w-md pt-10">
-                <p className="text-foreground-secondary mb-4">
-                  Want to see my full career path? Check out my complete experience on LinkedIn.
-                </p>
-                <a
-                  href="https://www.linkedin.com/in/sebastian-garcia-ospina/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-xl font-medium shadow-lg hover:shadow-xl transition-shadow"
-                >
-                  <Linkedin className="w-5 h-5" />
-                  View full experience
-                </a>
-              </div>
-            </motion.div>
           </div>
         </div>
       </div>
     </section>
-  );
-}
-
-function TimelineItem({
-  experience,
-  index,
-  isEven,
-}: {
-  experience: ExperienceItem;
-  index: number;
-  isEven: boolean;
-}) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, x: isEven ? -50 : 50 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true, margin: '-100px' }}
-      transition={{ duration: 0.6, delay: index * 0.1 }}
-      className={`relative flex items-center ${
-        isEven ? 'md:flex-row' : 'md:flex-row-reverse'
-      } flex-col md:gap-8`}
-    >
-      {/* Timeline Dot */}
-      <motion.div
-        initial={{ scale: 0 }}
-        whileInView={{ scale: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.4, delay: index * 0.1 + 0.2 }}
-        className="absolute left-4 md:left-1/2 -ml-3 w-6 h-6 rounded-full border-4 border-background z-10"
-        style={{ backgroundColor: experience.color }}
-      />
-
-      {/* Content Card */}
-      <motion.div
-        whileHover={{ scale: 1.02, y: -4 }}
-        transition={{ type: 'spring', stiffness: 300 }}
-        className={`w-[calc(100%-4rem)] md:w-[calc(50%-2rem)] ml-16 md:ml-0 ${
-          isEven ? 'md:pr-8' : 'md:pl-8'
-        }`}
-      >
-        <div className="bg-card border border-border rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow">
-          {/* Company & Period */}
-          <div className={`flex items-start justify-between mb-3 flex-wrap gap-2 ${
-            isEven ? 'md:flex-row-reverse' : ''
-          }`}>
-            <div className={`flex items-center gap-2`}>
-              <Briefcase className="w-5 h-5" style={{ color: experience.color }} />
-              <span className="font-semibold text-lg">{experience.company}</span>
-            </div>
-            <div>
-              <div className={`flex items-center gap-2 text-muted-foreground text-sm mb-1 ${
-                isEven ? 'md:justify-end' : ''
-              }`}>
-                <Calendar className="w-4 h-4" />
-                <span>{experience.period}</span>
-              </div>
-              <div className={`flex items-center gap-2 text-muted-foreground text-sm ${
-                isEven ? 'md:justify-end' : ''
-              }`}>
-                <MapPin className="w-4 h-4" />
-                <span>{experience.location}</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Role */}
-          <h3 className={`text-xl font-bold mb-3 ${isEven ? 'md:text-right' : ''}`}>
-            {experience.role}
-          </h3>
-
-          {/* Description */}
-          <p className={`text-foreground-secondary mb-4 ${isEven ? 'md:text-right' : ''}`}>
-            {experience.description}
-          </p>
-
-          {/* Skills */}
-          <div className={`flex flex-wrap gap-2 ${isEven ? 'md:justify-end' : ''}`}>
-            {experience.skills.map((skill) => (
-              <Badge key={skill} variant="secondary" size="sm">
-                {skill}
-              </Badge>
-            ))}
-          </div>
-        </div>
-      </motion.div>
-
-      {/* Spacer for desktop layout */}
-      <div className="hidden md:block w-[calc(50%-2rem)]" />
-    </motion.div>
   );
 }

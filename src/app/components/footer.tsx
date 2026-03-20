@@ -55,7 +55,7 @@ export function Footer({ isDark = false }: { isDark?: boolean }) {
               className="h-10 w-auto mb-4"
             />
             <p className="text-foreground-secondary">
-              Senior Mobile Developer specializing in React Native and modern web technologies.
+              Senior Mobile Engineer specializing in React Native and modern web technologies.
             </p>
           </motion.div>
 
