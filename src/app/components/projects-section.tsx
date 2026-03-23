@@ -1,4 +1,5 @@
 import React, { useState, useRef, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 import { AnimatePresence, motion } from 'motion/react';
 import { ExternalLink, Globe, ChevronLeft, ChevronRight, Smartphone, Monitor } from 'lucide-react';
 import { Badge } from './ui/badge';
@@ -7,9 +8,6 @@ import { ImageWithFallback } from './figma/ImageWithFallback';
 
 interface Project {
   id: string;
-  title: string;
-  description: string;
-  category: string;
   type: 'mobile' | 'web';
   tags: string[];
   image: string;
@@ -25,23 +23,15 @@ interface Project {
 const projects: Project[] = [
   {
     id: '9',
-    title: 'Workforce Management App',
-    description: 'Large-scale mobile platform supporting workforce operations for the entertainment industry\'s leading payroll and HR services provider. Features onboarding flows, time tracking, document management, and project assignment capabilities for a distributed workforce. Built with a focus on scalable architecture, performance optimization, and robust CI/CD pipelines.',
-    category: 'HR Tech',
     type: 'mobile',
     year: '2026',
     client: 'Cast & Crew',
     tags: ['React Native', 'TypeScript', 'OKTA', 'Expo', 'Fastlane', 'Figma', 'Claude Code', 'iOS', 'Android', 'Push Notifications'],
     image: 'https://www.castandcrew.com/wp-content/uploads/2024/01/HeroImage03New_1800px-1-1.webp',
-    links: {
-      website: 'https://www.castandcrew.com/',
-    },
+    links: { website: 'https://www.castandcrew.com/' },
   },
   {
     id: '1',
-    title: 'Mi Palacio',
-    description: 'Official mobile app for Mexico\'s iconic luxury department store. Features image-based product search, personalized notifications, multiple payment methods including PayPal, loyalty program management, and a seamless shopping experience across fashion, beauty, home, and technology.',
-    category: 'E-Commerce',
     type: 'mobile',
     year: '2025',
     client: 'El Palacio de Hierro',
@@ -55,9 +45,6 @@ const projects: Project[] = [
   },
   {
     id: '2',
-    title: 'FlyGuys Pilot',
-    description: 'Mobile app for FlyGuys\' nationwide network of FAA-compliant drone pilots. Connects certified operators with clients for aerial imaging, LiDAR, surveying, inspections, and data capture missions across multiple industries.',
-    category: 'Drone Services',
     type: 'mobile',
     year: '2024',
     client: 'FlyGuys',
@@ -71,9 +58,6 @@ const projects: Project[] = [
   },
   {
     id: '3',
-    title: 'Slab Dream Lab Designer',
-    description: 'Creative design app that transforms photos into custom baseplates for LEGO, DUPLO, and other brick brands. Features image upload, AI-powered object recognition, customizable sizes, and direct-to-manufacturing order flow.',
-    category: 'E-Commerce',
     type: 'mobile',
     year: '2023',
     client: 'Slab Dream Lab',
@@ -86,37 +70,24 @@ const projects: Project[] = [
   },
   {
     id: '4',
-    title: 'Aritzia eCommerce',
-    description: 'High-performance e-commerce website for the Canadian fashion retailer. Built with modern web technologies delivering a fast, responsive shopping experience with product catalog, search, checkout, and international shipping support.',
-    category: 'E-Commerce',
     type: 'web',
     year: '2022',
     client: 'Aritzia',
     tags: ['React', 'TypeScript', 'SFCC', 'E-Commerce', 'Performance', 'Web'],
     image: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800&h=1000&fit=crop&q=80',
-    links: {
-      website: 'https://www.aritzia.com/intl/en',
-    },
+    links: { website: 'https://www.aritzia.com/intl/en' },
   },
   {
     id: '5',
-    title: 'PayIT Outdoors',
-    description: 'Government digital platform for outdoor recreation licensing and permitting. Enables hunting, fishing, and recreational license purchases, harvest reporting, and event discovery. Serves 100M+ residents across multiple US states and Canadian provinces.',
-    category: 'GovTech',
     type: 'mobile',
     year: '2022',
     client: 'PayIT',
     tags: ['React Native', 'TypeScript', 'Payments', 'Government', 'Licensing', 'iOS', 'Android', 'Push Notifications'],
     image: 'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=800&h=1000&fit=crop&q=80',
-    links: {
-      website: 'https://payitgov.com/outdoors/',
-    },
+    links: { website: 'https://payitgov.com/outdoors/' },
   },
   {
     id: '6',
-    title: 'MTL Falcon',
-    description: 'Specialized roof measurement tool for Metal-Era and Hickman Edge Systems. Features voice control, geometry manipulation, custom miter support, PDF generation, and project synchronization via Falcon API for fast and accurate roof edge measurements.',
-    category: 'Construction Tech',
     type: 'mobile',
     year: '2021',
     client: 'Metal-Era',
@@ -129,31 +100,21 @@ const projects: Project[] = [
   },
   {
     id: '7',
-    title: 'StageKeep',
-    description: 'Web platform for choreographers and production creators. Streamlines formation design, music synchronization, budget optimization, and team collaboration from pre-production through performance. Used by Toronto Raptors\' entertainment crew.',
-    category: 'Entertainment Tech',
     type: 'web',
     year: '2020',
     client: 'StageKeep',
     tags: ['React', 'Next.js', 'TypeScript', 'Real-time', 'Web App'],
     image: 'https://www.billboard.com/wp-content/uploads/2025/05/Jennifer-Lopez-03-ama-show-2025-billboard-1548.jpg?w=942&h=628&crop=1',
-    links: {
-      website: 'https://stagekeep.com/',
-    },
+    links: { website: 'https://stagekeep.com/' },
   },
   {
     id: '8',
-    title: 'Universidad Santiago de Cali',
-    description: 'Institutional website for one of Colombia\'s leading universities. Built major portions of the platform including academic program pages, student services portal, virtual classrooms integration, and faculty directories serving thousands of students.',
-    category: 'Education',
     type: 'web',
     year: '2019',
     client: 'USC',
     tags: ['React', 'Next.js', 'CMS', 'SEO', 'Web'],
     image: 'https://cloudfront-us-east-1.images.arcpublishing.com/semana/QX5NFBSHIJBDPJWLPZ7D4T5QGQ.jpeg',
-    links: {
-      website: 'https://www.usc.edu.co/',
-    },
+    links: { website: 'https://www.usc.edu.co/' },
   },
 ];
 
@@ -175,6 +136,7 @@ const slideVariants = {
 export function ProjectsSection() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [direction, setDirection] = useState(1);
+  const { t } = useTranslation('projects');
 
   const handlePrev = () => {
     setDirection(-1);
@@ -195,10 +157,10 @@ export function ProjectsSection() {
         <div className="container-premium">
           <div className="text-center">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-              Featured Work
+              {t('sectionTitle')}
             </h2>
             <p className="text-xl text-foreground-secondary max-w-2xl mx-auto">
-              A curated selection of high-impact projects showcasing technical excellence and design quality
+              {t('sectionDescription')}
             </p>
           </div>
         </div>
@@ -251,11 +213,18 @@ function ProjectSlide({
   canGoPrev: boolean;
   canGoNext: boolean;
 }) {
+  const { t } = useTranslation('projects');
+  const { t: tc } = useTranslation('common');
+
+  const title = t(`items.${project.id}.title`);
+  const category = t(`items.${project.id}.category`);
+  const description = t(`items.${project.id}.description`);
+
   return (
     <div className="relative mx-auto w-full max-w-7xl">
       <div className="flex flex-col md:flex-row gap-6 md:gap-12 items-start">
         {/* Image Side */}
-        <FloatingImage project={project} />
+        <FloatingImage project={project} title={title} category={category} />
 
         {/* Content Side */}
         <div className="w-full md:w-1/2 flex flex-col justify-start space-y-3 md:space-y-6">
@@ -304,7 +273,7 @@ function ProjectSlide({
           {/* Title */}
           <div className="flex items-center gap-3 md:gap-4">
             <h3 className="text-3xl md:text-5xl lg:text-6xl font-bold">
-              {project.title}
+              {title}
             </h3>
             <div className="flex-shrink-0 w-8 h-8 md:w-10 md:h-10 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center">
               {project.type === 'mobile'
@@ -316,7 +285,7 @@ function ProjectSlide({
 
           {/* Description */}
           <p className="text-base md:text-xl text-foreground-secondary leading-relaxed">
-            {project.description}
+            {description}
           </p>
 
           {/* Tags */}
@@ -339,7 +308,7 @@ function ProjectSlide({
                   className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-xl font-medium shadow-lg hover:shadow-xl transition-shadow"
                 >
                   <Globe className="w-5 h-5" />
-                  Website
+                  {tc('buttons.website')}
                 </a>
               )}
               {project.links.appStore && (
@@ -350,7 +319,7 @@ function ProjectSlide({
                   className="inline-flex items-center gap-2 px-6 py-3 bg-secondary text-secondary-foreground rounded-xl font-medium border border-border hover:bg-secondary/80 transition-colors"
                 >
                   <Smartphone className="w-5 h-5" />
-                  App Store
+                  {tc('buttons.appStore')}
                 </a>
               )}
               {project.links.playStore && (
@@ -361,7 +330,7 @@ function ProjectSlide({
                   className="inline-flex items-center gap-2 px-6 py-3 bg-secondary text-secondary-foreground rounded-xl font-medium border border-border hover:bg-secondary/80 transition-colors"
                 >
                   <ExternalLink className="w-5 h-5" />
-                  Play Store
+                  {tc('buttons.playStore')}
                 </a>
               )}
             </div>
@@ -374,8 +343,12 @@ function ProjectSlide({
 
 function FloatingImage({
   project,
+  title,
+  category,
 }: {
   project: Project;
+  title: string;
+  category: string;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [imageTransform, setImageTransform] = useState({ x: 0, y: 0 });
@@ -413,7 +386,7 @@ function FloatingImage({
         >
           <ImageWithFallback
             src={project.image}
-            alt={project.title}
+            alt={title}
             className="w-full h-full object-cover"
           />
         </div>
@@ -424,7 +397,7 @@ function FloatingImage({
         {/* Floating Category Badge */}
         <div className="absolute top-6 left-6">
           <Badge variant="primary" className="bg-background/90 backdrop-blur-md text-foreground border-0">
-            {project.category}
+            {category}
           </Badge>
         </div>
 

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Menu, X, Sun, Moon } from 'lucide-react';
 import { IconButton } from './ui/button';
 import logoWhite from '../../../assets/LogoSG-IconWhite.svg';
@@ -11,16 +12,22 @@ export interface NavigationProps {
 }
 
 const navLinks = [
-  { label: 'Work', href: '#experience' },
-  { label: 'Projects', href: '#projects' },
+  { labelKey: 'nav.work', href: '#experience' },
+  { labelKey: 'nav.projects', href: '#projects' },
 ];
 
-const ctaLink = { label: 'Contact', href: '#contact' };
+const ctaLink = { labelKey: 'nav.contact', href: '#contact' };
 
 export function Navigation({ logo = 'SG', isDark = false, onThemeToggle }: NavigationProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const mobileMenuId = 'mobile-site-navigation';
+  const { t, i18n } = useTranslation('common');
+
+  const toggleLanguage = () => {
+    const next = i18n.language === 'es' ? 'en' : 'es';
+    i18n.changeLanguage(next);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -70,7 +77,7 @@ export function Navigation({ logo = 'SG', isDark = false, onThemeToggle }: Navig
                 href={link.href}
                 className="px-4 py-1.5 text-sm text-foreground-secondary hover:text-foreground transition-colors duration-200 font-medium rounded-full hover:bg-foreground/5"
               >
-                {link.label}
+                {t(link.labelKey)}
               </a>
             ))}
 
@@ -82,15 +89,23 @@ export function Navigation({ logo = 'SG', isDark = false, onThemeToggle }: Navig
               {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
             </button>
 
+            <button
+              onClick={toggleLanguage}
+              aria-label="Toggle language"
+              className="px-3 py-1.5 text-xs font-bold rounded-full text-foreground-secondary hover:text-foreground hover:bg-foreground/5 transition-colors duration-200"
+            >
+              {t('language.switchTo')}
+            </button>
+
             <a
               href={ctaLink.href}
               className="ml-2 px-5 py-1.5 text-sm font-medium rounded-full bg-foreground text-background hover:opacity-90 transition-opacity duration-200"
             >
-              {ctaLink.label}
+              {t(ctaLink.labelKey)}
             </a>
           </div>
 
-          {/* Mobile: Theme Toggle + Menu Button */}
+          {/* Mobile: Theme Toggle + Language + Menu Button */}
           <div className="md:hidden flex items-center gap-1 ml-auto">
             <button
               onClick={onThemeToggle}
@@ -98,6 +113,13 @@ export function Navigation({ logo = 'SG', isDark = false, onThemeToggle }: Navig
               className="p-2 rounded-full text-foreground-secondary hover:text-foreground hover:bg-foreground/5 transition-colors duration-200"
             >
               {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+            </button>
+            <button
+              onClick={toggleLanguage}
+              aria-label="Toggle language"
+              className="px-3 py-1.5 text-xs font-bold rounded-full text-foreground-secondary hover:text-foreground hover:bg-foreground/5 transition-colors duration-200"
+            >
+              {t('language.switchTo')}
             </button>
             <IconButton
               variant="ghost"
@@ -128,7 +150,7 @@ export function Navigation({ logo = 'SG', isDark = false, onThemeToggle }: Navig
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="text-lg font-medium text-foreground hover:text-accent transition-colors"
                 >
-                  {link.label}
+                  {t(link.labelKey)}
                 </a>
               ))}
               <a
@@ -136,7 +158,7 @@ export function Navigation({ logo = 'SG', isDark = false, onThemeToggle }: Navig
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="text-lg font-medium text-accent hover:text-accent/80 transition-colors"
               >
-                {ctaLink.label}
+                {t(ctaLink.labelKey)}
               </a>
             </div>
           </div>

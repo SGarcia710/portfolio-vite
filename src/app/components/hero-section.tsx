@@ -1,15 +1,18 @@
 import React from 'react';
+import { Trans, useTranslation } from 'react-i18next';
 import { ArrowDown, Github, Linkedin, Mail } from 'lucide-react';
 import { Button } from './ui/button';
 
 export function HeroSection() {
+  const { t } = useTranslation('hero');
+  const { t: tc } = useTranslation('common');
   const revealStyle = (delay: string) => ({ '--hero-delay': delay } as React.CSSProperties);
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Gradient Mesh Background */}
       <div className="absolute inset-0 gradient-mesh opacity-50" />
-      
+
       {/* Animated Orbs */}
       <div className="hero-orb hero-orb-primary absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-accent/20 blur-3xl" />
       <div className="hero-orb hero-orb-secondary absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full bg-purple-500/20 blur-3xl" />
@@ -19,7 +22,7 @@ export function HeroSection() {
           {/* Greeting */}
           <div className="mb-6 hero-reveal" style={revealStyle('0s')}>
             <span className="inline-block px-4 py-2 bg-accent/10 text-accent rounded-full text-sm font-medium border border-accent/20">
-              Available for opportunities
+              {t('badge')}
             </span>
           </div>
 
@@ -35,7 +38,7 @@ export function HeroSection() {
             className="text-2xl md:text-4xl lg:text-5xl font-semibold mb-8 text-foreground-secondary hero-reveal"
             style={revealStyle('0.25s')}
           >
-            Senior Mobile Engineer
+            {t('title')}
           </div>
 
           {/* Value Proposition */}
@@ -43,10 +46,14 @@ export function HeroSection() {
             className="text-lg md:text-xl lg:text-2xl text-foreground-secondary max-w-3xl mx-auto mb-12 leading-relaxed hero-reveal"
             style={revealStyle('0.35s')}
           >
-            Crafting exceptional mobile experiences with{' '}
-            <span className="text-foreground font-semibold">React Native</span> and{' '}
-            <span className="text-foreground font-semibold">modern technologies</span>.
-            8 years of building high-performance apps that users love.
+            <Trans
+              i18nKey="description"
+              ns="hero"
+              components={[
+                <span className="text-foreground font-semibold" />,
+                <span className="text-foreground font-semibold" />,
+              ]}
+            />
           </p>
 
           {/* CTAs */}
@@ -61,7 +68,7 @@ export function HeroSection() {
                 window.location.href = 'mailto:sebas.garcia710@icloud.com';
               }}
             >
-              Get in touch
+              {tc('buttons.getInTouch')}
             </Button>
             <Button
               variant="secondary"
@@ -69,7 +76,7 @@ export function HeroSection() {
               leftIcon={<Github className="w-5 h-5" />}
               onClick={() => window.open('https://github.com/SGarcia710', '_blank')}
             >
-              View GitHub
+              {tc('buttons.viewGithub')}
             </Button>
           </div>
 
@@ -100,7 +107,7 @@ export function HeroSection() {
             className="flex flex-col items-center gap-2 hero-reveal"
             style={revealStyle('0.65s')}
           >
-            <span className="text-sm text-muted-foreground">Scroll to explore</span>
+            <span className="text-sm text-muted-foreground">{tc('scrollToExplore')}</span>
             <div className="hero-bounce">
               <ArrowDown className="w-5 h-5 text-muted-foreground" />
             </div>

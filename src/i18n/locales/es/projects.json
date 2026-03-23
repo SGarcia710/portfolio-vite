@@ -1,0 +1,51 @@
+{
+  "sectionTitle": "Trabajo Destacado",
+  "sectionDescription": "Una selección curada de proyectos de alto impacto que demuestran excelencia técnica y calidad de diseño",
+  "items": {
+    "9": {
+      "title": "App de Gestión Laboral",
+      "category": "HR Tech",
+      "description": "Plataforma móvil a gran escala que soporta operaciones laborales para el proveedor líder de nómina y servicios de RRHH de la industria del entretenimiento. Incluye flujos de onboarding, control de tiempo, gestión documental y asignación de proyectos para una fuerza laboral distribuida. Construida con enfoque en arquitectura escalable, optimización de rendimiento y pipelines CI/CD robustos."
+    },
+    "1": {
+      "title": "Mi Palacio",
+      "category": "E-Commerce",
+      "description": "App móvil oficial de la icónica tienda departamental de lujo de México. Incluye búsqueda de productos por imagen, notificaciones personalizadas, múltiples métodos de pago incluyendo PayPal, gestión del programa de lealtad y una experiencia de compra fluida en moda, belleza, hogar y tecnología."
+    },
+    "2": {
+      "title": "FlyGuys Pilot",
+      "category": "Servicios de Drones",
+      "description": "App móvil para la red nacional de pilotos de drones certificados por la FAA de FlyGuys. Conecta operadores certificados con clientes para imágenes aéreas, LiDAR, topografía, inspecciones y captura de datos en múltiples industrias."
+    },
+    "3": {
+      "title": "Slab Dream Lab Designer",
+      "category": "E-Commerce",
+      "description": "App de diseño creativo que transforma fotos en bases personalizadas para LEGO, DUPLO y otras marcas de bloques. Incluye carga de imágenes, reconocimiento de objetos con IA, tamaños personalizables y flujo de pedido directo a fabricación."
+    },
+    "4": {
+      "title": "Aritzia eCommerce",
+      "category": "E-Commerce",
+      "description": "Sitio web de e-commerce de alto rendimiento para la marca canadiense de moda. Construido con tecnologías web modernas ofreciendo una experiencia de compra rápida y responsive con catálogo de productos, búsqueda, checkout y soporte de envío internacional."
+    },
+    "5": {
+      "title": "PayIT Outdoors",
+      "category": "GovTech",
+      "description": "Plataforma digital gubernamental para licencias y permisos de recreación al aire libre. Permite compras de licencias de caza, pesca y recreación, reportes de cosecha y descubrimiento de eventos. Sirve a más de 100M de residentes en múltiples estados de EE.UU. y provincias canadienses."
+    },
+    "6": {
+      "title": "MTL Falcon",
+      "category": "Tecnología de Construcción",
+      "description": "Herramienta especializada de medición de techos para Metal-Era y Hickman Edge Systems. Incluye control por voz, manipulación de geometría, soporte de ingletes personalizados, generación de PDF y sincronización de proyectos vía Falcon API para mediciones rápidas y precisas de bordes de techo."
+    },
+    "7": {
+      "title": "StageKeep",
+      "category": "Entretenimiento Tech",
+      "description": "Plataforma web para coreógrafos y creadores de producción. Simplifica el diseño de formaciones, sincronización musical, optimización de presupuesto y colaboración en equipo desde la preproducción hasta la presentación. Usado por el equipo de entretenimiento de los Toronto Raptors."
+    },
+    "8": {
+      "title": "Universidad Santiago de Cali",
+      "category": "Educación",
+      "description": "Sitio web institucional para una de las universidades líderes de Colombia. Construí porciones importantes de la plataforma incluyendo páginas de programas académicos, portal de servicios estudiantiles, integración de aulas virtuales y directorios de profesores sirviendo a miles de estudiantes."
+    }
+  }
+}

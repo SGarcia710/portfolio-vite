@@ -1,0 +1,38 @@
+{
+  "sectionTitle": "Currículum",
+  "sectionSubtitle": "(Desde 2017)",
+  "sectionLabel": "( Mi Carrera )",
+  "sectionDescription": "8 años construyendo aplicaciones móviles excepcionales en fintech, e-commerce y entretenimiento. Enfocado en React Native, liderazgo de equipos y entrega de productos escalables.",
+  "typeFullTime": "Tiempo completo",
+  "at": "en",
+  "experiences": {
+    "1": {
+      "role": "Ingeniero Mobile Líder",
+      "description": "Tech Lead e ingeniero mobile principal para Cast & Crew, liderando la app React Native en iOS y Android. Dirijo la arquitectura, entrega y estrategia de releases mientras colaboro con producto e ingeniería para construir experiencias móviles confiables para una empresa que soporta nómina, finanzas y flujos de producción en la industria del entretenimiento."
+    },
+    "2": {
+      "role": "Ingeniero Mobile Senior",
+      "description": "Como desarrollador principal de React Native para la app móvil de El Palacio de Hierro, lideré el desarrollo de una plataforma unificada combinando eCommerce y servicios financieros. Diseñé e implementé integraciones robustas a través de múltiples sistemas, asegurando alto rendimiento, seguridad y una experiencia de usuario fluida en coordinación con equipos multifuncionales."
+    },
+    "3": {
+      "role": "Ingeniero Mobile Senior",
+      "description": "Ingeniero Mobile Senior en el nuevo Departamento Móvil de la empresa, construyendo proyectos de e-commerce en React Native para clientes empresariales. También ayudé a establecer los estándares, herramientas y guías de ingeniería que el equipo seguía al desarrollar apps móviles escalables con React Native."
+    },
+    "4": {
+      "role": "Ing. React Native Semi Senior",
+      "description": "Ingeniero Mobile Semi Senior para Nirvana, el nuevo neobanco de Bill Harris (co-fundador de PayPal). Diferentes correcciones y desarrollo de múltiples funcionalidades para la App Móvil y Backoffice de Movistar Uruguay."
+    },
+    "5": {
+      "role": "Ing. Frontend Mid",
+      "description": "Desarrollé múltiples funcionalidades para la app móvil Adictic, una red social de moda. Desarrollé el dashboard completo de gestión de usuarios y notificaciones push. Desarrollé la versión web de la red social."
+    },
+    "6": {
+      "role": "Ing. Fullstack Jr.",
+      "description": "Desarrollé diferentes plataformas para clientes en la industria de educación, ingeniería y moda. Estrategias interactivas innovadoras enfocadas en diseño centrado en el usuario en Cali, Colombia."
+    },
+    "7": {
+      "role": "Ing. Fullstack Jr.",
+      "description": "Desarrollé diferentes sitios web y aplicaciones web, gestioné diferentes plataformas para la Biblioteca, Editorial y área de Investigación de la universidad."
+    }
+  }
+}

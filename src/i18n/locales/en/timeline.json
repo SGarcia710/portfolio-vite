@@ -1,0 +1,38 @@
+{
+  "sectionTitle": "Resume",
+  "sectionSubtitle": "(From 2017)",
+  "sectionLabel": "( My Career )",
+  "sectionDescription": "8 years of building exceptional mobile applications across fintech, e-commerce, and entertainment. Focused on React Native, leading teams, and delivering products that scale.",
+  "typeFullTime": "Full-time",
+  "at": "at",
+  "experiences": {
+    "1": {
+      "role": "Lead Mobile Engineer",
+      "description": "Tech Lead and principal mobile engineer for Cast & Crew, leading the React Native app across iOS and Android. I drive architecture, delivery, and release strategy while partnering across product and engineering to build reliable mobile experiences for a company that supports payroll, finance, and production workflows in the entertainment industry."
+    },
+    "2": {
+      "role": "Senior Mobile Engineer",
+      "description": "As the main React Native developer for El Palacio de Hierro's mobile app, I led the development of a unified platform combining eCommerce and financial services. I designed and implemented robust integrations across multiple systems, ensuring high performance, security, and a seamless user experience in close coordination with cross-functional teams."
+    },
+    "3": {
+      "role": "Senior Mobile Engineer",
+      "description": "Senior Mobile Engineer in the company's new Mobile Department, building React Native e-commerce projects for enterprise clients. I also helped establish the standards, tooling, and engineering guidelines the team followed when developing scalable mobile apps with React Native."
+    },
+    "4": {
+      "role": "Ssr. React Native Engineer",
+      "description": "Semi Senior Mobile Engineer for Nirvana, the new neobank by Bill Harris (PayPal co-founder). Different fixes and development of a variety of features for the Mobile App and Backoffice for Movistar Uruguay."
+    },
+    "5": {
+      "role": "Mid. Frontend Engineer",
+      "description": "Developed many features for Adictic mobile app, a fashion social network. Developed the entire users and push notification management dashboard. Developed the web version for the social network."
+    },
+    "6": {
+      "role": "Jr. Fullstack Engineer",
+      "description": "Developed different platforms for clients in the education, engineering, and fashion industry. Innovative interactive strategies focused on user-centered design in Cali, Colombia."
+    },
+    "7": {
+      "role": "Jr. Fullstack Engineer",
+      "description": "Developed different websites and web apps, managed different platforms for the university's Library, Editorial, and Research area."
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "nav": {
+    "work": "Work",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+  "buttons": {
+    "getInTouch": "Get in touch",
+    "viewGithub": "View GitHub",
+    "website": "Website",
+    "appStore": "App Store",
+    "playStore": "Play Store"
+  },
+  "scrollToExplore": "Scroll to explore",
+  "language": {
+    "switchTo": "ES"
+  }
+}

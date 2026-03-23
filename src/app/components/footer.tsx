@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { motion } from 'motion/react';
 import { Github, Linkedin, Mail, Heart } from 'lucide-react';
 import { Button } from './ui/button';
@@ -7,6 +8,8 @@ import logoBlack from '../../../assets/LogoSG-IconBlack.svg';
 
 export function Footer({ isDark = false }: { isDark?: boolean }) {
   const currentYear = new Date().getFullYear();
+  const { t } = useTranslation('footer');
+  const { t: tc } = useTranslation('common');
 
   return (
     <footer id="contact" className="relative py-20 bg-background-secondary border-t border-border">
@@ -20,11 +23,10 @@ export function Footer({ isDark = false }: { isDark?: boolean }) {
           className="text-center mb-16 max-w-3xl mx-auto"
         >
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-            Let's Build Something Amazing
+            {t('ctaTitle')}
           </h2>
           <p className="text-lg md:text-xl text-foreground-secondary mb-8">
-            I'm currently available for freelance projects and full-time opportunities.
-            Let's discuss how we can work together.
+            {t('ctaDescription')}
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button
@@ -32,7 +34,7 @@ export function Footer({ isDark = false }: { isDark?: boolean }) {
               leftIcon={<Mail className="w-5 h-5" />}
               onClick={() => window.location.href = 'mailto:sebas.garcia710@icloud.com'}
             >
-              Get in touch
+              {tc('buttons.getInTouch')}
             </Button>
           </div>
         </motion.div>
@@ -55,7 +57,7 @@ export function Footer({ isDark = false }: { isDark?: boolean }) {
               className="h-10 w-auto mb-4"
             />
             <p className="text-foreground-secondary">
-              Senior Mobile Engineer specializing in React Native and modern web technologies.
+              {t('branding')}
             </p>
           </motion.div>
 
@@ -66,16 +68,16 @@ export function Footer({ isDark = false }: { isDark?: boolean }) {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <h3 className="font-semibold mb-4 text-2xl">Quick Links</h3>
+            <h3 className="font-semibold mb-4 text-2xl">{t('quickLinks')}</h3>
             <div className="flex flex-col gap-2">
               <a href="#experience" className="text-foreground-secondary hover:text-foreground transition-colors">
-                Work Experience
+                {t('linkWorkExperience')}
               </a>
               <a href="#projects" className="text-foreground-secondary hover:text-foreground transition-colors">
-                Projects
+                {t('linkProjects')}
               </a>
               <a href="#contact" className="text-foreground-secondary hover:text-foreground transition-colors">
-                Contact
+                {t('linkContact')}
               </a>
             </div>
           </motion.div>
@@ -87,7 +89,7 @@ export function Footer({ isDark = false }: { isDark?: boolean }) {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            <h3 className="font-semibold mb-4 text-2xl">Connect</h3>
+            <h3 className="font-semibold mb-4 text-2xl">{t('connect')}</h3>
             <div className="flex gap-4">
               <SocialButton
                 href="https://github.com/SGarcia710"
@@ -117,8 +119,8 @@ export function Footer({ isDark = false }: { isDark?: boolean }) {
           className="pt-8 border-t border-border text-center text-sm text-muted-foreground"
         >
           <p className="flex items-center justify-center gap-2">
-            © {currentYear} Sebastián García. Built with{' '}
-            <Heart className="w-4 h-4 text-red-500 fill-current" /> using React & TypeScript
+            {t('copyright', { year: currentYear })}{' '}
+            <Heart className="w-4 h-4 text-red-500 fill-current" /> {t('copyrightTech')}
           </p>
         </motion.div>
       </div>

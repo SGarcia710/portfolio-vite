@@ -1,18 +1,15 @@
 import { useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const lines = [
-  'Crafting digital',
-  'experiences that',
-  'leave a mark',
-];
-
 export function TextRevealSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const { t } = useTranslation('textReveal');
+  const lines = t('lines', { returnObjects: true }) as string[];
 
   useGSAP(
     () => {
