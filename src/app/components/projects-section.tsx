@@ -206,14 +206,7 @@ export function ProjectsSection() {
 
       {/* Carousel */}
       <div className="container-premium relative">
-        <div className="absolute top-0 left-1/2 md:left-auto md:right-0 -translate-x-1/2 md:translate-x-0 z-20 bg-background/80 backdrop-blur-md px-4 py-2 rounded-full shadow-lg border border-border">
-          <span className="text-sm font-medium">
-            <span className="text-2xl font-bold">{String(activeIndex + 1).padStart(2, '0')}</span>
-            <span className="text-muted-foreground"> / {String(projects.length).padStart(2, '0')}</span>
-          </span>
-        </div>
-
-        <div className="pt-8 md:pt-10 overflow-hidden">
+        <div className="overflow-hidden">
           <AnimatePresence mode="wait" initial={false} custom={direction}>
             <motion.div
               key={activeProject.id}
@@ -226,6 +219,8 @@ export function ProjectsSection() {
             >
               <ProjectSlide
                 project={activeProject}
+                activeIndex={activeIndex}
+                totalProjects={projects.length}
                 onPrev={handlePrev}
                 onNext={handleNext}
                 canGoPrev={activeIndex > 0}
@@ -241,12 +236,16 @@ export function ProjectsSection() {
 
 function ProjectSlide({
   project,
+  activeIndex,
+  totalProjects,
   onPrev,
   onNext,
   canGoPrev,
   canGoNext,
 }: {
   project: Project;
+  activeIndex: number;
+  totalProjects: number;
   onPrev: () => void;
   onNext: () => void;
   canGoPrev: boolean;
@@ -256,16 +255,44 @@ function ProjectSlide({
     <div className="relative mx-auto w-full max-w-7xl">
       <div className="flex flex-col md:flex-row gap-6 md:gap-12 items-start">
         {/* Image Side */}
-        <FloatingImage
-          project={project}
-          onPrev={onPrev}
-          onNext={onNext}
-          canGoPrev={canGoPrev}
-          canGoNext={canGoNext}
-        />
+        <FloatingImage project={project} />
 
         {/* Content Side */}
         <div className="w-full md:w-1/2 flex flex-col justify-start space-y-3 md:space-y-6">
+          {/* Counter & Navigation Row */}
+          <div className="flex items-center justify-between">
+            <div className="bg-background/80 backdrop-blur-md px-4 py-2 rounded-full shadow-lg border border-border">
+              <span className="text-sm font-medium">
+                <span className="text-2xl font-bold">{String(activeIndex + 1).padStart(2, '0')}</span>
+                <span className="text-muted-foreground"> / {String(totalProjects).padStart(2, '0')}</span>
+              </span>
+            </div>
+            <div className="flex items-center gap-2">
+              <IconButton
+                type="button"
+                variant="secondary"
+                size="lg"
+                onClick={onPrev}
+                disabled={!canGoPrev}
+                aria-label="Previous project"
+                className="bg-background/90 backdrop-blur-md hover:bg-background shadow-xl disabled:opacity-30 disabled:cursor-not-allowed"
+              >
+                <ChevronLeft className="w-6 h-6" />
+              </IconButton>
+              <IconButton
+                type="button"
+                variant="secondary"
+                size="lg"
+                onClick={onNext}
+                disabled={!canGoNext}
+                aria-label="Next project"
+                className="bg-background/90 backdrop-blur-md hover:bg-background shadow-xl disabled:opacity-30 disabled:cursor-not-allowed"
+              >
+                <ChevronRight className="w-6 h-6" />
+              </IconButton>
+            </div>
+          </div>
+
           {/* Client */}
           {project.client && (
             <div className="flex items-center gap-2 text-accent font-medium">
@@ -347,16 +374,8 @@ function ProjectSlide({
 
 function FloatingImage({
   project,
-  onPrev,
-  onNext,
-  canGoPrev,
-  canGoNext,
 }: {
   project: Project;
-  onPrev: () => void;
-  onNext: () => void;
-  canGoPrev: boolean;
-  canGoNext: boolean;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [imageTransform, setImageTransform] = useState({ x: 0, y: 0 });
@@ -416,31 +435,6 @@ function FloatingImage({
           </div>
         </div>
 
-        {/* Navigation Arrows */}
-        <div className="pointer-events-none absolute inset-y-0 left-0 right-0 z-20 flex items-center justify-between px-4 md:px-6">
-          <IconButton
-            type="button"
-            variant="secondary"
-            size="lg"
-            onClick={onPrev}
-            disabled={!canGoPrev}
-            aria-label="Previous project"
-            className="pointer-events-auto bg-background/90 backdrop-blur-md hover:bg-background shadow-xl disabled:opacity-30 disabled:cursor-not-allowed"
-          >
-            <ChevronLeft className="w-6 h-6" />
-          </IconButton>
-          <IconButton
-            type="button"
-            variant="secondary"
-            size="lg"
-            onClick={onNext}
-            disabled={!canGoNext}
-            aria-label="Next project"
-            className="pointer-events-auto bg-background/90 backdrop-blur-md hover:bg-background shadow-xl disabled:opacity-30 disabled:cursor-not-allowed"
-          >
-            <ChevronRight className="w-6 h-6" />
-          </IconButton>
-        </div>
       </div>
     </div>
   );
