@@ -239,23 +239,23 @@ function ProjectSlide({
             <div className="flex items-center gap-2">
               <IconButton
                 type="button"
-                variant="secondary"
+                variant="primary"
                 size="lg"
                 onClick={onPrev}
                 disabled={!canGoPrev}
                 aria-label="Previous project"
-                className="bg-background/90 backdrop-blur-md hover:bg-background shadow-xl disabled:opacity-30 disabled:cursor-not-allowed"
+                className="shadow-xl disabled:opacity-30 disabled:cursor-not-allowed"
               >
                 <ChevronLeft className="w-6 h-6" />
               </IconButton>
               <IconButton
                 type="button"
-                variant="secondary"
+                variant="primary"
                 size="lg"
                 onClick={onNext}
                 disabled={!canGoNext}
                 aria-label="Next project"
-                className="bg-background/90 backdrop-blur-md hover:bg-background shadow-xl disabled:opacity-30 disabled:cursor-not-allowed"
+                className="shadow-xl disabled:opacity-30 disabled:cursor-not-allowed"
               >
                 <ChevronRight className="w-6 h-6" />
               </IconButton>
