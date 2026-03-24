@@ -1,4 +1,5 @@
 import { useState, useEffect, lazy, Suspense } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import { Navigation } from './components/navigation';
 import { HeroSection } from './components/hero-section';
 import { TextRevealSection } from './components/text-reveal-section';
@@ -73,6 +74,7 @@ export default function App() {
 
         <ScrollToTop />
       </div>
+      <Analytics />
     </>
   );
 }
