@@ -46,6 +46,16 @@
       "title": "Universidad Santiago de Cali",
       "category": "Education",
       "description": "Institutional website for one of Colombia's leading universities. Built major portions of the platform including academic program pages, student services portal, virtual classrooms integration, and faculty directories serving thousands of students."
+    },
+    "10": {
+      "title": "TECHO Mexico Backoffice",
+      "category": "Social Impact",
+      "description": "Backoffice web application for TECHO Mexico, a Latin American nonprofit that builds emergency housing in underserved communities. The platform manages and visualizes housing candidates from informal settlements, streamlining the process of surveying, evaluating, and selecting families for construction programs."
+    },
+    "11": {
+      "title": "Mi Movistar Uruguay",
+      "category": "Telecom",
+      "description": "Official mobile app for Movistar customers in Uruguay. Enables account management, balance inquiries, plan upgrades, data usage monitoring, bill payments, and customer support. Serves as the primary self-service channel for one of Uruguay's leading telecommunications providers."
     }
   }
 }

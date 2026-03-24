@@ -46,6 +46,16 @@
       "title": "Universidad Santiago de Cali",
       "category": "Educación",
       "description": "Sitio web institucional para una de las universidades líderes de Colombia. Construí porciones importantes de la plataforma incluyendo páginas de programas académicos, portal de servicios estudiantiles, integración de aulas virtuales y directorios de profesores sirviendo a miles de estudiantes."
+    },
+    "10": {
+      "title": "TECHO Mexico Backoffice",
+      "category": "Impacto Social",
+      "description": "Aplicación web backoffice para TECHO México, una ONG latinoamericana que construye viviendas de emergencia en comunidades vulnerables. La plataforma administra y visualiza candidatos a vivienda de asentamientos informales, optimizando el proceso de relevamiento, evaluación y selección de familias para los programas de construcción."
+    },
+    "11": {
+      "title": "Mi Movistar Uruguay",
+      "category": "Telecomunicaciones",
+      "description": "App móvil oficial para clientes de Movistar en Uruguay. Permite gestión de cuenta, consulta de saldo, cambio de planes, monitoreo de consumo de datos, pago de facturas y soporte al cliente. Funciona como el canal principal de autogestión para uno de los proveedores de telecomunicaciones líderes en Uruguay."
     }
   }
 }

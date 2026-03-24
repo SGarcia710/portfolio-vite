@@ -87,6 +87,28 @@ const projects: Project[] = [
     links: { website: 'https://payitgov.com/outdoors/' },
   },
   {
+    id: '10',
+    type: 'web',
+    year: '2022',
+    client: 'TECHO',
+    tags: ['React', 'TypeScript', 'Node.js', 'Data Visualization', 'Web'],
+    image: 'https://mexico.techo.org/wp-content/uploads/sites/16/2021/11/Thumbnail-1024x538.png',
+    links: { website: 'https://mexico.techo.org/' },
+  },
+  {
+    id: '11',
+    type: 'mobile',
+    year: '2021',
+    client: 'Movistar',
+    tags: ['React Native', 'TypeScript', 'Telecom', 'iOS', 'Android', 'Push Notifications'],
+    image: 'https://images.unsplash.com/photo-1556656793-08538906a9f8?w=800&h=1000&fit=crop&q=80',
+    links: {
+      website: 'https://www.movistar.com.uy/home/',
+      appStore: 'https://apps.apple.com/mx/app/mi-movistar-uruguay/id785193700',
+      playStore: 'https://play.google.com/store/apps/details?id=com.movistar.mimovistar',
+    },
+  },
+  {
     id: '6',
     type: 'mobile',
     year: '2021',
