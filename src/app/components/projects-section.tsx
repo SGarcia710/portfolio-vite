@@ -168,7 +168,7 @@ export function ProjectsSection() {
 
       {/* Carousel */}
       <div className="container-premium relative">
-        <div className="overflow-hidden">
+        <div className="overflow-hidden pt-2">
           <AnimatePresence mode="wait" initial={false} custom={direction}>
             <motion.div
               key={activeProject.id}
