@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router';
 import { Menu, X, Sun, Moon } from 'lucide-react';
 import { IconButton } from './ui/button';
 import logoWhite from '../../../assets/LogoSG-IconWhite.svg';
@@ -12,11 +13,11 @@ export interface NavigationProps {
 }
 
 const navLinks = [
-  { labelKey: 'nav.work', href: '#experience' },
-  { labelKey: 'nav.projects', href: '#projects' },
+  { labelKey: 'nav.work', href: '/#experience' },
+  { labelKey: 'nav.projects', href: '/#projects' },
 ];
 
-const ctaLink = { labelKey: 'nav.contact', href: '#contact' };
+const ctaLink = { labelKey: 'nav.contact', href: '/#contact' };
 
 export function Navigation({ logo = 'SG', isDark = false, onThemeToggle }: NavigationProps) {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -58,8 +59,9 @@ export function Navigation({ logo = 'SG', isDark = false, onThemeToggle }: Navig
           `}
         >
           {/* Logo */}
-          <a
-            href="#"
+          <Link
+            to="/"
+            onClick={() => setIsMobileMenuOpen(false)}
             className="flex items-center shrink-0"
           >
             <img
@@ -67,18 +69,18 @@ export function Navigation({ logo = 'SG', isDark = false, onThemeToggle }: Navig
               alt="SG Logo"
               className="h-8 w-auto"
             />
-          </a>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-1 ml-auto">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.href}
-                href={link.href}
+                to={link.href}
                 className="px-4 py-1.5 text-sm text-foreground-secondary hover:text-foreground transition-colors duration-200 font-medium rounded-full hover:bg-foreground/5"
               >
                 {t(link.labelKey)}
-              </a>
+              </Link>
             ))}
 
             <button
@@ -97,12 +99,12 @@ export function Navigation({ logo = 'SG', isDark = false, onThemeToggle }: Navig
               {t('language.switchTo')}
             </button>
 
-            <a
-              href={ctaLink.href}
+            <Link
+              to={ctaLink.href}
               className="ml-2 px-5 py-1.5 text-sm font-medium rounded-full bg-foreground text-background hover:opacity-90 transition-opacity duration-200"
             >
               {t(ctaLink.labelKey)}
-            </a>
+            </Link>
           </div>
 
           {/* Mobile: Theme Toggle + Language + Menu Button */}
@@ -144,22 +146,22 @@ export function Navigation({ logo = 'SG', isDark = false, onThemeToggle }: Navig
           <div className="px-6 py-6">
             <div className="flex flex-col gap-4">
               {navLinks.map((link) => (
-                <a
+                <Link
                   key={link.href}
-                  href={link.href}
+                  to={link.href}
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="text-lg font-medium text-foreground hover:text-accent transition-colors"
                 >
                   {t(link.labelKey)}
-                </a>
+                </Link>
               ))}
-              <a
-                href={ctaLink.href}
+              <Link
+                to={ctaLink.href}
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="text-lg font-medium text-accent hover:text-accent/80 transition-colors"
               >
                 {t(ctaLink.labelKey)}
-              </a>
+              </Link>
             </div>
           </div>
         </div>

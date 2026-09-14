@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    { "source": "/projects", "destination": "/index.html" },
+    { "source": "/projects/ktcodex", "destination": "/index.html" },
+    { "source": "/projects/ktcodex/privacy", "destination": "/index.html" }
+  ],
+  "trailingSlash": false
+}

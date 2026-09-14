@@ -1,13 +1,14 @@
 import { useState, useEffect, lazy, Suspense } from 'react';
 import { Analytics } from '@vercel/analytics/react';
+import { Route, Routes } from 'react-router';
 import { Navigation } from './components/navigation';
-import { HeroSection } from './components/hero-section';
-import { TextRevealSection } from './components/text-reveal-section';
 import { ScrollToTop } from './components/ui/scroll-to-top';
+import { RouteScroll } from './components/route-scroll';
+import { HomePage } from './pages/home-page';
+import { ProjectPlaceholderPage } from './pages/project-placeholder-page';
+import { PrivacyPage } from './pages/privacy-page';
 
 const CustomCursor = lazy(() => import('./components/custom-cursor').then(m => ({ default: m.CustomCursor })));
-const TimelineSection = lazy(() => import('./components/timeline-section').then(m => ({ default: m.TimelineSection })));
-const ProjectsSection = lazy(() => import('./components/projects-section').then(m => ({ default: m.ProjectsSection })));
 const Footer = lazy(() => import('./components/footer').then(m => ({ default: m.Footer })));
 const LIGHT_FAVICON = '/assets/favicon-black.ico';
 const DARK_FAVICON = '/assets/favicon-white.ico';
@@ -51,6 +52,7 @@ export default function App() {
 
   return (
     <>
+      <RouteScroll />
       {shouldLoadCursor && (
         <Suspense fallback={null}>
           <CustomCursor />
@@ -60,12 +62,12 @@ export default function App() {
         <Navigation isDark={isDark} onThemeToggle={toggleTheme} />
         
         <main>
-          <HeroSection />
-          <TextRevealSection />
-          <Suspense>
-            <TimelineSection />
-            <ProjectsSection />
-          </Suspense>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/projects" element={<ProjectPlaceholderPage />} />
+            <Route path="/projects/ktcodex" element={<ProjectPlaceholderPage project="ktcodex" />} />
+            <Route path="/projects/ktcodex/privacy" element={<PrivacyPage />} />
+          </Routes>
         </main>
 
         <Suspense>

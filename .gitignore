@@ -9,3 +9,5 @@ next-env.d.ts
 
 # TypeScript build cache
 tsconfig.tsbuildinfo
+.vercel
+.env*

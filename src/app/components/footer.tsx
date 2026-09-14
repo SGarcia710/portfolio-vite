@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router';
 import { motion } from 'motion/react';
 import { Github, Linkedin, Mail, Heart } from 'lucide-react';
 import { Button } from './ui/button';
@@ -70,15 +71,15 @@ export function Footer({ isDark = false }: { isDark?: boolean }) {
           >
             <h3 className="font-semibold mb-4 text-2xl">{t('quickLinks')}</h3>
             <div className="flex flex-col gap-2">
-              <a href="#experience" className="text-foreground-secondary hover:text-foreground transition-colors">
+              <Link to="/#experience" className="text-foreground-secondary hover:text-foreground transition-colors">
                 {t('linkWorkExperience')}
-              </a>
-              <a href="#projects" className="text-foreground-secondary hover:text-foreground transition-colors">
+              </Link>
+              <Link to="/#projects" className="text-foreground-secondary hover:text-foreground transition-colors">
                 {t('linkProjects')}
-              </a>
-              <a href="#contact" className="text-foreground-secondary hover:text-foreground transition-colors">
+              </Link>
+              <Link to="/#contact" className="text-foreground-secondary hover:text-foreground transition-colors">
                 {t('linkContact')}
-              </a>
+              </Link>
             </div>
           </motion.div>
 

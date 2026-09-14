@@ -1,0 +1,51 @@
+{
+  "title": "Política de Privacidad",
+  "summary": "Cómo gestiona KTCodex los datos y el almacenamiento local del dispositivo.",
+  "lastUpdated": "Última actualización: 31 de agosto de 2026",
+  "sections": [
+    {
+      "title": "1. Resumen",
+      "body": [
+        "Tu privacidad es importante para nosotros. Esta Política de Privacidad explica cómo se gestiona la información cuando usas la App."
+      ]
+    },
+    {
+      "title": "2. Información Personal",
+      "body": [
+        "La App no exige a los usuarios crear una cuenta ni proporcionar información personal identificable para usar su funcionalidad principal.",
+        "No vendemos, alquilamos ni intercambiamos la información personal de los usuarios."
+      ]
+    },
+    {
+      "title": "3. Datos Almacenados en tu Dispositivo",
+      "body": [
+        "La App almacena preferencias, ajustes, datos de colección guardados y el estado de la aplicación localmente en tu dispositivo para ofrecer su funcionalidad. Esta información permanece en tu dispositivo y no se envía a KTCodex."
+      ]
+    },
+    {
+      "title": "4. Servicios de Terceros",
+      "body": [
+        "La App utiliza componentes de software de Expo y React Native y puede depender de servicios del sistema operativo y plataformas de distribución de aplicaciones. Estos servicios pueden procesar información técnica según sus propias políticas de privacidad.",
+        "KTCodex no incluye servicios de publicidad, análisis, informes de fallos, cuentas de usuario ni seguimiento."
+      ]
+    },
+    {
+      "title": "5. Enlaces Externos",
+      "body": [
+        "La App puede contener enlaces a sitios web o servicios operados por terceros, incluido el contenido oficial de Warhammer Community. No somos responsables de las prácticas de privacidad, el contenido ni el funcionamiento de esos sitios o servicios."
+      ]
+    },
+    {
+      "title": "6. Privacidad de los Menores",
+      "body": [
+        "La App no recopila a sabiendas información personal de menores."
+      ]
+    },
+    {
+      "title": "7. Cambios en esta Política de Privacidad",
+      "body": [
+        "Esta Política de Privacidad puede actualizarse cuando cambien la funcionalidad de la App o sus prácticas de datos. La versión más reciente estará disponible a través de la App."
+      ]
+    }
+  ]
+}

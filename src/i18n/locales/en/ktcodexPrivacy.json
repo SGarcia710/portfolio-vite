@@ -1,0 +1,51 @@
+{
+  "title": "Privacy Policy",
+  "summary": "How KTCodex handles data and local device storage.",
+  "lastUpdated": "Last updated: August 31, 2026",
+  "sections": [
+    {
+      "title": "1. Overview",
+      "body": [
+        "Your privacy is important to us. This Privacy Policy explains how information is handled when you use the App."
+      ]
+    },
+    {
+      "title": "2. Personal Information",
+      "body": [
+        "The App does not require users to create an account or provide personally identifiable information in order to use its core functionality.",
+        "We do not sell, rent, or trade users' personal information."
+      ]
+    },
+    {
+      "title": "3. Data Stored on Your Device",
+      "body": [
+        "The App stores preferences, settings, saved collection data, and application state locally on your device in order to provide its functionality. This information remains on your device and is not sent to KTCodex."
+      ]
+    },
+    {
+      "title": "4. Third-Party Services",
+      "body": [
+        "The App uses Expo and React Native software components and may rely on operating-system services and application distribution platforms. These services may process technical information according to their own privacy policies.",
+        "KTCodex does not include advertising, analytics, crash-reporting, user-account, or tracking services."
+      ]
+    },
+    {
+      "title": "5. External Links",
+      "body": [
+        "The App may contain links to websites or services operated by third parties, including official Warhammer Community content. We are not responsible for the privacy practices, content, or operation of those websites or services."
+      ]
+    },
+    {
+      "title": "6. Children's Privacy",
+      "body": [
+        "The App does not knowingly collect personal information from children."
+      ]
+    },
+    {
+      "title": "7. Changes to This Privacy Policy",
+      "body": [
+        "This Privacy Policy may be updated when the App's functionality or data practices change. The latest version will be made available through the App."
+      ]
+    }
+  ]
+}

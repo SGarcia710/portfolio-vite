@@ -7,6 +7,8 @@ import enTextReveal from './locales/en/textReveal.json';
 import enTimeline from './locales/en/timeline.json';
 import enProjects from './locales/en/projects.json';
 import enFooter from './locales/en/footer.json';
+import enProjectPages from './locales/en/projectPages.json';
+import enKtcodexPrivacy from './locales/en/ktcodexPrivacy.json';
 
 import esCommon from './locales/es/common.json';
 import esHero from './locales/es/hero.json';
@@ -14,6 +16,8 @@ import esTextReveal from './locales/es/textReveal.json';
 import esTimeline from './locales/es/timeline.json';
 import esProjects from './locales/es/projects.json';
 import esFooter from './locales/es/footer.json';
+import esProjectPages from './locales/es/projectPages.json';
+import esKtcodexPrivacy from './locales/es/ktcodexPrivacy.json';
 
 function getInitialLanguage(): string {
   const stored = localStorage.getItem('language');
@@ -31,6 +35,8 @@ i18n.use(initReactI18next).init({
       timeline: enTimeline,
       projects: enProjects,
       footer: enFooter,
+      projectPages: enProjectPages,
+      ktcodexPrivacy: enKtcodexPrivacy,
     },
     es: {
       common: esCommon,
@@ -39,6 +45,8 @@ i18n.use(initReactI18next).init({
       timeline: esTimeline,
       projects: esProjects,
       footer: esFooter,
+      projectPages: esProjectPages,
+      ktcodexPrivacy: esKtcodexPrivacy,
     },
   },
   lng: getInitialLanguage(),
@@ -46,6 +54,8 @@ i18n.use(initReactI18next).init({
   defaultNS: 'common',
   interpolation: { escapeValue: false },
 });
+
+document.documentElement.lang = i18n.resolvedLanguage || 'en';
 
 i18n.on('languageChanged', (lng) => {
   localStorage.setItem('language', lng);
