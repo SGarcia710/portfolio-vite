@@ -1,7 +1,9 @@
 import { useState, useEffect, useCallback } from 'react';
 import { motion, useMotionValue, useSpring } from 'motion/react';
+import { useLocation } from 'react-router';
 
 export function CustomCursor() {
+  const location = useLocation();
   const [isHovering, setIsHovering] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -68,6 +70,32 @@ export function CustomCursor() {
   // Don't render on touch devices
   if (typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches) {
     return null;
+  }
+
+  const isKTCodex = location.pathname === '/projects/ktcodex';
+
+  if (isKTCodex) {
+    return (
+      <>
+        <motion.div
+          className="ktc-reticle-cursor"
+          style={{ left: outerX, top: outerY, x: '-50%', y: '-50%', opacity: isVisible ? 1 : 0 }}
+          animate={{ scale: isHovering ? 1.38 : 1, rotate: isHovering ? 45 : 0 }}
+          transition={{ type: 'spring', damping: 22, stiffness: 280 }}
+          aria-hidden="true"
+        >
+          <span className="ktc-reticle-tick ktc-reticle-tick-top" />
+          <span className="ktc-reticle-tick ktc-reticle-tick-right" />
+          <span className="ktc-reticle-tick ktc-reticle-tick-bottom" />
+          <span className="ktc-reticle-tick ktc-reticle-tick-left" />
+        </motion.div>
+        <motion.div
+          className="ktc-reticle-core"
+          style={{ left: mouseX, top: mouseY, x: '-50%', y: '-50%', opacity: isVisible ? 1 : 0 }}
+          aria-hidden="true"
+        />
+      </>
+    );
   }
 
   return (

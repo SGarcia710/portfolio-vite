@@ -6,9 +6,10 @@ interface ProjectPageLayoutProps {
   title: string;
   breadcrumbs: BreadcrumbItem[];
   children: ReactNode;
+  width?: 'document' | 'wide';
 }
 
-export function ProjectPageLayout({ title, breadcrumbs, children }: ProjectPageLayoutProps) {
+export function ProjectPageLayout({ title, breadcrumbs, children, width = 'document' }: ProjectPageLayoutProps) {
   const { t } = useTranslation('projectPages');
 
   useEffect(() => {
@@ -19,7 +20,7 @@ export function ProjectPageLayout({ title, breadcrumbs, children }: ProjectPageL
 
   return (
     <div className="container-premium pt-28 pb-20 md:pt-36 md:pb-28">
-      <div className="mx-auto max-w-3xl">
+      <div className={width === 'wide' ? 'mx-auto max-w-7xl' : 'mx-auto max-w-3xl'}>
         <Breadcrumb
           ariaLabel={t('breadcrumbs')}
           items={[{ label: t('home'), href: '/' }, ...breadcrumbs]}

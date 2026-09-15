@@ -434,6 +434,20 @@ Edit `/src/styles/theme.css`:
 
 ---
 
+## KTCodex store release configuration
+
+The KTCodex project page keeps store links disabled until the public listings exist. Set these variables in the deployment environment when each release is available:
+
+```bash
+VITE_KTCODEX_APP_STORE_ID=1234567890
+VITE_KTCODEX_APP_STORE_URL=https://apps.apple.com/app/ktcodex/id1234567890
+VITE_KTCODEX_PLAY_STORE_URL=https://play.google.com/store/apps/details?id=dev.sebastiangarcia.ktcodex
+```
+
+The App Store ID enables Safari's native Smart App Banner. The Play Store URL enables the related-app manifest used by compatible Android browsers.
+
+---
+
 ## 🧪 Testing Checklist
 
 Before deployment:

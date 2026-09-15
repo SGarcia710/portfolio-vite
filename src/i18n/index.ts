@@ -9,6 +9,7 @@ import enProjects from './locales/en/projects.json';
 import enFooter from './locales/en/footer.json';
 import enProjectPages from './locales/en/projectPages.json';
 import enKtcodexPrivacy from './locales/en/ktcodexPrivacy.json';
+import enKtcodex from './locales/en/ktcodex.json';
 
 import esCommon from './locales/es/common.json';
 import esHero from './locales/es/hero.json';
@@ -18,6 +19,7 @@ import esProjects from './locales/es/projects.json';
 import esFooter from './locales/es/footer.json';
 import esProjectPages from './locales/es/projectPages.json';
 import esKtcodexPrivacy from './locales/es/ktcodexPrivacy.json';
+import esKtcodex from './locales/es/ktcodex.json';
 
 function getInitialLanguage(): string {
   const stored = localStorage.getItem('language');
@@ -37,6 +39,7 @@ i18n.use(initReactI18next).init({
       footer: enFooter,
       projectPages: enProjectPages,
       ktcodexPrivacy: enKtcodexPrivacy,
+      ktcodex: enKtcodex,
     },
     es: {
       common: esCommon,
@@ -47,6 +50,7 @@ i18n.use(initReactI18next).init({
       footer: esFooter,
       projectPages: esProjectPages,
       ktcodexPrivacy: esKtcodexPrivacy,
+      ktcodex: esKtcodex,
     },
   },
   lng: getInitialLanguage(),

@@ -7,6 +7,7 @@ import { RouteScroll } from './components/route-scroll';
 import { HomePage } from './pages/home-page';
 import { ProjectPlaceholderPage } from './pages/project-placeholder-page';
 import { PrivacyPage } from './pages/privacy-page';
+import { KTCodexPage } from './pages/ktcodex-page';
 
 const CustomCursor = lazy(() => import('./components/custom-cursor').then(m => ({ default: m.CustomCursor })));
 const Footer = lazy(() => import('./components/footer').then(m => ({ default: m.Footer })));
@@ -65,7 +66,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/projects" element={<ProjectPlaceholderPage />} />
-            <Route path="/projects/ktcodex" element={<ProjectPlaceholderPage project="ktcodex" />} />
+            <Route path="/projects/ktcodex" element={<KTCodexPage />} />
             <Route path="/projects/ktcodex/privacy" element={<PrivacyPage />} />
           </Routes>
         </main>

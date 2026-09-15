@@ -1,0 +1,73 @@
+{
+  "metaTitle": "KTCodex - Kill Team companion",
+  "metaDescription": "A local-first companion for browsing Kill Team rules, building legal teams and taking the codex to the table.",
+  "breadcrumb": "KTCodex",
+  "hero": {
+    "title": "Kill Teams. One codex.",
+    "description": "Browse rules, build legal rosters and carry every operative in one focused mobile companion."
+  },
+  "stores": {
+    "downloadOn": "Download on the",
+    "appStore": "App Store",
+    "getItOn": "Get it on",
+    "playStore": "Google Play",
+    "comingSoon": "Coming soon",
+    "appStoreLabel": "KTCodex for iPhone on the App Store",
+    "playStoreLabel": "KTCodex for Android on Google Play"
+  },
+  "proof": {
+    "label": "KTCodex product details",
+    "local": "Local-first",
+    "localDetail": "Rules stay on your device",
+    "languages": "8 languages",
+    "languagesDetail": "One shared data model",
+    "platforms": "iOS + Android",
+    "platformsDetail": "Built with Expo"
+  },
+  "story": {
+    "title": "From source material to battle-ready data.",
+    "description": "KTCodex turns dense rules into a system that is faster to scan while a game is moving.",
+    "scannerLabel": "Live operative view",
+    "chapters": [
+      {
+        "title": "Build within the rules",
+        "body": "The selection flow resolves operative limits, loadouts and team composition before the roster reaches the table."
+      },
+      {
+        "title": "Read at game speed",
+        "body": "Weapons, abilities and special rules stay together, with the details that matter arranged for quick scanning."
+      },
+      {
+        "title": "Keep the field offline",
+        "body": "Snapshots, collections and preferences live locally, so the reference remains useful without a reliable connection."
+      }
+    ]
+  },
+  "system": {
+    "title": "A data product disguised as a field manual.",
+    "body": "The interface sits on a versioned, localized rules pipeline. New source material can arrive without turning every screen into a special case.",
+    "stackTitle": "Built with",
+    "stack": ["React Native", "Expo", "TypeScript", "Zustand", "MMKV", "i18next"],
+    "features": [
+      {
+        "title": "Structured rules",
+        "body": "Canonical schemas separate game meaning from presentation."
+      },
+      {
+        "title": "Localized by design",
+        "body": "Eight languages share the same versioned content model."
+      },
+      {
+        "title": "Made for real matches",
+        "body": "Readable hierarchy and resilient offline data reduce table friction."
+      }
+    ]
+  },
+  "closing": {
+    "title": "Take the codex with you.",
+    "body": "Store releases are being prepared. The product page is ready for the moment they go live.",
+    "privacy": "Read privacy policy"
+  },
+  "phoneFallback": "KTCodex team details screen",
+  "reticleLabel": "Targeting reticle"
+}

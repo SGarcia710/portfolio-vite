@@ -1,0 +1,73 @@
+{
+  "metaTitle": "KTCodex - Compañero para Kill Team",
+  "metaDescription": "Un compañero local para consultar reglas de Kill Team, crear equipos legales y llevar el códex a la mesa.",
+  "breadcrumb": "KTCodex",
+  "hero": {
+    "title": "Kill Teams. Un solo códex.",
+    "description": "Consulta reglas, crea listas legales y lleva cada operativo en una app móvil enfocada."
+  },
+  "stores": {
+    "downloadOn": "Descárgala en",
+    "appStore": "App Store",
+    "getItOn": "Disponible en",
+    "playStore": "Google Play",
+    "comingSoon": "Próximamente",
+    "appStoreLabel": "KTCodex para iPhone en App Store",
+    "playStoreLabel": "KTCodex para Android en Google Play"
+  },
+  "proof": {
+    "label": "Detalles del producto KTCodex",
+    "local": "Datos locales",
+    "localDetail": "Las reglas viven en tu dispositivo",
+    "languages": "8 idiomas",
+    "languagesDetail": "Un modelo de datos compartido",
+    "platforms": "iOS + Android",
+    "platformsDetail": "Construida con Expo"
+  },
+  "story": {
+    "title": "Del material original a datos listos para jugar.",
+    "description": "KTCodex convierte reglas densas en un sistema fácil de consultar mientras avanza la partida.",
+    "scannerLabel": "Vista de operativo en vivo",
+    "chapters": [
+      {
+        "title": "Construye dentro de las reglas",
+        "body": "La selección resuelve límites, equipamiento y composición antes de que la lista llegue a la mesa."
+      },
+      {
+        "title": "Lee al ritmo de la partida",
+        "body": "Armas, habilidades y reglas especiales permanecen juntas, ordenadas para encontrarlas rápido."
+      },
+      {
+        "title": "Mantén el campo sin conexión",
+        "body": "Las versiones de datos, colecciones y preferencias viven localmente para funcionar incluso con mala conexión."
+      }
+    ]
+  },
+  "system": {
+    "title": "Un producto de datos con aspecto de manual de campo.",
+    "body": "La interfaz se apoya en un flujo de reglas versionado y localizado. El nuevo material entra sin convertir cada pantalla en un caso especial.",
+    "stackTitle": "Construida con",
+    "stack": ["React Native", "Expo", "TypeScript", "Zustand", "MMKV", "i18next"],
+    "features": [
+      {
+        "title": "Reglas estructuradas",
+        "body": "Los esquemas canónicos separan el significado del juego de la presentación."
+      },
+      {
+        "title": "Localización desde el diseño",
+        "body": "Ocho idiomas comparten el mismo modelo de contenido versionado."
+      },
+      {
+        "title": "Hecha para partidas reales",
+        "body": "La jerarquía visual y los datos sin conexión reducen fricción en la mesa."
+      }
+    ]
+  },
+  "closing": {
+    "title": "Lleva el códex contigo.",
+    "body": "Las publicaciones en tiendas están en preparación. La página queda lista para cuando estén disponibles.",
+    "privacy": "Leer política de privacidad"
+  },
+  "phoneFallback": "Pantalla de detalles de equipo de KTCodex",
+  "reticleLabel": "Retícula de apuntado"
+}
