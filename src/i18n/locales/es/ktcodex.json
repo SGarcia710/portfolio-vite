@@ -68,6 +68,11 @@
     "body": "Las publicaciones en tiendas están en preparación. La página queda lista para cuando estén disponibles.",
     "privacy": "Leer política de privacidad"
   },
-  "phoneFallback": "Pantalla de detalles de equipo de KTCodex",
+  "phoneFallback": "Vista previa de KTCodex: pantalla de inicio, apertura de la app y detalles de equipo",
+  "tilt": {
+    "enable": "Activar movimiento",
+    "pending": "Activando movimiento…",
+    "denied": "El movimiento no está disponible. Puedes seguir explorando al deslizar."
+  },
   "reticleLabel": "Retícula de apuntado"
 }

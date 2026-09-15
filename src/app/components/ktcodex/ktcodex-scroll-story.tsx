@@ -20,7 +20,7 @@ export function KTCodexScrollStory() {
   useGSAP(() => {
     const matchMedia = gsap.matchMedia();
 
-    matchMedia.add('(min-width: 768px) and (prefers-reduced-motion: no-preference)', () => {
+    matchMedia.add('(min-width: 1024px) and (min-height: 800px) and (prefers-reduced-motion: no-preference)', () => {
       const panels = gsap.utils.toArray<HTMLElement>('[data-story-panel]');
       const screenshot = root.current?.querySelector<HTMLElement>('[data-story-image]');
       const scan = root.current?.querySelector<HTMLElement>('[data-story-scan]');
@@ -36,6 +36,7 @@ export function KTCodexScrollStory() {
           pin: true,
           scrub: 1,
           anticipatePin: 1,
+          invalidateOnRefresh: true,
         },
       });
 
@@ -46,6 +47,8 @@ export function KTCodexScrollStory() {
           .to(screenshot, { yPercent: -20 * (index + 1), scale: 1 + 0.035 * (index + 1), duration: 0.7 }, '<')
           .fromTo(scan, { yPercent: -120 }, { yPercent: 620, duration: 0.7 }, '<');
       });
+      ScrollTrigger.sort();
+      ScrollTrigger.refresh();
     });
 
     return () => matchMedia.revert();

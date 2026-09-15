@@ -124,7 +124,7 @@
 
 .ktc-hero {
   display: grid;
-  grid-template-columns: minmax(0, 0.92fr) minmax(22rem, 1.08fr);
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
   align-items: center;
   min-height: 0;
   gap: clamp(2rem, 5vw, 6rem);
@@ -140,6 +140,7 @@
   position: relative;
   z-index: 1;
   max-width: 39rem;
+  min-width: 0;
 }
 
 .ktc-brand-lockup {
@@ -178,10 +179,19 @@
   line-height: 1.58;
 }
 
+.ktc-store-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 27rem;
+}
+
 .ktc-store-link {
   position: relative;
   display: inline-flex;
-  min-width: 12.75rem;
+  flex: 1 1 10rem;
+  min-width: 0;
   min-height: 4rem;
   align-items: center;
   gap: 0.8rem;
@@ -281,6 +291,37 @@
 
 .ktc-phone-canvas {
   filter: drop-shadow(0 1.5rem 2rem rgba(16, 17, 20, 0.18));
+}
+
+.ktc-phone-render {
+  width: 100%;
+  height: 100%;
+}
+
+.ktc-tilt-control {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  z-index: 1;
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: 95%;
+  min-height: 44px;
+  margin: 0;
+  padding: 0.65rem 1rem;
+  border: 1px solid var(--ktc-line);
+  border-radius: 0.75rem;
+  background: var(--ktc-panel-strong);
+  color: var(--ktc-ink);
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+button.ktc-tilt-control { cursor: pointer; }
+button.ktc-tilt-control:disabled { cursor: wait; }
+button.ktc-tilt-control:focus-visible {
+  outline: 2px solid var(--ktc-accent);
+  outline-offset: 3px;
 }
 
 .ktc-phone-fallback {
@@ -643,7 +684,8 @@
   gap: 0.55rem;
   margin-top: 2rem;
   border-bottom: 1px solid var(--ktc-accent);
-  padding: 0.25rem 0;
+  min-height: 44px;
+  padding: 0.5rem 0;
   color: var(--ktc-accent-strong);
   font-weight: 650;
   text-decoration: none;
@@ -675,6 +717,49 @@
   to { background-position: -180% 0; }
 }
 
+/* Keep all chapters in normal flow when a pinned composition cannot fit. */
+@media (max-width: 1023px), (max-height: 799px) {
+  .ktc-story {
+    min-height: auto;
+    overflow: visible;
+  }
+
+  .ktc-story-grid {
+    min-height: auto;
+    gap: clamp(2rem, 5vw, 4rem);
+    padding-block: clamp(3.5rem, 7vw, 6rem);
+    align-items: start;
+  }
+
+  .ktc-story-panels {
+    display: grid;
+    gap: 1.75rem;
+    min-height: auto;
+    margin-top: 2.5rem;
+  }
+
+  .ktc-story-panel {
+    position: static;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--ktc-line);
+  }
+
+  .ktc-scan-line { display: none; }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .ktc-hero { gap: 1.75rem; }
+  .ktc-story-grid { grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); }
+  .ktc-story-heading h2 { font-size: clamp(2rem, 4.2vw, 2.7rem); }
+  .ktc-system-intro {
+    grid-template-columns: 6rem minmax(0, 1fr);
+    margin-left: 0;
+    gap: 2rem;
+  }
+  .ktc-system-intro img { width: 6rem; height: 6rem; }
+  .ktc-stack-cell { grid-template-columns: 1fr; gap: 1rem; }
+}
+
 @media (max-width: 767px) {
   .ktcodex-page {
     background-size: 52px 52px;
@@ -683,12 +768,12 @@
   .ktc-hero {
     grid-template-columns: 1fr;
     min-height: auto;
-    gap: 1rem;
-    padding: 2rem 0 3.5rem;
+    gap: 1.5rem;
+    padding: 1.25rem 0 2.5rem;
   }
 
   .ktc-brand-lockup {
-    margin-bottom: 2rem;
+    margin-bottom: 1.25rem;
   }
 
   .ktc-hero h1 {
@@ -697,10 +782,12 @@
   }
 
   .ktc-hero-phone {
-    height: min(65svh, 30rem);
-    min-height: 22rem;
+    height: clamp(18rem, calc(100svh - 10rem), 32rem);
     margin-top: 0;
   }
+
+  .ktc-hero-description { margin: 1.25rem 0 1.5rem; }
+  .ktc-store-link { gap: 0.5rem; padding-inline: 0.75rem; }
 
   .ktc-hero-copy {
     display: flex;
@@ -724,13 +811,13 @@
 
   .ktc-story {
     overflow: visible;
-    padding: 5rem 0;
+    padding: 0;
   }
 
   .ktc-story-grid {
     grid-template-columns: 1fr;
     min-height: auto;
-    gap: 4rem;
+    gap: 2.5rem;
   }
 
   .ktc-story-visual {
@@ -738,7 +825,7 @@
   }
 
   .ktc-scanner-frame {
-    width: min(72vw, 19rem);
+    width: min(100%, 22rem);
   }
 
   .ktc-scanner-window {
@@ -752,26 +839,26 @@
   .ktc-story-heading h2,
   .ktc-system h2,
   .ktc-closing h2 {
-    font-size: clamp(2.35rem, 11vw, 3.5rem);
+    font-size: clamp(2rem, 9vw, 3.25rem);
   }
 
   .ktc-story-panels {
     display: grid;
-    gap: 5rem;
+    gap: 1.5rem;
     min-height: auto;
-    margin-top: 4rem;
+    margin-top: 2rem;
   }
 
   .ktc-story-panel {
     position: static;
-    min-height: 28vh;
-    padding: 1.5rem 0;
+    min-height: 0;
+    padding: 1.25rem 0 0;
     border-top: 1px solid var(--ktc-line);
   }
 
   .ktc-system {
-    padding-top: 6rem;
-    padding-bottom: 6rem;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
   }
 
   .ktc-system-intro {
@@ -780,24 +867,38 @@
   }
 
   .ktc-system-intro img {
-    width: 6.5rem;
-    height: 6.5rem;
+    width: 5rem;
+    height: 5rem;
   }
 
   .ktc-system-grid {
     grid-template-columns: 1fr;
     grid-template-areas: 'one' 'two' 'three' 'stack';
-    margin-top: 3.5rem;
+    margin-top: 2.5rem;
   }
 
-  .ktc-system-cell-1 {
-    min-height: 18rem;
+  .ktc-system-cell {
+    min-height: 0;
+    padding: 1.5rem;
   }
 
   .ktc-stack-cell {
     grid-template-columns: 1fr;
     padding: 1.75rem;
   }
+
+  .ktc-closing {
+    padding-block: 3.5rem;
+    margin-bottom: 4rem;
+  }
+}
+
+@media (max-height: 599px) {
+  .ktc-hero-phone {
+    height: clamp(12rem, calc(100svh - 8rem), 26rem);
+    min-height: 0;
+  }
+  .ktc-hero { align-items: start; }
 }
 
 @media (prefers-reduced-motion: reduce) {

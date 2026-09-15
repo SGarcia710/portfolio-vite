@@ -94,7 +94,7 @@ export function StoreLinks() {
   }, []);
 
   return (
-    <div className="flex flex-col gap-3 sm:flex-row">
+    <div className="ktc-store-links">
       <StoreLink
         kind="apple"
         eyebrow={t('stores.downloadOn')}

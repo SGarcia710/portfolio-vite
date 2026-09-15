@@ -68,6 +68,11 @@
     "body": "Store releases are being prepared. The product page is ready for the moment they go live.",
     "privacy": "Read privacy policy"
   },
-  "phoneFallback": "KTCodex team details screen",
+  "phoneFallback": "KTCodex app preview: home screen, app launch, and team details",
+  "tilt": {
+    "enable": "Enable phone tilt",
+    "pending": "Enabling motion…",
+    "denied": "Motion is unavailable. You can still explore by scrolling."
+  },
   "reticleLabel": "Targeting reticle"
 }
