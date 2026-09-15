@@ -18,7 +18,7 @@ interface StoreLinkProps {
 function StoreLink({ kind, eyebrow, title, label, href, comingSoon }: StoreLinkProps) {
   const rippleRef = useRef<HTMLSpanElement>(null);
 
-  function animateClick(event: MouseEvent<HTMLAnchorElement>) {
+  function animateClick(event: MouseEvent<HTMLAnchorElement | HTMLButtonElement>) {
     const ripple = rippleRef.current;
     if (!ripple || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
@@ -48,13 +48,16 @@ function StoreLink({ kind, eyebrow, title, label, href, comingSoon }: StoreLinkP
         <span className="block text-[0.62rem] font-medium tracking-wide text-white/70">{eyebrow}</span>
         <span className="mt-1 block whitespace-nowrap text-base font-semibold text-white">{title}</span>
       </span>
-      {!href && <span className="ktc-store-soon">{comingSoon}</span>}
     </>
   );
 
   const className = 'ktc-store-link';
   if (!href) {
-    return <span className={className} aria-label={`${label}. ${comingSoon}`} aria-disabled="true">{content}</span>;
+    return (
+      <button type="button" className={className} aria-label={`${label}. ${comingSoon}`} aria-disabled="true" onClick={animateClick}>
+        {content}
+      </button>
+    );
   }
 
   return (

@@ -75,6 +75,15 @@
   height: 0.9rem;
 }
 
+.ktc-reticle-pulse {
+  position: absolute;
+  inset: -1px;
+  border: 1px solid #f17632;
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+}
+
 .ktc-reticle-core {
   position: fixed;
   z-index: calc(var(--z-max) + 1);
@@ -188,7 +197,12 @@
   transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1), border-color 240ms ease, box-shadow 320ms ease;
 }
 
-a.ktc-store-link::before {
+.ktc-store-link,
+.ktc-store-link * {
+  user-select: none;
+}
+
+.ktc-store-link::before {
   content: '';
   position: absolute;
   inset: -50% -35%;
@@ -212,60 +226,45 @@ a.ktc-store-link::before {
   pointer-events: none;
 }
 
-a.ktc-store-link:focus-visible {
+.ktc-store-link:focus-visible {
   outline: 2px solid var(--ktc-accent);
   outline-offset: 5px;
   border-color: color-mix(in srgb, var(--ktc-accent) 70%, white);
 }
 
 @media (hover: hover) and (pointer: fine) {
-  a.ktc-store-link:hover {
+  .ktc-store-link:hover {
     transform: translateY(-4px);
     border-color: color-mix(in srgb, var(--ktc-accent) 70%, white);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 12px 28px color-mix(in srgb, var(--ktc-accent) 22%, transparent);
   }
 
-  a.ktc-store-link:hover::before {
+  .ktc-store-link:hover::before {
     transform: translateX(100%);
     transition: transform 700ms ease;
   }
 
-  a.ktc-store-link:hover .ktc-store-icon {
+  .ktc-store-link:hover .ktc-store-icon {
     transform: translateY(-2px) rotate(-8deg) scale(1.12);
   }
 
-  a.ktc-store-link:hover .ktc-store-copy {
+  .ktc-store-link:hover .ktc-store-copy {
     transform: translateX(3px);
   }
 }
 
-a.ktc-store-link:active {
+.ktc-store-link:active {
   transform: translateY(1px) scale(0.96);
   transition-duration: 90ms;
 }
 
-a.ktc-store-link:active .ktc-store-icon {
+.ktc-store-link:active .ktc-store-icon {
   transform: scale(0.92);
   transition-duration: 90ms;
 }
 
 .ktc-store-link[aria-disabled='true'] {
   opacity: 0.68;
-}
-
-.ktc-store-soon {
-  position: absolute;
-  top: 0.35rem;
-  right: 0.45rem;
-  border-radius: 0.35rem;
-  background: var(--ktc-accent);
-  padding: 0.17rem 0.35rem;
-  color: #fff9f4;
-  font-family: var(--font-mono);
-  font-size: 0.5rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
 }
 
 .ktc-hero-phone {
@@ -802,13 +801,13 @@ a.ktc-store-link:active .ktc-store-icon {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  a.ktc-store-link,
-  a.ktc-store-link .ktc-store-icon,
-  a.ktc-store-link .ktc-store-copy {
+  .ktc-store-link,
+  .ktc-store-link .ktc-store-icon,
+  .ktc-store-link .ktc-store-copy {
     transform: none;
     transition: none;
   }
-  a.ktc-store-link::before {
+  .ktc-store-link::before {
     display: none;
   }
   .ktc-atmosphere { display: none; }
