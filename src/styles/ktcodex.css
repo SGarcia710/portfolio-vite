@@ -184,16 +184,69 @@
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1rem 2rem rgba(11, 13, 16, 0.14);
   color: white;
   text-decoration: none;
-  transition: transform 240ms cubic-bezier(0.16, 1, 0.3, 1), border-color 240ms ease;
+  isolation: isolate;
+  transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1), border-color 240ms ease, box-shadow 320ms ease;
 }
 
-a.ktc-store-link:hover {
-  transform: translateY(-3px);
+a.ktc-store-link::before {
+  content: '';
+  position: absolute;
+  inset: -50% -35%;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(110deg, transparent 35%, rgba(255, 255, 255, 0.16) 50%, transparent 65%);
+  transform: translateX(-100%);
+}
+
+.ktc-store-icon,
+.ktc-store-copy {
+  transition: transform 360ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ktc-store-ripple {
+  position: absolute;
+  z-index: -1;
+  border-radius: 50%;
+  background: var(--ktc-accent);
+  opacity: 0;
+  pointer-events: none;
+}
+
+a.ktc-store-link:focus-visible {
+  outline: 2px solid var(--ktc-accent);
+  outline-offset: 5px;
   border-color: color-mix(in srgb, var(--ktc-accent) 70%, white);
 }
 
+@media (hover: hover) and (pointer: fine) {
+  a.ktc-store-link:hover {
+    transform: translateY(-4px);
+    border-color: color-mix(in srgb, var(--ktc-accent) 70%, white);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 12px 28px color-mix(in srgb, var(--ktc-accent) 22%, transparent);
+  }
+
+  a.ktc-store-link:hover::before {
+    transform: translateX(100%);
+    transition: transform 700ms ease;
+  }
+
+  a.ktc-store-link:hover .ktc-store-icon {
+    transform: translateY(-2px) rotate(-8deg) scale(1.12);
+  }
+
+  a.ktc-store-link:hover .ktc-store-copy {
+    transform: translateX(3px);
+  }
+}
+
 a.ktc-store-link:active {
-  transform: translateY(-1px) scale(0.985);
+  transform: translateY(1px) scale(0.96);
+  transition-duration: 90ms;
+}
+
+a.ktc-store-link:active .ktc-store-icon {
+  transform: scale(0.92);
+  transition-duration: 90ms;
 }
 
 .ktc-store-link[aria-disabled='true'] {
@@ -749,6 +802,15 @@ a.ktc-store-link:active {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  a.ktc-store-link,
+  a.ktc-store-link .ktc-store-icon,
+  a.ktc-store-link .ktc-store-copy {
+    transform: none;
+    transition: none;
+  }
+  a.ktc-store-link::before {
+    display: none;
+  }
   .ktc-atmosphere { display: none; }
   .ktc-story-panel { position: static; margin-top: 2rem; }
   .ktc-story-panels { min-height: auto; }
