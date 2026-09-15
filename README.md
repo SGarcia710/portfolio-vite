@@ -172,7 +172,7 @@ See **[COMPONENTS.md](./COMPONENTS.md)** for:
 - Floating orbs with continuous motion
 - Name, title, and value proposition
 - Primary and secondary CTAs
-- Social links (GitHub, LinkedIn, Email)
+- Social links (GitHub, Email)
 - Scroll indicator with bounce animation
 - Parallax scroll effects
 
@@ -493,9 +493,8 @@ This portfolio design and codebase is proprietary to Sebastián García.
 **Sebastián García**  
 Senior Mobile Developer
 
-- **Email:** sebas.garcia710@icloud.com
+- **Email:** contacto@sebastian-garcia.dev
 - **GitHub:** [@SGarcia710](https://github.com/SGarcia710)
-- **LinkedIn:** [/in/sebastian-garcia-ospina](https://www.linkedin.com/in/sebastian-garcia-ospina/)
 
 ---
 

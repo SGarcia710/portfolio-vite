@@ -2,10 +2,12 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router';
 import { motion } from 'motion/react';
-import { Github, Linkedin, Mail, Heart } from 'lucide-react';
+import { Github, Mail, Heart } from 'lucide-react';
 import { Button } from './ui/button';
 import logoWhite from '../../../assets/LogoSG-IconWhite.svg';
 import logoBlack from '../../../assets/LogoSG-IconBlack.svg';
+
+const CONTACT_EMAIL = 'contacto@sebastian-garcia.dev';
 
 export function Footer({ isDark = false }: { isDark?: boolean }) {
   const currentYear = new Date().getFullYear();
@@ -33,7 +35,7 @@ export function Footer({ isDark = false }: { isDark?: boolean }) {
             <Button
               size="lg"
               leftIcon={<Mail className="w-5 h-5" />}
-              onClick={() => window.location.href = 'mailto:sebas.garcia710@icloud.com'}
+              onClick={() => window.location.href = `mailto:${CONTACT_EMAIL}`}
             >
               {tc('buttons.getInTouch')}
             </Button>
@@ -98,14 +100,9 @@ export function Footer({ isDark = false }: { isDark?: boolean }) {
                 label="GitHub"
               />
               <SocialButton
-                href="https://www.linkedin.com/in/sebastian-garcia-ospina/"
-                icon={<Linkedin className="w-5 h-5" />}
-                label="LinkedIn"
-              />
-              <SocialButton
-                href="mailto:sebas.garcia710@icloud.com"
+                href={`mailto:${CONTACT_EMAIL}`}
                 icon={<Mail className="w-5 h-5" />}
-                label="Email"
+                label={CONTACT_EMAIL}
               />
             </div>
           </motion.div>

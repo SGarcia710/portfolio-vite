@@ -1,7 +1,9 @@
 import React from 'react';
 import { Trans, useTranslation } from 'react-i18next';
-import { ArrowDown, Github, Linkedin, Mail } from 'lucide-react';
+import { ArrowDown, Github, Mail } from 'lucide-react';
 import { Button } from './ui/button';
+
+const CONTACT_EMAIL = 'contacto@sebastian-garcia.dev';
 
 export function HeroSection() {
   const { t } = useTranslation('hero');
@@ -19,17 +21,10 @@ export function HeroSection() {
 
       <div className="container-premium relative z-10 hero-shell">
         <div className="max-w-5xl mx-auto text-center">
-          {/* Greeting */}
-          <div className="mb-6 hero-reveal" style={revealStyle('0s')}>
-            <span className="inline-block px-4 py-2 bg-accent/10 text-accent rounded-full text-sm font-medium border border-accent/20">
-              {t('badge')}
-            </span>
-          </div>
-
           {/* Name & Title */}
           <h1
             className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 hero-reveal"
-            style={revealStyle('0.15s')}
+            style={revealStyle('0s')}
           >
             Sebastián García
           </h1>
@@ -65,7 +60,7 @@ export function HeroSection() {
               size="xl"
               leftIcon={<Mail className="w-5 h-5" />}
               onClick={() => {
-                window.location.href = 'mailto:sebas.garcia710@icloud.com';
+                window.location.href = `mailto:${CONTACT_EMAIL}`;
               }}
             >
               {tc('buttons.getInTouch')}
@@ -91,14 +86,9 @@ export function HeroSection() {
               label="GitHub"
             />
             <SocialLink
-              href="https://www.linkedin.com/in/sebastian-garcia-ospina/"
-              icon={<Linkedin className="w-5 h-5" />}
-              label="LinkedIn"
-            />
-            <SocialLink
-              href="mailto:sebas.garcia710@icloud.com"
+              href={`mailto:${CONTACT_EMAIL}`}
               icon={<Mail className="w-5 h-5" />}
-              label="Email"
+              label={CONTACT_EMAIL}
             />
           </div>
 
