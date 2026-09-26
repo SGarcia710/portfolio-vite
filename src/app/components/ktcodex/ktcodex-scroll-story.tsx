@@ -51,6 +51,41 @@ export function KTCodexScrollStory() {
       ScrollTrigger.refresh();
     });
 
+    matchMedia.add({
+      compact: '(max-width: 1023px), (max-height: 799px)',
+      motion: '(prefers-reduced-motion: no-preference)',
+    }, context => {
+      if (!context.conditions?.compact || !context.conditions?.motion) return;
+      const viewport = root.current?.querySelector<HTMLElement>('.ktc-scanner-window');
+      const screenshot = root.current?.querySelector<HTMLImageElement>('[data-story-image]');
+      const scan = root.current?.querySelector<HTMLElement>('[data-story-scan]');
+      if (!viewport || !screenshot || !scan) return;
+
+      // Scrub the preview as it crosses the viewport. The copy stays in normal
+      // flow, so smaller screens keep the effect without a full-section pin.
+      gsap.timeline({
+        defaults: { ease: 'none' },
+        scrollTrigger: {
+          trigger: viewport,
+          start: 'top 85%',
+          end: 'bottom 20%',
+          scrub: 0.5,
+          invalidateOnRefresh: true,
+        },
+      })
+        .fromTo(screenshot, { y: 0 }, {
+          y: () => -Math.max(0, screenshot.offsetHeight - viewport.clientHeight),
+          duration: 1,
+        }, 0)
+        .fromTo(scan, { yPercent: -100 }, { yPercent: 560, duration: 1 }, 0);
+
+      const refresh = () => ScrollTrigger.refresh();
+      screenshot.addEventListener('load', refresh);
+      ScrollTrigger.sort();
+      ScrollTrigger.refresh();
+      return () => screenshot.removeEventListener('load', refresh);
+    });
+
     return () => matchMedia.revert();
   }, { scope: root, dependencies: [chapters.length, i18n.resolvedLanguage], revertOnUpdate: true });
 

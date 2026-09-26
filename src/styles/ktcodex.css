@@ -744,7 +744,6 @@ button.ktc-tilt-control:focus-visible {
     border-top: 1px solid var(--ktc-line);
   }
 
-  .ktc-scan-line { display: none; }
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
