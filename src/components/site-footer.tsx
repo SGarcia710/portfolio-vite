@@ -47,7 +47,13 @@ export function SiteFooter() {
       </div>
 
       <div className="shell flex flex-col gap-4 border-t border-line py-6 text-meta text-fg-muted sm:flex-row sm:items-center sm:justify-between">
-        <p>{t('copyright', { year })}. {t('copyrightTech')}.</p>
+        <div className="flex flex-col gap-1.5">
+          <p>{t('copyright', { year })}. {t('copyrightTech')}.</p>
+          <a href="https://sketchfab.com/3d-models/macintosh-128k-896ea439b67b4606a23fb8b93be6af6d" target="_blank" rel="noopener noreferrer" className="link-draw self-start hover:text-fg-soft">
+            {t('modelCredit')}
+            <span className="sr-only"> ({tc('a11y.external')})</span>
+          </a>
+        </div>
         <button
           type="button"
           onClick={() => scrollToTarget(0)}

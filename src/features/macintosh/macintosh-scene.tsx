@@ -51,10 +51,10 @@ export default function MacintoshScene({ onReady }: { onReady: () => void }) {
         eventPrefix="client"
         onCreated={({ camera }) => camera.lookAt(0, 0, 0)}
       >
-        <ambientLight intensity={0.35} />
-        <directionalLight position={[5, 8, 7]} intensity={2.1} color="#fff3e2" />
-        <directionalLight position={[-7, 3, -5]} intensity={3.2} color={COLORS.accent} />
-        <directionalLight position={[7, 1.5, -6]} intensity={2.4} color={COLORS.brand} />
+        <ambientLight intensity={0.5} />
+        <directionalLight position={[5, 8, 7]} intensity={1.9} color="#fff6ec" />
+        <directionalLight position={[-7, 3, -5]} intensity={1.6} color={COLORS.accent} />
+        <directionalLight position={[7, 1.5, -6]} intensity={0.6} color={COLORS.brand} />
         <Suspense fallback={null}>
           <Environment resolution={desktop ? 256 : 64} frames={1}>
             <Lightformer position={[0, 5, 6]} scale={[10, 4, 1]} intensity={1.4} />
@@ -62,7 +62,9 @@ export default function MacintoshScene({ onReady }: { onReady: () => void }) {
             <Lightformer position={[6, 1, 2]} rotation-y={-Math.PI / 2} scale={[6, 6, 1]} intensity={0.5} color={COLORS.brand} />
           </Environment>
         </Suspense>
-        <MacintoshRig content={content} compact={!desktop} reduced={reduced} shadows={desktop} onReady={onReady} />
+        <Suspense fallback={null}>
+          <MacintoshRig content={content} compact={!desktop} reduced={reduced} shadows={desktop} onReady={onReady} />
+        </Suspense>
       </Canvas>
     </div>
   );

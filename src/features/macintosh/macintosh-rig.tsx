@@ -5,11 +5,8 @@ import { ContactShadows } from '@react-three/drei';
 import { useIntroStarted } from '../../lib/boot';
 import { gsap } from '../../lib/gsap';
 import { getSectionIds, scrollState } from '../../lib/section-tracker';
-import { DESK_Y, RIG } from './constants';
-import { Keyboard, type KeyboardHandle } from './keyboard';
-import { MacintoshCase } from './macintosh-case';
-import { createMacMaterials } from './materials';
-import { Mouse } from './mouse';
+import { DESK_Y, MODEL, RIG } from './constants';
+import { MacintoshModel, type MacintoshModelHandle } from './macintosh-model';
 import { compactPoses, desktopPoses, dockBox, poseAt, type ResolvedPose } from './poses';
 import { ScreenRenderer, type ScreenContent } from './screen-renderer';
 
@@ -29,21 +26,18 @@ function damp(current: number, target: number, delta: number, lambda = DAMPING) 
 
 export function MacintoshRig({ content, compact, reduced, shadows, onReady }: MacintoshRigProps) {
   const rig = useRef<THREE.Group>(null);
-  const keyboard = useRef<KeyboardHandle>(null);
-  const materials = useMemo(createMacMaterials, []);
-  const screen = useMemo(() => new ScreenRenderer((char) => keyboard.current?.type(char)), []);
+  const model = useRef<MacintoshModelHandle>(null);
+  const screen = useMemo(() => new ScreenRenderer((char) => model.current?.type(char)), []);
   const power = useMemo(() => ({ value: 0 }), []);
   const explode = useMemo(() => ({ value: 0 }), []);
+  const xray = useMemo(() => ({ value: 0 }), []);
   const entrance = useMemo(() => ({ value: 0 }), []);
   const target = useMemo(() => ({}) as ResolvedPose, []);
   const current = useRef<ResolvedPose | null>(null);
   const ready = useRef(false);
   const introStarted = useIntroStarted();
 
-  useEffect(() => () => {
-    materials.dispose();
-    screen.dispose();
-  }, [materials, screen]);
+  useEffect(() => () => screen.dispose(), [screen]);
 
   useEffect(() => {
     document.fonts.load('12px "Geist Pixel"').then(() => screen.invalidate());
@@ -95,7 +89,7 @@ export function MacintoshRig({ content, compact, reduced, shadows, onReady }: Ma
     );
     group.scale.setScalar(scale * (0.85 + enter * 0.15));
 
-    materials.setBlueprint(pose.xray);
+    xray.value = pose.xray;
     explode.value = pose.explode;
     screen.scroll(scrollState.progress, Math.abs(scrollState.velocity) > 0.35);
     screen.update(delta);
@@ -109,11 +103,11 @@ export function MacintoshRig({ content, compact, reduced, shadows, onReady }: Ma
   return (
     <group ref={rig}>
       <group position={[-RIG.center[0], -RIG.center[1], -RIG.center[2]]}>
-        <MacintoshCase materials={materials} screen={screen.texture} power={power} />
-        <Keyboard ref={keyboard} materials={materials} explode={explode} />
-        <Mouse materials={materials} screen={screen} />
+        <group position={[0, DESK_Y, 0]} scale={MODEL.scale}>
+          <MacintoshModel ref={model} screen={screen} power={power} explode={explode} xray={xray} />
+        </group>
         {shadows && (
-          <ContactShadows position={[0.3, DESK_Y - 0.01, 0.6]} scale={[16, 14]} resolution={512} blur={3} opacity={0.5} far={1.6} color="#000000" />
+          <ContactShadows position={[RIG.center[0], DESK_Y - 0.01, RIG.center[2]]} scale={[18, 16]} resolution={512} blur={3} opacity={0.5} far={1.6} color="#000000" />
         )}
       </group>
     </group>

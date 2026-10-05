@@ -1,3 +1,3 @@
-This Figma Make file includes components from [shadcn/ui](https://ui.shadcn.com/) used under [MIT license](https://github.com/shadcn-ui/ui/blob/main/LICENSE.md).
+3D model: ["Macintosh 128K"](https://sketchfab.com/3d-models/macintosh-128k-896ea439b67b4606a23fb8b93be6af6d) by [kreems](https://sketchfab.com/kreems), used under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Modified: desk and props removed, keycaps split into individual objects, mouse cable rested on the desk, and the CRT given its own UV so the site can render the screen. The processed file lives at `public/models/macintosh-128k.glb`.
 
-This Figma Make file includes photos from [Unsplash](https://unsplash.com) used under [license](https://unsplash.com/license).
+Project photos come from [Unsplash](https://unsplash.com) under the [Unsplash license](https://unsplash.com/license), and from each client's public website.

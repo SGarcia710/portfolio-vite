@@ -45,8 +45,8 @@ function StoreLink({ kind, eyebrow, title, label, href, comingSoon }: StoreLinkP
         ? <AppleLogo aria-hidden="true" weight="fill" className="ktc-store-icon h-7 w-7 shrink-0" />
         : <GooglePlayLogo aria-hidden="true" weight="fill" className="ktc-store-icon h-6 w-6 shrink-0" />}
       <span className="ktc-store-copy min-w-0 text-left leading-none">
-        <span className="block text-[0.62rem] font-medium tracking-wide text-white/70">{eyebrow}</span>
-        <span className="mt-1 block whitespace-nowrap text-base font-semibold text-white">{title}</span>
+        <span className="block text-meta text-fg-muted">{eyebrow}</span>
+        <span className="mt-1 block whitespace-nowrap text-base font-semibold text-fg">{title}</span>
       </span>
     </>
   );

@@ -3,9 +3,6 @@ dist
 .DS_Store
 lighthouse-reports
 
-# Next.js (not used - prevent accidental generation)
-.next
-next-env.d.ts
 
 # TypeScript build cache
 tsconfig.tsbuildinfo

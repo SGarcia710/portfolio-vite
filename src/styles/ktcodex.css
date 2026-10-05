@@ -1,24 +1,22 @@
+/* ============================================================
+   KTCodex product page.
+   Built on the site tokens; the only page-level override is the
+   product accent, which keeps KTCodex's own orange identity.
+   ============================================================ */
 .ktcodex-page {
   --ktc-accent: #d85b12;
-  --ktc-accent-strong: #f18648;
-  --ktc-panel: rgb(20 24 29 / 0.87);
-  --ktc-panel-strong: rgb(13 16 20 / 0.95);
-  --ktc-ink: var(--color-fg);
-  --ktc-muted: var(--color-ink-400);
-  --ktc-line: var(--color-line);
+  --ktc-accent-strong: color-mix(in srgb, var(--ktc-accent) 70%, var(--color-fg));
+  --ktc-panel: color-mix(in srgb, var(--color-surface) 88%, transparent);
+  --ktc-panel-strong: color-mix(in srgb, var(--color-ink-925) 95%, transparent);
   position: relative;
   isolation: isolate;
   overflow: clip;
   background-image:
-    linear-gradient(color-mix(in srgb, var(--ktc-line) 35%, transparent) 1px, transparent 1px),
-    linear-gradient(90deg, color-mix(in srgb, var(--ktc-line) 35%, transparent) 1px, transparent 1px);
+    linear-gradient(color-mix(in srgb, var(--color-line) 35%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--color-line) 35%, transparent) 1px, transparent 1px);
   background-size: 76px 76px;
   background-position: center top;
-  color: var(--ktc-ink);
-}
-
-.ktcodex-page :is(h1, h2, h3) {
-  font-weight: 600;
+  color: var(--color-fg);
 }
 
 .ktcodex-page::before {
@@ -39,11 +37,11 @@
   pointer-events: none;
 }
 
+/* ---------- Hero ---------- */
 .ktc-hero {
   display: grid;
   grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
   align-items: center;
-  min-height: 0;
   gap: clamp(2rem, 5vw, 6rem);
   padding: 2rem 0 2.5rem;
 }
@@ -56,13 +54,12 @@
 }
 
 .ktc-brand-lockup {
+  @apply text-lede;
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
   margin-bottom: 1.5rem;
-  font-size: 1.125rem;
   font-weight: 600;
-  letter-spacing: -0.02em;
 }
 
 .ktc-brand-lockup img {
@@ -73,22 +70,18 @@
 }
 
 .ktc-hero h1 {
+  @apply text-headline;
   max-width: 11ch;
-  margin: 0;
-  font-size: clamp(3rem, 5.4vw, 5.25rem);
-  line-height: 0.96;
-  letter-spacing: -0.065em;
-  text-wrap: balance;
 }
 
 .ktc-hero-description {
+  @apply text-lede;
   max-width: 35rem;
-  margin: 1.55rem 0 2rem;
-  color: var(--ktc-muted);
-  font-size: clamp(1.05rem, 1.5vw, 1.22rem);
-  line-height: 1.58;
+  margin: 1.5rem 0 2rem;
+  color: var(--color-fg-muted);
 }
 
+/* ---------- Store links: pills, like every interactive control ---------- */
 .ktc-store-links {
   display: flex;
   flex-wrap: wrap;
@@ -102,22 +95,24 @@
   display: inline-flex;
   flex: 1 1 10rem;
   min-width: 0;
-  min-height: 4rem;
+  min-height: 3.5rem;
   align-items: center;
   gap: 0.8rem;
-  padding: 0.7rem 0.95rem;
+  padding: 0.6rem 1.25rem;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.17);
-  border-radius: 0.75rem;
-  background: #15171a;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1rem 2rem rgba(11, 13, 16, 0.14);
-  color: white;
-  text-decoration: none;
+  border: 1px solid var(--color-line-strong);
+  border-radius: 999px;
+  background: var(--color-surface);
+  box-shadow: inset 0 1px 0 rgb(248 249 250 / 0.08), 0 1rem 2rem rgb(0 0 0 / 0.25);
+  color: var(--color-fg);
   isolation: isolate;
-  transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1), border-color 240ms ease, box-shadow 320ms ease;
+  user-select: none;
+  transition:
+    transform 0.32s var(--ease-out-expo),
+    border-color 0.24s ease,
+    box-shadow 0.32s var(--ease-out-expo);
 }
 
-.ktc-store-link,
 .ktc-store-link * {
   user-select: none;
 }
@@ -128,13 +123,13 @@
   inset: -50% -35%;
   z-index: -1;
   pointer-events: none;
-  background: linear-gradient(110deg, transparent 35%, rgba(255, 255, 255, 0.16) 50%, transparent 65%);
+  background: linear-gradient(110deg, transparent 35%, rgb(248 249 250 / 0.14) 50%, transparent 65%);
   transform: translateX(-100%);
 }
 
 .ktc-store-icon,
 .ktc-store-copy {
-  transition: transform 360ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.36s var(--ease-out-expo);
 }
 
 .ktc-store-ripple {
@@ -146,22 +141,16 @@
   pointer-events: none;
 }
 
-.ktc-store-link:focus-visible {
-  outline: 2px solid var(--ktc-accent);
-  outline-offset: 5px;
-  border-color: color-mix(in srgb, var(--ktc-accent) 70%, white);
-}
-
 @media (hover: hover) and (pointer: fine) {
   .ktc-store-link:hover {
     transform: translateY(-4px);
-    border-color: color-mix(in srgb, var(--ktc-accent) 70%, white);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 12px 28px color-mix(in srgb, var(--ktc-accent) 22%, transparent);
+    border-color: var(--ktc-accent-strong);
+    box-shadow: inset 0 1px 0 rgb(248 249 250 / 0.12), 0 12px 28px color-mix(in srgb, var(--ktc-accent) 22%, transparent);
   }
 
   .ktc-store-link:hover::before {
     transform: translateX(100%);
-    transition: transform 700ms ease;
+    transition: transform 0.7s ease;
   }
 
   .ktc-store-link:hover .ktc-store-icon {
@@ -187,6 +176,7 @@
   opacity: 0.68;
 }
 
+/* ---------- Phone ---------- */
 .ktc-hero-phone {
   position: relative;
   min-width: 0;
@@ -200,7 +190,7 @@
 }
 
 .ktc-phone-canvas {
-  filter: drop-shadow(0 1.5rem 2rem rgba(16, 17, 20, 0.18));
+  filter: drop-shadow(0 1.5rem 2rem rgb(0 0 0 / 0.3));
 }
 
 .ktc-phone-render {
@@ -209,6 +199,7 @@
 }
 
 .ktc-tilt-control {
+  @apply text-meta;
   position: absolute;
   bottom: 0;
   left: 50%;
@@ -217,23 +208,18 @@
   width: max-content;
   max-width: 95%;
   min-height: 44px;
-  margin: 0;
-  padding: 0.65rem 1rem;
-  border: 1px solid var(--ktc-line);
-  border-radius: 0.75rem;
+  padding: 0.65rem 1.1rem;
+  border: 1px solid var(--color-line-strong);
+  border-radius: 999px;
   background: var(--ktc-panel-strong);
-  color: var(--ktc-ink);
-  font-size: 0.8rem;
+  color: var(--color-fg);
   text-align: center;
 }
 
 button.ktc-tilt-control { cursor: pointer; }
 button.ktc-tilt-control:disabled { cursor: wait; }
-button.ktc-tilt-control:focus-visible {
-  outline: 2px solid var(--ktc-accent);
-  outline-offset: 3px;
-}
 
+/* Device shapes, not UI containers: they follow the phone, not the radius scale. */
 .ktc-phone-fallback {
   display: block;
   width: auto;
@@ -295,12 +281,12 @@ button.ktc-tilt-control:focus-visible {
   opacity: 0.45;
 }
 
+/* ---------- Proof strip ---------- */
 .ktc-proof {
   display: grid;
   grid-template-columns: 1.2fr 0.85fr 1fr;
-  margin-bottom: 0;
-  border-top: 1px solid var(--ktc-line);
-  border-bottom: 1px solid var(--ktc-line);
+  border-top: 1px solid var(--color-line);
+  border-bottom: 1px solid var(--color-line);
 }
 
 .ktc-proof > div {
@@ -308,7 +294,7 @@ button.ktc-tilt-control:focus-visible {
   grid-template-columns: auto 1fr;
   gap: 0.1rem 0.9rem;
   padding: 1.1rem clamp(1rem, 2.8vw, 2.25rem);
-  border-right: 1px solid var(--ktc-line);
+  border-right: 1px solid var(--color-line);
 }
 
 .ktc-proof > div:last-child {
@@ -321,24 +307,25 @@ button.ktc-tilt-control:focus-visible {
   height: 1.35rem;
   margin-top: 0.1rem;
   color: var(--ktc-accent);
-  stroke-width: 1.7;
 }
 
 .ktc-proof strong {
-  font-size: 0.95rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
 }
 
 .ktc-proof span {
-  color: var(--ktc-muted);
-  font-size: 0.78rem;
+  @apply text-meta;
+  color: var(--color-fg-muted);
 }
 
+/* ---------- Scroll story ---------- */
 .ktc-story {
   position: relative;
   min-height: 100dvh;
   overflow: hidden;
-  border-top: 1px solid var(--ktc-line);
-  border-bottom: 1px solid var(--ktc-line);
+  border-top: 1px solid var(--color-line);
+  border-bottom: 1px solid var(--color-line);
   background: color-mix(in srgb, var(--color-bg) 92%, transparent);
 }
 
@@ -359,28 +346,25 @@ button.ktc-tilt-control:focus-visible {
 .ktc-scanner-frame {
   width: min(100%, 27rem);
   overflow: hidden;
-  border: 1px solid var(--ktc-line);
-  border-radius: 0.9rem;
-  background: #111419;
-  box-shadow: 0 2rem 5rem rgba(9, 11, 14, 0.23), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-panel);
+  background: var(--color-ink-925);
+  box-shadow: 0 2rem 5rem rgb(0 0 0 / 0.35), inset 0 1px 0 rgb(248 249 250 / 0.06);
 }
 
 .ktc-scanner-header {
+  @apply text-meta;
   display: flex;
   height: 2.6rem;
   align-items: center;
   justify-content: space-between;
-  padding: 0 1rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  color: #c5c9cf;
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  padding: 0 1.25rem;
+  border-bottom: 1px solid var(--color-line);
+  color: var(--color-fg-soft);
 }
 
 .ktc-scanner-header span:last-child {
-  color: #f18648;
+  color: var(--ktc-accent-strong);
 }
 
 .ktc-scanner-window {
@@ -401,8 +385,8 @@ button.ktc-tilt-control:focus-visible {
   left: 0;
   width: 100%;
   height: 18%;
-  border-bottom: 1px solid #f27a32;
-  background: linear-gradient(180deg, transparent, rgba(216, 91, 18, 0.16));
+  border-bottom: 1px solid var(--ktc-accent-strong);
+  background: linear-gradient(180deg, transparent, color-mix(in srgb, var(--ktc-accent) 16%, transparent));
   mix-blend-mode: screen;
   pointer-events: none;
 }
@@ -419,20 +403,16 @@ button.ktc-tilt-control:focus-visible {
 .ktc-story-heading h2,
 .ktc-system h2,
 .ktc-closing h2 {
-  font-size: clamp(2.5rem, 5vw, 4.75rem);
-  line-height: 1;
-  letter-spacing: -0.055em;
-  text-wrap: balance;
+  @apply text-headline;
 }
 
 .ktc-story-heading p,
 .ktc-system-intro p,
 .ktc-closing > p {
+  @apply text-lede;
   max-width: 39rem;
   margin-top: 1.25rem;
-  color: var(--ktc-muted);
-  font-size: 1.08rem;
-  line-height: 1.65;
+  color: var(--color-fg-muted);
 }
 
 .ktc-story-panels {
@@ -448,16 +428,16 @@ button.ktc-tilt-control:focus-visible {
 }
 
 .ktc-story-panel h3 {
+  @apply text-title;
   margin-bottom: 0.75rem;
-  font-size: clamp(1.6rem, 2.5vw, 2.35rem);
-  letter-spacing: -0.035em;
 }
 
 .ktc-story-panel p {
-  color: var(--ktc-muted);
-  font-size: 1.03rem;
+  color: var(--color-fg-muted);
+  line-height: 1.6;
 }
 
+/* ---------- System bento ---------- */
 .ktc-system {
   max-width: 80rem;
   padding-top: clamp(6rem, 12vw, 11rem);
@@ -491,11 +471,11 @@ button.ktc-tilt-control:focus-visible {
 
 .ktc-system-cell,
 .ktc-stack-cell {
-  border: 1px solid var(--ktc-line);
-  border-radius: 0.9rem;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-panel);
   background: var(--ktc-panel);
   backdrop-filter: blur(18px);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 1px 0 rgb(248 249 250 / 0.06);
 }
 
 .ktc-system-cell {
@@ -520,20 +500,19 @@ button.ktc-tilt-control:focus-visible {
 
 .ktc-system-cell-3 {
   grid-area: three;
-  background:
-    linear-gradient(135deg, color-mix(in srgb, var(--ktc-accent) 11%, var(--ktc-panel)), var(--ktc-panel-strong));
+  background: linear-gradient(135deg, color-mix(in srgb, var(--ktc-accent) 11%, var(--ktc-panel)), var(--ktc-panel-strong));
 }
 
 .ktc-system-cell h3,
 .ktc-stack-cell h3 {
+  @apply text-title;
   margin-bottom: 0.75rem;
-  font-size: clamp(1.45rem, 2vw, 2rem);
-  letter-spacing: -0.03em;
 }
 
 .ktc-system-cell p {
   max-width: 30rem;
-  color: var(--ktc-muted);
+  color: var(--color-fg-muted);
+  line-height: 1.6;
 }
 
 .ktc-stack-cell {
@@ -552,26 +531,21 @@ button.ktc-tilt-control:focus-visible {
 .ktc-stack-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.6rem;
+  gap: 0.5rem;
 }
 
 .ktc-stack-list span {
-  border: 1px solid var(--ktc-line);
-  border-radius: 0.45rem;
-  background: var(--ktc-panel-strong);
-  padding: 0.55rem 0.75rem;
-  color: var(--ktc-muted);
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
+  @apply tag;
 }
 
+/* ---------- Closing ---------- */
 .ktc-closing {
   max-width: 80rem;
   margin-bottom: clamp(6rem, 10vw, 10rem);
   padding-top: clamp(4.5rem, 8vw, 7rem);
   padding-bottom: clamp(4.5rem, 8vw, 7rem);
-  border-top: 1px solid var(--ktc-line);
-  border-bottom: 1px solid var(--ktc-line);
+  border-top: 1px solid var(--color-line);
+  border-bottom: 1px solid var(--color-line);
   text-align: center;
 }
 
@@ -593,30 +567,21 @@ button.ktc-tilt-control:focus-visible {
   align-items: center;
   gap: 0.55rem;
   margin-top: 2rem;
-  border-bottom: 1px solid var(--ktc-accent);
   min-height: 44px;
   padding: 0.5rem 0;
+  border-bottom: 1px solid var(--ktc-accent);
   color: var(--ktc-accent-strong);
-  font-weight: 650;
-  text-decoration: none;
+  font-weight: 600;
 }
 
 .ktc-privacy-link svg {
   width: 1rem;
   height: 1rem;
-  transition: transform 180ms ease;
+  transition: transform 0.18s ease;
 }
 
 .ktc-privacy-link:hover svg {
   transform: translate(2px, -2px);
-}
-
-@keyframes ktc-spin {
-  to { transform: translate(-50%, -50%) rotate(360deg); }
-}
-
-@keyframes ktc-spin-reverse {
-  to { transform: translate(-50%, -50%) rotate(-360deg); }
 }
 
 @keyframes ktc-skeleton {
@@ -647,15 +612,13 @@ button.ktc-tilt-control:focus-visible {
   .ktc-story-panel {
     position: static;
     padding-top: 1.5rem;
-    border-top: 1px solid var(--ktc-line);
+    border-top: 1px solid var(--color-line);
   }
-
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
   .ktc-hero { gap: 1.75rem; }
   .ktc-story-grid { grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); }
-  .ktc-story-heading h2 { font-size: clamp(2rem, 4.2vw, 2.7rem); }
   .ktc-system-intro {
     grid-template-columns: 6rem minmax(0, 1fr);
     margin-left: 0;
@@ -672,7 +635,6 @@ button.ktc-tilt-control:focus-visible {
 
   .ktc-hero {
     grid-template-columns: 1fr;
-    min-height: auto;
     gap: 1.5rem;
     padding: 1.25rem 0 2.5rem;
   }
@@ -683,16 +645,14 @@ button.ktc-tilt-control:focus-visible {
 
   .ktc-hero h1 {
     max-width: 12ch;
-    font-size: clamp(2.75rem, 13vw, 4.25rem);
   }
 
   .ktc-hero-phone {
     height: clamp(18rem, calc(100svh - 10rem), 32rem);
-    margin-top: 0;
   }
 
   .ktc-hero-description { margin: 1.25rem 0 1.5rem; }
-  .ktc-store-link { gap: 0.5rem; padding-inline: 0.75rem; }
+  .ktc-store-link { gap: 0.5rem; padding-inline: 1rem; }
 
   .ktc-hero-copy {
     display: flex;
@@ -702,12 +662,11 @@ button.ktc-tilt-control:focus-visible {
 
   .ktc-proof {
     grid-template-columns: 1fr;
-    margin-bottom: 0;
   }
 
   .ktc-proof > div {
     border-right: 0;
-    border-bottom: 1px solid var(--ktc-line);
+    border-bottom: 1px solid var(--color-line);
   }
 
   .ktc-proof > div:last-child {
@@ -741,12 +700,6 @@ button.ktc-tilt-control:focus-visible {
     min-height: auto;
   }
 
-  .ktc-story-heading h2,
-  .ktc-system h2,
-  .ktc-closing h2 {
-    font-size: clamp(2rem, 9vw, 3.25rem);
-  }
-
   .ktc-story-panels {
     display: grid;
     gap: 1.5rem;
@@ -758,7 +711,7 @@ button.ktc-tilt-control:focus-visible {
     position: static;
     min-height: 0;
     padding: 1.25rem 0 0;
-    border-top: 1px solid var(--ktc-line);
+    border-top: 1px solid var(--color-line);
   }
 
   .ktc-system {
@@ -801,7 +754,6 @@ button.ktc-tilt-control:focus-visible {
 @media (max-height: 599px) {
   .ktc-hero-phone {
     height: clamp(12rem, calc(100svh - 8rem), 26rem);
-    min-height: 0;
   }
   .ktc-hero { align-items: start; }
 }
@@ -821,10 +773,7 @@ button.ktc-tilt-control:focus-visible {
   .ktc-story-panels { min-height: auto; }
   .ktc-story-grid { padding-block: 4rem; }
   .ktc-scan-line { display: none; }
-  .ktc-orbit,
-  .ktc-phone-skeleton {
-    animation: none;
-  }
+  .ktc-phone-skeleton { animation: none; }
 }
 
 @media (prefers-reduced-transparency: reduce) {

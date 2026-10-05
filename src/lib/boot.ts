@@ -1,4 +1,4 @@
-import { useEffect, useSyncExternalStore } from 'react';
+import { useSyncExternalStore } from 'react';
 
 /**
  * Tracks the work the preloader waits for (fonts, the WebGL scene) and
@@ -15,11 +15,6 @@ export function registerBootTask(name: string) {
     progress: (value: number): void => { tasks.set(name, Math.max(tasks.get(name) ?? 0, Math.min(1, value))); },
     done: (): void => { tasks.set(name, 1); },
   };
-}
-
-export function trackBootPromise(name: string, promise: Promise<unknown>) {
-  const task = registerBootTask(name);
-  promise.finally(task.done);
 }
 
 export function getBootProgress(): number {
@@ -43,14 +38,4 @@ function subscribeIntro(listener: () => void) {
 
 export function useIntroStarted(): boolean {
   return useSyncExternalStore(subscribeIntro, () => introStarted, () => false);
-}
-
-/** Runs `callback` once the preloader hands over (immediately if it already did). */
-export function useOnIntro(callback: () => void | (() => void), deps: unknown[] = []) {
-  const started = useIntroStarted();
-  useEffect(() => {
-    if (!started) return undefined;
-    return callback() ?? undefined;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [started, ...deps]);
 }

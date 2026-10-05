@@ -1,525 +1,144 @@
-# Premium Portfolio – Senior Mobile Developer
+# sebastian-garcia.dev
 
-A world-class, Apple-inspired portfolio website for Sebastián García, featuring a complete design system, 45+ production-ready components, and cinematic animations.
+Personal portfolio of Sebastián García, Senior Mobile Engineer. A single-page home with a
+scroll-driven 3D Macintosh 128K, a career timeline, a client work index, a lab of side
+projects and a contact section, plus product pages for those side projects.
 
-![Portfolio Preview](https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=630&fit=crop&q=80)
+Dark only. English and Spanish.
 
----
+## Stack
 
-## 🎯 Project Overview
+| Area | Choice |
+| --- | --- |
+| UI | React 18, TypeScript, Vite 6 |
+| Styling | Tailwind CSS v4 (CSS-first, tokens in `src/styles/tokens.css`) |
+| Motion | GSAP (ScrollTrigger, SplitText, DrawSVG), Lenis smooth scroll |
+| 3D | three.js, React Three Fiber, drei |
+| Routing / i18n | React Router 7, i18next |
+| Icons | Phosphor |
+| Hosting | Vercel (+ Vercel Analytics) |
 
-This portfolio was designed and built with **strategic rigor** inspired by Apple's design principles and Pentagram's creative direction standards. It's not just a portfolio—it's a **complete brand experience** showcasing senior-level technical expertise through premium design and flawless execution.
+## Getting started
 
-### Key Features
-
-✨ **Premium Design System**
-- Apple-inspired aesthetic with modern sophistication
-- 45+ production-ready React components
-- Complete design tokens (colors, typography, spacing, motion)
-- Dark mode support with seamless transitions
-
-🎬 **Cinematic Animations**
-- Scroll-based reveals with parallax effects
-- Micro-interactions on every element
-- Spring physics-based motion (Motion/Framer Motion)
-- Reduced-motion support for accessibility
-
-📱 **Fully Responsive**
-- Mobile-first approach
-- Breakpoints: 640px, 768px, 1024px, 1280px, 1536px
-- Optimized layouts for all screen sizes
-- Touch-friendly interactions (44px+ targets)
-
-♿ **Accessibility First**
-- WCAG 2.1 AA compliant
-- Keyboard navigation throughout
-- Screen reader optimized
-- High contrast ratios (19.5:1 on primary text)
-
-⚡ **Performance Optimized**
-- System fonts (zero font load time)
-- Optimized animations (GPU-accelerated)
-- Lazy loading where appropriate
-- Lighthouse score: 95+ target
-
----
-
-## 🎨 Design Philosophy
-
-### Strategic Positioning
-
-**"Crafting exceptional mobile experiences with engineering excellence and design sensibility."**
-
-This portfolio communicates:
-- **Seniority**: 7 years of production-grade experience
-- **Technical mastery**: React Native, TypeScript, modern stack
-- **Design awareness**: Apple-level attention to detail
-- **Professionalism**: Enterprise-quality delivery
-
-### Visual Identity
-
-**Monogram:** "SG" (Sebastián García)  
-**Color Palette:** Deep neutrals + vibrant accents (Blue, Purple, Orange)  
-**Typography:** System fonts for instant loading and OS-native feel  
-**Motion:** Apple-like spring animations with purposeful easing  
-
-**Inspired by:**
-- Apple Human Interface Guidelines
-- Material Design 3 principles
-- Pentagram's strategic design approach
-
----
-
-## 🏗️ Technical Stack
-
-### Core Technologies
-
-- **React** 18.3.1 - UI library
-- **TypeScript** - Type safety
-- **Tailwind CSS** 4.0 - Utility-first styling
-- **Motion** (Framer Motion) 12.x - Advanced animations
-- **Vite** 6.x - Build tool and dev server
-
-### Component Library
-
-- **Radix UI** - Accessible primitives (accordion, dialog, tabs, etc.)
-- **Lucide React** - Beautiful icon set
-- Custom components built from scratch
-
-### Architecture
-
-```
-/src
-├── /app
-│   ├── App.tsx              # Main app component
-│   └── /components
-│       ├── /ui              # 30+ reusable UI components
-│       │   ├── button.tsx
-│       │   ├── card.tsx
-│       │   ├── input.tsx
-│       │   └── ... (30+ more)
-│       ├── navigation.tsx   # Header navigation
-│       ├── hero-section.tsx # Hero with animations
-│       ├── timeline-section.tsx  # Animated work experience
-│       ├── projects-section.tsx  # Filterable projects
-│       └── footer.tsx       # Footer with CTA
-└── /styles
-    ├── theme.css            # Design system tokens
-    ├── index.css            # Base styles
-    └── fonts.css            # Font imports
-```
-
----
-
-## 🚀 Quick Start
-
-### Installation
+Requires Node 24 (`.nvmrc`).
 
 ```bash
-# Clone the repository
-git clone <repository-url>
-
-# Install dependencies
 npm install
-
-# Start development server
-npm run dev
+npm run dev        # http://localhost:5173
+npm run build      # typecheck + production build into dist/
+npm run preview    # serve dist/
+npm run typecheck
 ```
 
-### Build for Production
+## Routes
+
+| Path | Page |
+| --- | --- |
+| `/` | Home: hero, manifesto, experience, work, lab, contact |
+| `/projects` | Side projects index |
+| `/projects/ktcodex` | KTCodex product page |
+| `/projects/ktcodex/privacy` | KTCodex privacy policy (linked from the stores) |
+| `*` | 404 (`noindex`) |
+
+Every route except home is lazy-loaded. Vercel rewrites unknown paths to `index.html`
+(`vercel.json`), which also sets immutable caching for hashed assets and fonts.
+
+## Project structure
+
+```
+src/
+  app/            App shell: routes, preloader, header/footer, smooth scroll
+  components/     Shared UI: header, footer, page layout, logo, language toggle
+  content/        Typed data: site info, home sections, experience, projects, side projects
+  features/
+    home/         Home sections (hero, manifesto, experience timeline, work index, lab, contact)
+    macintosh/    The 3D scene: model, CRT shader, screen renderer, poses, blueprint mode
+    preloader/    SVG + GSAP boot loader
+    ktcodex/      KTCodex page pieces (3D phone, scroll story, store links)
+    side-projects/
+  i18n/           i18next setup + locales/{en,es}/<namespace>.json
+  lib/            Boot tasks, GSAP registration, Lenis, section tracker, media queries, meta tags
+  pages/          Route components
+  styles/         tokens.css (theme), base.css (utilities + components), ktcodex.css
+public/
+  models/         macintosh-128k.glb (optimized, meshopt)
+  fonts/          Self-hosted Geist, Geist Mono, Geist Pixel (variable woff2)
+  brand/          Logo, OG image, app icons
+tools/macintosh/  Blender script that builds the GLB from the Sketchfab source
+assets/           Social teaser videos (not part of the site build)
+```
+
+## How it works
+
+**Boot.** `lib/boot.ts` keeps a list of boot tasks (fonts, the WebGL scene) with their
+progress. The preloader draws the SG logo with DrawSVG, shows the real aggregated progress,
+then calls `startIntro()`. Components that animate on entry wait for `useIntroStarted()`.
+
+**Scroll.** `lib/smooth-scroll.tsx` runs Lenis on the GSAP ticker so ScrollTrigger and smooth
+scroll share one clock. `lib/section-tracker.ts` measures the home sections and exposes the
+active section and a continuous scroll position without React re-renders; React only
+re-renders when the active section changes (`useSyncExternalStore`).
+
+**Home sections** are declared once in `content/site.ts` (`homeSections`). The header and
+footer nav read that list, and each section registers itself with the tracker
+(`useTrackedSection(id)`), which is what the Macintosh follows. Adding a section is one entry,
+its component and, if the Mac should move, a pose in `poses.ts`.
+
+**The Macintosh.** `features/macintosh/`:
+
+- `macintosh-model.tsx` loads the GLB, swaps the screen material for the CRT shader, maps the
+  58 named keycaps, and animates the mouse and its cable.
+- `poses.ts` defines a camera/model pose per section (`desktopPoses`, `compactPoses`) and the
+  docked mini-player used on small screens. `poseAt()` interpolates between them from the
+  scroll position.
+- `screen-renderer.ts` draws a 512×342 1-bit canvas (the real 128K resolution): the section
+  name is typed on screen while the matching keys press on the 3D keyboard.
+- `crt-material.ts` is the screen shader: power-on, scanlines, vignette, raster border.
+- `blueprint.ts` is the x-ray mode used by the manifesto (edges + exploded keys).
+
+The scene is skipped when WebGL is unavailable, and motion is reduced under
+`prefers-reduced-motion`.
+
+## Editing content
+
+All copy lives in `src/i18n/locales/{en,es}/`. Structured data lives in `src/content/` and
+references copy by id.
+
+- **New role:** add an entry to `content/experience.ts` (`start`/`end` as `YYYY-MM`,
+  `end: null` while ongoing) and its text under `timeline.json → experiences.<id>` in both
+  languages.
+- **New client project:** add it to `content/projects.ts` and its text under
+  `projects.json → items.<id>`.
+- **New side project:** add it to `content/side-projects.ts` (with its own `tint`) and its
+  text under `lab.json → items.<id>`. Product pages go in `src/pages/` and get a route in
+  `src/app/App.tsx`.
+
+## 3D model pipeline
+
+The model is "Macintosh 128K" by [kreems](https://sketchfab.com/kreems) (CC BY 4.0, see
+`ATTRIBUTIONS.md`). To rebuild `public/models/macintosh-128k.glb` from the Sketchfab
+"GLB, 2k textures" download:
 
 ```bash
-# Create optimized production build
-npm run build
-
-# Preview production build locally
-npm run preview
+blender -b -P tools/macintosh/build.py -- <source.glb> /tmp/mac-raw.glb
+npx @gltf-transform/cli optimize /tmp/mac-raw.glb public/models/macintosh-128k.glb \
+  --compress meshopt --texture-compress webp --texture-size 1024 --simplify false \
+  --join false --flatten false --instance false --palette false --prune-attributes false
 ```
 
----
+The script keeps only the computer, keyboard and mouse, regroups the keycap fragments into
+one object per key, gives the CRT a clean UV, re-orients the scene and rests the mouse cable on
+the desk. The flags keep those named objects and the screen UVs intact; don't drop them.
 
-## 📚 Documentation
+## SEO and accessibility
 
-### Complete Design System
+- Per-route title, description, canonical, Open Graph and Twitter tags via
+  `lib/use-document-meta.ts`; JSON-LD `Person` schema in `index.html`; `robots.txt`,
+  `sitemap.xml` and `site.webmanifest` in `public/`.
+- Skip link, landmark roles, visible focus ring, 44px minimum hit areas, reduced motion and
+  reduced transparency respected.
 
-See **[DESIGN_SYSTEM.md](./DESIGN_SYSTEM.md)** for:
-- Brand identity and positioning
-- Complete color system (light + dark mode)
-- Typography scale and usage
-- Spacing system (8px grid)
-- Motion principles and easing curves
-- Shadows, borders, and effects
-- Accessibility guidelines
-- Developer handoff specs with JSON tokens
+## Docs
 
-### Component Library Reference
-
-See **[COMPONENTS.md](./COMPONENTS.md)** for:
-- Complete component API documentation
-- Usage examples for all 45+ components
-- Props interfaces and TypeScript types
-- Accessibility notes per component
-- Animation specifications
-- Responsive behavior
-- Best practices and patterns
-
----
-
-## 🎭 Portfolio Sections
-
-### 1. Hero Section
-- Animated gradient mesh background
-- Floating orbs with continuous motion
-- Name, title, and value proposition
-- Primary and secondary CTAs
-- Social links (GitHub, Email)
-- Scroll indicator with bounce animation
-- Parallax scroll effects
-
-### 2. Work Experience Timeline
-- Animated vertical timeline with progress line
-- Scroll-based line growth animation
-- Alternating card layout (desktop)
-- Color-coded company dots
-- Staggered card reveals
-- Skills badges per role
-- Responsive: Vertical stack on mobile
-
-**Data includes:**
-- BILDIT (Senior Mobile Developer) - Oct 2024 - Present
-- Astound Commerce (Senior Mobile Developer) - Oct 2023 - Oct 2024
-- PALO IT (Ssr. Mobile Developer) - Jan 2021 - Oct 2021
-- 21unicorns (Mid. Frontend Developer) - Jun 2020 - Jan 2021
-
-### 3. Featured Projects
-- Filterable project grid (3 columns → responsive)
-- Category chips with selection states
-- Project cards with hover effects
-- Image zoom on hover
-- Overlay with action buttons (GitHub, Demo, App Store)
-- Tech stack badges
-- Animated layout transitions when filtering
-
-**Sample projects:**
-- El Plato (Fintech Platform)
-- E-Commerce Mobile Solution
-- Novasa Financial App
-- Articly Social Network
-- Animation Libraries
-- Design System Components
-
-### 4. Footer / Contact Section
-- CTA banner: "Let's Build Something Amazing"
-- Email contact button
-- Quick links navigation
-- Social media icons
-- Copyright and branding
-- Built with ❤️ message
-
----
-
-## 🎨 Design System Highlights
-
-### Color Tokens
-
-```css
-/* Primary Palette */
---foreground: #0a0c0e (light) / #f8f9fa (dark)
---background: #ffffff (light) / #0a0c0e (dark)
-
-/* Accents */
---accent: #339af0 (Blue)
---purple-500: #845ef7
---orange-500: #fd7e14
-
-/* Semantic */
---success: #51cf66
---warning: #ffd43b
---error: #ff6b6b
-```
-
-### Typography Scale
-
-```css
-Display: 96px / 72px / 48px (desktop/tablet/mobile)
-H1: 72px / 60px / 48px
-H2: 60px / 48px / 36px
-H3: 48px / 36px / 30px
-Body: 16px (consistent)
-Caption: 12px
-```
-
-### Spacing System
-
-```
-4, 8, 12, 16, 24, 32, 40, 48, 64, 80, 96, 128, 160, 192, 256px
-```
-
-### Motion Tokens
-
-```css
-/* Durations */
---duration-fast: 150ms
---duration-base: 200ms
---duration-moderate: 300ms
---duration-slow: 400ms
-
-/* Easing (Apple-like) */
---ease-apple: cubic-bezier(0.25, 0.1, 0.25, 1)
---ease-apple-out: cubic-bezier(0, 0, 0.58, 1)
-```
-
----
-
-## ♿ Accessibility Features
-
-### WCAG 2.1 Level AA Compliant
-
-✅ **Color Contrast**
-- Primary text: 19.5:1 (AAA)
-- Secondary text: 7.2:1 (AA)
-- All interactive elements: 4.5:1+ (AA)
-
-✅ **Keyboard Navigation**
-- All interactive elements focusable
-- Visible focus indicators (2px ring)
-- Logical tab order
-- Escape key closes overlays
-
-✅ **Screen Readers**
-- Semantic HTML throughout
-- ARIA labels on icon buttons
-- Alt text on all images
-- Proper heading hierarchy
-
-✅ **Motion**
-- `prefers-reduced-motion` support
-- Animations can be disabled
-- No flashing content
-
-✅ **Touch Targets**
-- Minimum 44×44px on all buttons
-- 8px spacing between targets
-
----
-
-## 📱 Responsive Breakpoints
-
-```typescript
-sm: 640px   // Mobile landscape
-md: 768px   // Tablet portrait
-lg: 1024px  // Desktop
-xl: 1280px  // Large desktop
-2xl: 1536px // Extra large
-```
-
-### Layout Behavior
-
-**Navigation:**
-- Desktop: Horizontal menu with inline links
-- Mobile: Hamburger → slide-in drawer
-
-**Hero:**
-- Desktop: Centered, max-width 1200px
-- Mobile: Full width, stacked CTAs
-
-**Timeline:**
-- Desktop: Alternating left/right cards
-- Mobile: Vertical stack, left-aligned
-
-**Projects:**
-- Desktop: 3-column grid
-- Tablet: 2-column grid
-- Mobile: Single column
-
----
-
-## 🎬 Animation System
-
-### Scroll-Based Animations
-
-**Hero Section:**
-- Parallax: Opacity fades, scale shrinks as you scroll
-- Continuous: Orbs animate with subtle scale/opacity
-
-**Timeline:**
-- Progress line grows with scroll position
-- Cards slide in from sides with stagger delay
-- Dots scale in when cards enter viewport
-
-**Projects:**
-- Cards fade + scale in on scroll
-- Stagger delay: 100ms between cards
-
-### Micro-Interactions
-
-**Buttons:**
-- Hover: Scale 1.02x
-- Press: Scale 0.98x
-- Spring physics (stiffness: 400, damping: 20)
-
-**Cards:**
-- Hover: Lift 4px + shadow increase
-- Image zoom: Scale 1.1x on hover
-- Duration: 300ms ease-out
-
-**Chips/Tags:**
-- Hover: Scale 1.05x
-- Press: Scale 0.95x
-- Selection: Background color change
-
----
-
-## 🎯 Performance Targets
-
-Based on Lighthouse metrics:
-
-| Metric | Target | Rationale |
-|--------|--------|-----------|
-| Performance | 95+ | Fast load, smooth animations |
-| Accessibility | 100 | WCAG AA compliant |
-| Best Practices | 100 | Modern web standards |
-| SEO | 95+ | Semantic HTML, meta tags |
-| First Contentful Paint | <1.5s | Quick visual feedback |
-| Time to Interactive | <3s | Fast user interaction |
-| Cumulative Layout Shift | <0.1 | No content jumping |
-
-### Optimization Strategies
-
-✅ System fonts (zero download time)  
-✅ CSS-only animations where possible  
-✅ GPU-accelerated transforms  
-✅ Lazy loading for images  
-✅ Tree-shaking with Vite  
-✅ Code splitting for routes (if multi-page)  
-
----
-
-## 🛠️ Customization Guide
-
-### Updating Personal Information
-
-**Hero Section** (`/src/app/components/hero-section.tsx`):
-```tsx
-<h1>Your Name</h1>
-<div>Your Title</div>
-<p>Your value proposition...</p>
-```
-
-**Timeline** (`/src/app/components/timeline-section.tsx`):
-Update the `experiences` array with your work history.
-
-**Projects** (`/src/app/components/projects-section.tsx`):
-Update the `projects` array with your portfolio pieces.
-
-**Footer** (`/src/app/components/footer.tsx`):
-Update email and social links.
-
-### Changing Colors
-
-Edit `/src/styles/theme.css`:
-```css
-:root {
-  --accent: #YOUR_COLOR;
-  --primary: #YOUR_COLOR;
-}
-```
-
-### Adding New Components
-
-1. Create component in `/src/app/components/ui/your-component.tsx`
-2. Follow existing patterns (TypeScript interfaces, variants, sizes)
-3. Add to component index in COMPONENTS.md
-4. Test for accessibility
-
----
-
-## KTCodex store release configuration
-
-The KTCodex project page keeps store links disabled until the public listings exist. Set these variables in the deployment environment when each release is available:
-
-```bash
-VITE_KTCODEX_APP_STORE_ID=1234567890
-VITE_KTCODEX_APP_STORE_URL=https://apps.apple.com/app/ktcodex/id1234567890
-VITE_KTCODEX_PLAY_STORE_URL=https://play.google.com/store/apps/details?id=dev.sebastiangarcia.ktcodex
-```
-
-The App Store ID enables Safari's native Smart App Banner. The Play Store URL enables the related-app manifest used by compatible Android browsers.
-
----
-
-## 🧪 Testing Checklist
-
-Before deployment:
-
-- [ ] Test on Chrome, Firefox, Safari, Edge
-- [ ] Test on iOS Safari and Android Chrome
-- [ ] Keyboard navigation works throughout
-- [ ] Screen reader announces content correctly
-- [ ] All forms validate properly
-- [ ] All animations run smoothly (60fps)
-- [ ] Dark mode works correctly
-- [ ] Responsive layouts look good at all breakpoints
-- [ ] All links work (internal and external)
-- [ ] Meta tags and OG images present
-- [ ] Lighthouse scores meet targets
-
----
-
-## 📄 License
-
-This portfolio design and codebase is proprietary to Sebastián García.  
-**Not licensed for reuse or redistribution.**
-
----
-
-## 🙏 Acknowledgments
-
-**Design Inspiration:**
-- Apple Human Interface Guidelines
-- Material Design 3
-- Pentagram design philosophy
-
-**Technical Stack:**
-- React team for React 18
-- Tailwind Labs for Tailwind CSS 4
-- Framer for Motion library
-- Radix UI for accessible primitives
-
----
-
-## 📬 Contact
-
-**Sebastián García**  
-Senior Mobile Developer
-
-- **Email:** contacto@sebastian-garcia.dev
-- **GitHub:** [@SGarcia710](https://github.com/SGarcia710)
-
----
-
-## 🎓 Learning Resources
-
-Want to build something similar?
-
-**Design:**
-- [Apple Human Interface Guidelines](https://developer.apple.com/design/human-interface-guidelines/)
-- [Laws of UX](https://lawsofux.com/)
-- [Refactoring UI](https://www.refactoringui.com/)
-
-**Development:**
-- [React Documentation](https://react.dev/)
-- [Motion Documentation](https://motion.dev/)
-- [Tailwind CSS Documentation](https://tailwindcss.com/)
-
-**Accessibility:**
-- [WebAIM](https://webaim.org/)
-- [A11y Project](https://www.a11yproject.com/)
-- [WCAG Guidelines](https://www.w3.org/WAI/WCAG21/quickref/)
-
----
-
-**Built with precision, designed with intention, and crafted for impact.**
-
-⭐ **Version:** 1.0  
-📅 **Last Updated:** February 2026
+- `DESIGN_SYSTEM.md`: tokens, type, shape, motion and component rules.
+- `ATTRIBUTIONS.md`: third-party assets and licenses.

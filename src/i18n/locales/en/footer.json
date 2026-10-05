@@ -4,5 +4,6 @@
   "branding": "Senior Mobile Engineer specializing in React Native and modern web technologies.",
   "copyright": "© {{year}} Sebastián García",
   "copyrightTech": "Built with React, Three.js and GSAP",
-  "backToTop": "Back to top"
+  "backToTop": "Back to top",
+  "modelCredit": "Macintosh 128K 3D model by kreems, CC BY 4.0"
 }

@@ -47,11 +47,11 @@ export function dockBox(viewportWidth: number, viewportHeight: number): DockBox 
 }
 
 export const desktopPoses: PoseMap = {
-  top: { x: 0.24, y: 0.02, size: 0.54, maxWidth: 0.46, rx: 0.16, ry: -0.52 },
+  top: { x: 0.27, y: 0.02, size: 0.54, maxWidth: 0.44, rx: 0.16, ry: -0.52 },
   manifesto: { x: 0, y: 0.02, size: 0.6, rx: 0.28, ry: 0.55, xray: 1, explode: 1, spin: 1 },
-  experience: { x: -0.27, y: 0.2, size: 0.36, maxWidth: 0.34, rx: 0.12, ry: 0.62 },
-  projects: { x: 0.29, y: 0.02, size: 0.46, maxWidth: 0.38, rx: 0.14, ry: -0.68 },
-  lab: { x: -0.3, y: 0.02, size: 0.44, maxWidth: 0.34, rx: 0.16, ry: 0.74 },
+  experience: { x: -0.28, y: 0.2, size: 0.36, maxWidth: 0.32, rx: 0.12, ry: 0.5 },
+  projects: { x: 0.32, y: 0.02, size: 0.44, maxWidth: 0.33, rx: 0.14, ry: -0.45 },
+  lab: { x: -0.31, y: 0.02, size: 0.42, maxWidth: 0.32, rx: 0.16, ry: 0.5 },
   contact: { x: 0.22, y: -0.04, size: 0.62, maxWidth: 0.5, rx: 0.06, ry: -0.2 },
 };
 
