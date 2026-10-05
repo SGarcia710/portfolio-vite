@@ -2,9 +2,12 @@
   "home": "Home",
   "projects": "Projects",
   "breadcrumbs": "Breadcrumb",
-  "underDevelopment": "Under development",
-  "projectsDescription": "This page is under development. In the meantime, you can find information about KTCodex here.",
-  "ktcodexDescription": "The KTCodex page is under development. Its privacy policy is already available below.",
-  "viewKTCodex": "View KTCodex",
-  "viewPrivacy": "Read privacy policy"
+  "sideProjectsTitle": "Side projects",
+  "sideProjectsDescription": "Independent products I design, build and ship end to end. Each one is a place to try ideas I cannot try at work.",
+  "metaDescription": "Side projects by Sebastián García: independent mobile products designed, built and shipped end to end.",
+  "notFound": {
+    "title": "Page not found",
+    "body": "This route does not exist, or it moved. The home page is a safe place to start.",
+    "cta": "Back home"
+  }
 }

@@ -1,12 +1,8 @@
 {
-  "ctaTitle": "Construyamos Algo Increíble",
+  "ctaTitle": "Construyamos algo increíble",
   "ctaDescription": "Actualmente estoy disponible para proyectos freelance y oportunidades de tiempo completo. Hablemos sobre cómo podemos trabajar juntos.",
-  "quickLinks": "Enlaces Rápidos",
-  "connect": "Conectar",
-  "linkWorkExperience": "Experiencia Laboral",
-  "linkProjects": "Proyectos",
-  "linkContact": "Contacto",
   "branding": "Ingeniero Mobile Senior especializado en React Native y tecnologías web modernas.",
-  "copyright": "© {{year}} Sebastián García. Hecho con",
-  "copyrightTech": "usando React & TypeScript"
+  "copyright": "© {{year}} Sebastián García",
+  "copyrightTech": "Hecho con React, Three.js y GSAP",
+  "backToTop": "Volver arriba"
 }

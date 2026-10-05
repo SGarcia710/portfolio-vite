@@ -1,12 +1,7 @@
 {
-  "sectionTitle": "Trabajo Destacado",
+  "sectionTitle": "Trabajo destacado",
   "sectionDescription": "Una selección curada de proyectos de alto impacto que demuestran excelencia técnica y calidad de diseño",
   "items": {
-    "9": {
-      "title": "App de Gestión Laboral",
-      "category": "HR Tech",
-      "description": "Plataforma móvil a gran escala que soporta operaciones laborales para el proveedor líder de nómina y servicios de RRHH de la industria del entretenimiento. Incluye flujos de onboarding, control de tiempo, gestión documental y asignación de proyectos para una fuerza laboral distribuida. Construida con enfoque en arquitectura escalable, optimización de rendimiento y pipelines CI/CD robustos."
-    },
     "1": {
       "title": "Mi Palacio",
       "category": "E-Commerce",
@@ -47,6 +42,11 @@
       "category": "Educación",
       "description": "Sitio web institucional para una de las universidades líderes de Colombia. Construí porciones importantes de la plataforma incluyendo páginas de programas académicos, portal de servicios estudiantiles, integración de aulas virtuales y directorios de profesores sirviendo a miles de estudiantes."
     },
+    "9": {
+      "title": "App de Gestión Laboral",
+      "category": "HR Tech",
+      "description": "Plataforma móvil a gran escala que soporta operaciones laborales para el proveedor líder de nómina y servicios de RRHH de la industria del entretenimiento. Incluye flujos de onboarding, control de tiempo, gestión documental y asignación de proyectos para una fuerza laboral distribuida. Construida con enfoque en arquitectura escalable, optimización de rendimiento y pipelines CI/CD robustos."
+    },
     "10": {
       "title": "TECHO Mexico Backoffice",
       "category": "Impacto Social",
@@ -57,5 +57,23 @@
       "category": "Telecomunicaciones",
       "description": "App móvil oficial para clientes de Movistar en Uruguay. Permite gestión de cuenta, consulta de saldo, cambio de planes, monitoreo de consumo de datos, pago de facturas y soporte al cliente. Funciona como el canal principal de autogestión para uno de los proveedores de telecomunicaciones líderes en Uruguay."
     }
-  }
+  },
+  "filters": {
+    "label": "Filtrar proyectos",
+    "all": "Todos",
+    "mobile": "Mobile",
+    "web": "Web"
+  },
+  "platform": {
+    "mobile": "App móvil",
+    "web": "Web"
+  },
+  "open": "Abrir detalle del proyecto",
+  "close": "Cerrar proyecto",
+  "stack": "Stack",
+  "links": "Enlaces",
+  "client": "Cliente",
+  "year": "Año",
+  "prev": "Proyecto anterior",
+  "next": "Proyecto siguiente"
 }

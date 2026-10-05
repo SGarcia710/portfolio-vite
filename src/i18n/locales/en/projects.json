@@ -1,12 +1,7 @@
 {
-  "sectionTitle": "Featured Work",
+  "sectionTitle": "Selected work",
   "sectionDescription": "A curated selection of high-impact projects showcasing technical excellence and design quality",
   "items": {
-    "9": {
-      "title": "Workforce Management App",
-      "category": "HR Tech",
-      "description": "Large-scale mobile platform supporting workforce operations for the entertainment industry's leading payroll and HR services provider. Features onboarding flows, time tracking, document management, and project assignment capabilities for a distributed workforce. Built with a focus on scalable architecture, performance optimization, and robust CI/CD pipelines."
-    },
     "1": {
       "title": "Mi Palacio",
       "category": "E-Commerce",
@@ -47,6 +42,11 @@
       "category": "Education",
       "description": "Institutional website for one of Colombia's leading universities. Built major portions of the platform including academic program pages, student services portal, virtual classrooms integration, and faculty directories serving thousands of students."
     },
+    "9": {
+      "title": "Workforce Management App",
+      "category": "HR Tech",
+      "description": "Large-scale mobile platform supporting workforce operations for the entertainment industry's leading payroll and HR services provider. Features onboarding flows, time tracking, document management, and project assignment capabilities for a distributed workforce. Built with a focus on scalable architecture, performance optimization, and robust CI/CD pipelines."
+    },
     "10": {
       "title": "TECHO Mexico Backoffice",
       "category": "Social Impact",
@@ -57,5 +57,23 @@
       "category": "Telecom",
       "description": "Official mobile app for Movistar customers in Uruguay. Enables account management, balance inquiries, plan upgrades, data usage monitoring, bill payments, and customer support. Serves as the primary self-service channel for one of Uruguay's leading telecommunications providers."
     }
-  }
+  },
+  "filters": {
+    "label": "Filter projects",
+    "all": "All",
+    "mobile": "Mobile",
+    "web": "Web"
+  },
+  "platform": {
+    "mobile": "Mobile app",
+    "web": "Web"
+  },
+  "open": "Open project details",
+  "close": "Close project",
+  "stack": "Stack",
+  "links": "Links",
+  "client": "Client",
+  "year": "Year",
+  "prev": "Previous project",
+  "next": "Next project"
 }

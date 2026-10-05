@@ -1,11 +1,11 @@
 .ktcodex-page {
   --ktc-accent: #d85b12;
-  --ktc-accent-strong: #a63d08;
-  --ktc-panel: rgba(246, 247, 248, 0.86);
-  --ktc-panel-strong: rgba(255, 255, 255, 0.94);
-  --ktc-ink: #121519;
-  --ktc-muted: #5d6269;
-  --ktc-line: rgba(18, 21, 25, 0.13);
+  --ktc-accent-strong: #f18648;
+  --ktc-panel: rgb(20 24 29 / 0.87);
+  --ktc-panel-strong: rgb(13 16 20 / 0.95);
+  --ktc-ink: var(--color-fg);
+  --ktc-muted: var(--color-ink-400);
+  --ktc-line: var(--color-line);
   position: relative;
   isolation: isolate;
   overflow: clip;
@@ -17,12 +17,8 @@
   color: var(--ktc-ink);
 }
 
-.dark .ktcodex-page {
-  --ktc-panel: rgba(20, 24, 29, 0.87);
-  --ktc-panel-strong: rgba(13, 16, 20, 0.95);
-  --ktc-ink: #f1f2f3;
-  --ktc-muted: #abb0b7;
-  --ktc-line: rgba(241, 242, 243, 0.07);
+.ktcodex-page :is(h1, h2, h3) {
+  font-weight: 600;
 }
 
 .ktcodex-page::before {
@@ -32,7 +28,7 @@
   content: '';
   background:
     radial-gradient(circle at 75% 9%, color-mix(in srgb, var(--ktc-accent) 13%, transparent), transparent 23rem),
-    linear-gradient(180deg, transparent 0, color-mix(in srgb, var(--background) 86%, transparent) 34rem, var(--background) 72%);
+    linear-gradient(180deg, transparent 0, color-mix(in srgb, var(--color-bg) 86%, transparent) 34rem, var(--color-bg) 72%);
   pointer-events: none;
 }
 
@@ -43,97 +39,13 @@
   pointer-events: none;
 }
 
-.ktc-reticle-cursor {
-  position: fixed;
-  z-index: var(--z-max);
-  width: 2.8rem;
-  height: 2.8rem;
-  border: 1px solid #f17632;
-  border-radius: 50%;
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-  box-shadow: inset 0 0 0 1px rgba(8, 11, 14, 0.42);
-}
-
-.ktc-reticle-cursor::before,
-.ktc-reticle-cursor::after {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  content: '';
-  background: #f17632;
-  transform: translate(-50%, -50%);
-}
-
-.ktc-reticle-cursor::before {
-  width: 0.9rem;
-  height: 1px;
-}
-
-.ktc-reticle-cursor::after {
-  width: 1px;
-  height: 0.9rem;
-}
-
-.ktc-reticle-pulse {
-  position: absolute;
-  inset: -1px;
-  border: 1px solid #f17632;
-  border-radius: 50%;
-  opacity: 0;
-  pointer-events: none;
-}
-
-.ktc-reticle-core {
-  position: fixed;
-  z-index: calc(var(--z-max) + 1);
-  width: 3px;
-  height: 3px;
-  border-radius: 50%;
-  background: #fff4eb;
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-  box-shadow: 0 0 0 1px rgba(8, 11, 14, 0.75);
-}
-
-.ktc-reticle-tick {
-  position: absolute;
-  background: #f17632;
-}
-
-.ktc-reticle-tick-top,
-.ktc-reticle-tick-bottom {
-  left: 50%;
-  width: 1px;
-  height: 0.42rem;
-  transform: translateX(-50%);
-}
-
-.ktc-reticle-tick-left,
-.ktc-reticle-tick-right {
-  top: 50%;
-  width: 0.42rem;
-  height: 1px;
-  transform: translateY(-50%);
-}
-
-.ktc-reticle-tick-top { top: -0.28rem; }
-.ktc-reticle-tick-right { right: -0.28rem; }
-.ktc-reticle-tick-bottom { bottom: -0.28rem; }
-.ktc-reticle-tick-left { left: -0.28rem; }
-
 .ktc-hero {
   display: grid;
   grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
   align-items: center;
   min-height: 0;
   gap: clamp(2rem, 5vw, 6rem);
-  padding: 0.75rem 0 1.5rem;
-}
-
-.ktcodex-page > div.container-premium {
-  padding-top: 6.5rem;
-  padding-bottom: 2.5rem;
+  padding: 2rem 0 2.5rem;
 }
 
 .ktc-hero-copy {
@@ -148,11 +60,9 @@
   align-items: center;
   gap: 0.75rem;
   margin-bottom: 1.5rem;
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  font-size: 1.125rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
 }
 
 .ktc-brand-lockup img {
@@ -429,7 +339,7 @@ button.ktc-tilt-control:focus-visible {
   overflow: hidden;
   border-top: 1px solid var(--ktc-line);
   border-bottom: 1px solid var(--ktc-line);
-  background: color-mix(in srgb, var(--background) 92%, transparent);
+  background: color-mix(in srgb, var(--color-bg) 92%, transparent);
 }
 
 .ktc-story-grid {
@@ -691,10 +601,6 @@ button.ktc-tilt-control:focus-visible {
   text-decoration: none;
 }
 
-.dark .ktc-privacy-link {
-  color: #f18648;
-}
-
 .ktc-privacy-link svg {
   width: 1rem;
   height: 1rem;
@@ -925,7 +831,7 @@ button.ktc-tilt-control:focus-visible {
   .ktc-system-cell,
   .ktc-stack-cell,
   .ktc-story {
-    background: var(--background-secondary);
+    background: var(--color-surface);
     backdrop-filter: none;
   }
 }

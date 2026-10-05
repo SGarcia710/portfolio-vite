@@ -1,0 +1,23 @@
+{
+  "sectionTitle": "Proyectos propios",
+  "sectionDescription": "Productos que diseño, construyo y publico en mi propio tiempo.",
+  "viewAll": "Todos los proyectos propios",
+  "view": "Ver proyecto",
+  "prev": "Proyecto anterior",
+  "next": "Proyecto siguiente",
+  "status": {
+    "live": "Publicado",
+    "beta": "Beta",
+    "building": "En desarrollo"
+  },
+  "items": {
+    "ktcodex": {
+      "tagline": "Kill Teams. Un solo códex.",
+      "description": "Consulta reglas, crea listas legales y lleva cada operativo en una app móvil enfocada."
+    }
+  },
+  "upcoming": {
+    "title": "Lo siguiente",
+    "body": "El próximo proyecto propio está en desarrollo. Aparecerá aquí primero."
+  }
+}

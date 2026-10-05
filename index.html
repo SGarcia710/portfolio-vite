@@ -1,22 +1,62 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="is-loading">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sebastián García – Senior Mobile Developer</title>
-    <meta name="description" content="Portfolio of Sebastián García, Senior Mobile Developer specializing in React Native and modern web technologies. 7+ years building high-performance apps." />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Sebastián García</title>
+    <meta name="description" content="Sebastián García, Senior Mobile Engineer. Crafting exceptional mobile experiences with React Native and modern technologies. 8 years of building high-performance apps that users love." />
+    <meta name="author" content="Sebastián García" />
     <meta name="robots" content="index,follow" />
     <meta name="theme-color" content="#0a0c0e" />
-    <link id="app-favicon" rel="icon" type="image/x-icon" href="/assets/favicon-black.ico" />
-    <link rel="icon" type="image/svg+xml" href="/assets/LogoSG-IconBlack.svg" />
+    <meta name="color-scheme" content="dark" />
+    <link rel="canonical" href="https://sebastian-garcia.dev" />
 
-    <!-- Open Graph -->
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" type="image/svg+xml" href="/brand/logo.svg" />
+    <link rel="apple-touch-icon" href="/brand/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <link rel="preload" href="/fonts/geist-variable.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/geist-pixel-square.woff2" as="font" type="font/woff2" crossorigin />
+
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Sebastián García – Senior Mobile Developer" />
-    <meta property="og:description" content="Crafting exceptional mobile experiences with React Native and modern technologies." />
+    <meta property="og:site_name" content="Sebastián García" />
+    <meta property="og:title" content="Sebastián García" />
+    <meta property="og:description" content="Senior Mobile Engineer crafting exceptional mobile experiences with React Native and modern technologies." />
+    <meta property="og:url" content="https://sebastian-garcia.dev" />
+    <meta property="og:image" content="https://sebastian-garcia.dev/brand/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="es_ES" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Sebastián García" />
+    <meta name="twitter:description" content="Senior Mobile Engineer crafting exceptional mobile experiences with React Native and modern technologies." />
+    <meta name="twitter:image" content="https://sebastian-garcia.dev/brand/og.png" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Sebastián García",
+        "url": "https://sebastian-garcia.dev",
+        "email": "mailto:contacto@sebastian-garcia.dev",
+        "jobTitle": "Senior Mobile Engineer",
+        "image": "https://sebastian-garcia.dev/brand/icon-512.png",
+        "sameAs": ["https://github.com/SGarcia710"],
+        "knowsAbout": ["React Native", "TypeScript", "iOS", "Android", "Expo", "Mobile architecture"]
+      }
+    </script>
+
+    <style>
+      html { background: #0a0c0e; }
+    </style>
   </head>
   <body>
     <div id="root"></div>
+    <noscript>
+      <p style="color:#f8f9fa;font-family:system-ui;padding:2rem">Sebastián García, Senior Mobile Engineer. contacto@sebastian-garcia.dev</p>
+    </noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

@@ -1,83 +1,47 @@
-import { useState, useEffect, lazy, Suspense } from 'react';
-import { Analytics } from '@vercel/analytics/react';
+import { lazy, Suspense, type ComponentType } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Route, Routes } from 'react-router';
-import { Navigation } from './components/navigation';
-import { ScrollToTop } from './components/ui/scroll-to-top';
-import { RouteScroll } from './components/route-scroll';
-import { HomePage } from './pages/home-page';
-import { ProjectPlaceholderPage } from './pages/project-placeholder-page';
-import { PrivacyPage } from './pages/privacy-page';
-import { KTCodexPage } from './pages/ktcodex-page';
+import { Analytics } from '@vercel/analytics/react';
+import { RouteScroll } from '../components/route-scroll';
+import { SiteFooter } from '../components/site-footer';
+import { SiteHeader } from '../components/site-header';
+import { Preloader } from '../features/preloader/preloader';
+import { SmoothScroll } from '../lib/smooth-scroll';
+import { HomePage } from '../pages/home-page';
 
-const CustomCursor = lazy(() => import('./components/custom-cursor').then(m => ({ default: m.CustomCursor })));
-const Footer = lazy(() => import('./components/footer').then(m => ({ default: m.Footer })));
-const LIGHT_FAVICON = '/assets/favicon-black.ico';
-const DARK_FAVICON = '/assets/favicon-white.ico';
+const named = <T extends Record<string, ComponentType>>(loader: () => Promise<T>, name: keyof T) =>
+  lazy(() => loader().then((module) => ({ default: module[name] })));
+
+const SideProjectsPage = named(() => import('../pages/side-projects-page'), 'SideProjectsPage');
+const KTCodexPage = named(() => import('../pages/ktcodex-page'), 'KTCodexPage');
+const PrivacyPage = named(() => import('../pages/privacy-page'), 'PrivacyPage');
+const NotFoundPage = named(() => import('../pages/not-found-page'), 'NotFoundPage');
 
 export default function App() {
-  const [isDark, setIsDark] = useState(false);
-  const [shouldLoadCursor, setShouldLoadCursor] = useState(false);
-
-  useEffect(() => {
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    setIsDark(prefersDark);
-  }, []);
-
-  useEffect(() => {
-    const canUseCursor = window.matchMedia('(pointer: fine)').matches
-      && window.matchMedia('(hover: hover)').matches;
-
-    if (!canUseCursor) {
-      return undefined;
-    }
-
-    const timeoutId = window.setTimeout(() => {
-      setShouldLoadCursor(true);
-    }, 1200);
-
-    return () => window.clearTimeout(timeoutId);
-  }, []);
-
-  useEffect(() => {
-    document.documentElement.classList.toggle('dark', isDark);
-
-    const favicon = document.getElementById('app-favicon') as HTMLLinkElement | null;
-    if (favicon) {
-      favicon.href = isDark ? DARK_FAVICON : LIGHT_FAVICON;
-    }
-  }, [isDark]);
-
-  const toggleTheme = () => {
-    setIsDark(current => !current);
-  };
+  const { t } = useTranslation('common');
 
   return (
-    <>
+    <SmoothScroll>
+      <a href="#main" className="skip-link">{t('a11y.skip')}</a>
+      <Preloader />
       <RouteScroll />
-      {shouldLoadCursor && (
-        <Suspense fallback={null}>
-          <CustomCursor />
-        </Suspense>
-      )}
-      <div className="min-h-screen bg-background text-foreground antialiased overflow-x-hidden">
-        <Navigation isDark={isDark} onThemeToggle={toggleTheme} />
-        
-        <main>
+      <SiteHeader />
+
+      <main id="main" tabIndex={-1} className="relative outline-none">
+        <Suspense fallback={<div className="min-h-[100svh]" />}>
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/projects" element={<ProjectPlaceholderPage />} />
+            <Route path="/projects" element={<SideProjectsPage />} />
             <Route path="/projects/ktcodex" element={<KTCodexPage />} />
             <Route path="/projects/ktcodex/privacy" element={<PrivacyPage />} />
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
-        </main>
-
-        <Suspense>
-          <Footer isDark={isDark} />
         </Suspense>
+      </main>
 
-        <ScrollToTop />
-      </div>
+      <SiteFooter />
+      <div className="grain" aria-hidden="true" />
       <Analytics />
-    </>
+    </SmoothScroll>
   );
 }

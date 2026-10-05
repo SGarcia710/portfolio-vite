@@ -1,8 +1,6 @@
-@import './fonts.css';
-@import './tailwind.css';
-@import './theme.css';
-@import './ktcodex.css';
+@import 'tailwindcss' source(none);
+@source '../**/*.{ts,tsx}';
 
-html, body {
-  overflow-x: hidden;
-}
+@import './tokens.css';
+@import './base.css';
+@import './ktcodex.css';

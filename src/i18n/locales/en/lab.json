@@ -1,0 +1,23 @@
+{
+  "sectionTitle": "Side projects",
+  "sectionDescription": "Products I design, build and ship on my own time.",
+  "viewAll": "All side projects",
+  "view": "View project",
+  "prev": "Previous project",
+  "next": "Next project",
+  "status": {
+    "live": "Live",
+    "beta": "Beta",
+    "building": "In development"
+  },
+  "items": {
+    "ktcodex": {
+      "tagline": "Kill Teams. One codex.",
+      "description": "Browse rules, build legal rosters and carry every operative in one focused mobile companion."
+    }
+  },
+  "upcoming": {
+    "title": "Next build",
+    "body": "The next side project is in progress. It lands here first."
+  }
+}

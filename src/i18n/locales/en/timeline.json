@@ -34,5 +34,11 @@
       "role": "Jr. Fullstack Engineer",
       "description": "Developed different websites and web apps, managed different platforms for the university's Library, Editorial, and Research area."
     }
-  }
+  },
+  "now": "Now",
+  "present": "Present",
+  "details": "Role details",
+  "stack": "Stack",
+  "yearsAxis": "Career timeline, one row per role",
+  "dragHint": "Drag to move through the years"
 }

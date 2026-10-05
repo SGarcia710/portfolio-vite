@@ -34,5 +34,11 @@
       "role": "Ing. Fullstack Jr.",
       "description": "Desarrollé diferentes sitios web y aplicaciones web, gestioné diferentes plataformas para la Biblioteca, Editorial y área de Investigación de la universidad."
     }
-  }
+  },
+  "now": "Hoy",
+  "present": "Presente",
+  "details": "Detalle del rol",
+  "stack": "Stack",
+  "yearsAxis": "Línea de tiempo profesional, una fila por rol",
+  "dragHint": "Arrastra para recorrer los años"
 }

@@ -1,18 +1,67 @@
 {
   "nav": {
     "work": "Experiencia",
-    "projects": "Proyectos",
-    "contact": "Contacto"
+    "projects": "Trabajo",
+    "contact": "Contacto",
+    "lab": "Lab",
+    "menu": "Menú",
+    "close": "Cerrar menú"
   },
   "buttons": {
     "getInTouch": "Contáctame",
     "viewGithub": "Ver GitHub",
-    "website": "Sitio Web",
+    "website": "Sitio web",
     "appStore": "App Store",
-    "playStore": "Play Store"
+    "playStore": "Play Store",
+    "copyEmail": "Copiar email",
+    "copied": "Copiado al portapapeles",
+    "viewProject": "Ver proyecto",
+    "back": "Volver al inicio"
   },
-  "scrollToExplore": "Desplaza para explorar",
   "language": {
-    "switchTo": "EN"
+    "switchTo": "EN",
+    "label": "Switch to English"
+  },
+  "a11y": {
+    "skip": "Saltar al contenido",
+    "primaryNav": "Principal",
+    "home": "Sebastián García, inicio",
+    "sections": "Secciones de la página",
+    "external": "se abre en una pestaña nueva"
+  },
+  "loader": {
+    "label": "Cargando portafolio"
+  },
+  "screen": {
+    "top": {
+      "file": "bienvenida",
+      "title": "hola mundo",
+      "line": "sebastian garcia / mobile"
+    },
+    "manifesto": {
+      "file": "manifiesto.txt",
+      "title": "oficio",
+      "line": "detalles que se sienten"
+    },
+    "experience": {
+      "file": "cv.doc",
+      "title": "experiencia",
+      "line": "2018 a hoy / 7 roles"
+    },
+    "projects": {
+      "file": "trabajo",
+      "title": "proyectos",
+      "line": "11 productos lanzados"
+    },
+    "lab": {
+      "file": "lab",
+      "title": "proyectos propios",
+      "line": "hechos fuera de horario"
+    },
+    "contact": {
+      "file": "correo",
+      "title": "hablemos",
+      "line": "contacto@sebastian-garcia.dev"
+    }
   }
 }

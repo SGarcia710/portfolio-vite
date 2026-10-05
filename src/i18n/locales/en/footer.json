@@ -1,12 +1,8 @@
 {
-  "ctaTitle": "Let's Build Something Amazing",
+  "ctaTitle": "Let's build something amazing",
   "ctaDescription": "I'm currently available for freelance projects and full-time opportunities. Let's discuss how we can work together.",
-  "quickLinks": "Quick Links",
-  "connect": "Connect",
-  "linkWorkExperience": "Work Experience",
-  "linkProjects": "Projects",
-  "linkContact": "Contact",
   "branding": "Senior Mobile Engineer specializing in React Native and modern web technologies.",
-  "copyright": "© {{year}} Sebastián García. Built with",
-  "copyrightTech": "using React & TypeScript"
+  "copyright": "© {{year}} Sebastián García",
+  "copyrightTech": "Built with React, Three.js and GSAP",
+  "backToTop": "Back to top"
 }

@@ -2,9 +2,12 @@
   "home": "Inicio",
   "projects": "Proyectos",
   "breadcrumbs": "Ruta de navegación",
-  "underDevelopment": "En desarrollo",
-  "projectsDescription": "Esta página está en desarrollo. Mientras tanto, aquí puedes encontrar información sobre KTCodex.",
-  "ktcodexDescription": "La página de KTCodex está en desarrollo. Su política de privacidad ya está disponible a continuación.",
-  "viewKTCodex": "Ver KTCodex",
-  "viewPrivacy": "Leer política de privacidad"
+  "sideProjectsTitle": "Proyectos propios",
+  "sideProjectsDescription": "Productos independientes que diseño, construyo y publico de principio a fin. Cada uno es un espacio para probar ideas que no puedo probar en el trabajo.",
+  "metaDescription": "Proyectos propios de Sebastián García: productos móviles independientes diseñados, construidos y publicados de principio a fin.",
+  "notFound": {
+    "title": "Página no encontrada",
+    "body": "Esta ruta no existe o se movió. La página de inicio es un buen lugar para empezar.",
+    "cta": "Volver al inicio"
+  }
 }

@@ -1,18 +1,67 @@
 {
   "nav": {
-    "work": "Work",
-    "projects": "Projects",
-    "contact": "Contact"
+    "work": "Experience",
+    "projects": "Work",
+    "contact": "Contact",
+    "lab": "Lab",
+    "menu": "Menu",
+    "close": "Close menu"
   },
   "buttons": {
     "getInTouch": "Get in touch",
     "viewGithub": "View GitHub",
     "website": "Website",
     "appStore": "App Store",
-    "playStore": "Play Store"
+    "playStore": "Play Store",
+    "copyEmail": "Copy email",
+    "copied": "Copied to clipboard",
+    "viewProject": "View project",
+    "back": "Back home"
   },
-  "scrollToExplore": "Scroll to explore",
   "language": {
-    "switchTo": "ES"
+    "switchTo": "ES",
+    "label": "Cambiar a español"
+  },
+  "a11y": {
+    "skip": "Skip to content",
+    "primaryNav": "Primary",
+    "home": "Sebastián García, home",
+    "sections": "Page sections",
+    "external": "opens in a new tab"
+  },
+  "loader": {
+    "label": "Loading portfolio"
+  },
+  "screen": {
+    "top": {
+      "file": "welcome",
+      "title": "hello world",
+      "line": "sebastian garcia / mobile"
+    },
+    "manifesto": {
+      "file": "manifesto.txt",
+      "title": "craft",
+      "line": "details users can feel"
+    },
+    "experience": {
+      "file": "resume.doc",
+      "title": "experience",
+      "line": "2018 to now / 7 roles"
+    },
+    "projects": {
+      "file": "work",
+      "title": "selected work",
+      "line": "11 products shipped"
+    },
+    "lab": {
+      "file": "lab",
+      "title": "side projects",
+      "line": "built after hours"
+    },
+    "contact": {
+      "file": "mail",
+      "title": "say hello",
+      "line": "contacto@sebastian-garcia.dev"
+    }
   }
 }
