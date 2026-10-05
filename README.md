@@ -48,7 +48,7 @@ Every route except home is lazy-loaded. Vercel rewrites unknown paths to `index.
 ```
 src/
   app/            App shell: routes, preloader, header/footer, smooth scroll
-  components/     Shared UI: header, footer, page layout, logo, language toggle
+  components/     Shared UI: header, footer, page layout, logo, language toggle, hand cursor
   content/        Typed data: site info, home sections, experience, projects, side projects
   features/
     home/         Home sections (hero, manifesto, experience timeline, work index, lab, contact)

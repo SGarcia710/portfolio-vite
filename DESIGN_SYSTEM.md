@@ -77,7 +77,7 @@ stays at the browser default size with `line-height: 1.6`.
 - Breakpoints: Tailwind defaults plus `xs` (30rem). Below `lg` (1024px) the 3D scene switches
   to the compact layout: Mac above the hero copy, then a still backdrop.
 - Layering uses named z-index tokens: `--z-scene`, `--z-content`, `--z-header`,
-  `--z-overlay`, `--z-loader`, `--z-grain`. Don't use raw numbers.
+  `--z-overlay`, `--z-loader`, `--z-grain`, `--z-cursor`. Don't use raw numbers.
 
 ## Motion
 
@@ -108,14 +108,17 @@ Defined in `base.css`:
 | `.grain` | Fixed film-grain overlay (one per app) |
 
 React building blocks in `src/components/`: `SiteHeader`, `SiteFooter`, `PageLayout` (+
-`Breadcrumbs`) for every non-home page, `Logo`, `LanguageToggle`, `SectionLink`.
+`Breadcrumbs`) for every non-home page, `Logo`, `LanguageToggle`, `SectionLink`, `HandCursor`.
 
 Icons: Phosphor, regular weight by default, `fill` only for brand marks (store logos).
 
-Cursor: everything clickable (`a[href]`, enabled buttons, `[role=button]`, tabs, labels,
-selects) shows the classic 1-bit pointing hand from `public/cursors/` (1x + 2x, hotspot at the
-fingertip). The art lives in `tools/cursors/hand.py`; edit the grid there and re-run it rather
-than touching the PNGs. Everything else keeps the system arrow.
+Cursor: the classic 1-bit pointing hand is the only cursor. On mouse/trackpad,
+`components/hand-cursor.tsx` hides the system cursor and draws the hand itself so it can move:
+over anything clickable (`a[href]`, enabled buttons, `[role=button]`, tabs, labels, selects)
+it grows to 1.5x with a wave and double-taps while it waits; on press it squashes. Reduced
+motion keeps only the grow. Touch devices, and any page before JS loads, get the same hand
+as a native CSS cursor. The art lives in `tools/cursors/hand.py`; edit the grid there and
+re-run it rather than touching the PNGs. Keep `HOTSPOT` in the component in sync with it.
 
 ## The Macintosh
 

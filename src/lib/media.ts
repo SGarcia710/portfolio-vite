@@ -21,6 +21,7 @@ export function useMediaQuery(query: string): boolean {
 
 export const REDUCED_MOTION = '(prefers-reduced-motion: reduce)';
 export const DESKTOP = '(min-width: 1024px)';
+export const FINE_POINTER = '(hover: hover) and (pointer: fine)';
 
 export const usePrefersReducedMotion = () => useMediaQuery(REDUCED_MOTION);
 

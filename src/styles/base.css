@@ -42,7 +42,11 @@
     border-radius: 0.25rem;
   }
 
-  /* Classic 1-bit pointing hand (tools/cursors/hand.py). Hotspot is the fingertip. */
+  /*
+   * Classic 1-bit pointing hand (tools/cursors/hand.py), hotspot at the fingertip.
+   * Native fallback for the animated <HandCursor />, which hides it on fine pointers.
+   */
+  html,
   a[href],
   button:not(:disabled),
   [role='button'],
@@ -53,6 +57,11 @@
     cursor: url('/cursors/hand.png') 7 1, pointer;
     cursor: -webkit-image-set(url('/cursors/hand.png') 1x, url('/cursors/hand@2x.png') 2x) 7 1, pointer;
     cursor: image-set(url('/cursors/hand.png') 1x, url('/cursors/hand@2x.png') 2x) 7 1, pointer;
+  }
+
+  html.has-hand-cursor,
+  html.has-hand-cursor * {
+    cursor: none !important;
   }
 
   h1,
@@ -311,6 +320,27 @@
 .sheet-content[data-state='closed'] { animation: sheet-out 0.45s var(--ease-in-out-quart); }
 .sheet-overlay[data-state='open'] { animation: overlay-in 0.5s ease-out; }
 .sheet-overlay[data-state='closed'] { animation: overlay-out 0.45s ease-in; }
+
+/* Animated pointing hand (components/hand-cursor.tsx). Starts hidden until the first mouse move. */
+.hand-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--z-cursor);
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  will-change: transform;
+}
+
+.hand-cursor img {
+  display: block;
+  width: 21px;
+  height: 24px;
+  max-width: none;
+  image-rendering: pixelated;
+  user-select: none;
+}
 
 /* Film grain on a fixed layer only, never on scrolling content. */
 .grain {

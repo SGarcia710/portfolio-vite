@@ -2,6 +2,7 @@ import { lazy, Suspense, type ComponentType } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Route, Routes } from 'react-router';
 import { Analytics } from '@vercel/analytics/react';
+import { HandCursor } from '../components/hand-cursor';
 import { RouteScroll } from '../components/route-scroll';
 import { SiteFooter } from '../components/site-footer';
 import { SiteHeader } from '../components/site-header';
@@ -41,6 +42,7 @@ export default function App() {
 
       <SiteFooter />
       <div className="grain" aria-hidden="true" />
+      <HandCursor />
       <Analytics />
     </SmoothScroll>
   );
