@@ -49,7 +49,7 @@ export function ContactSection() {
       ref={section}
       id="contact"
       aria-labelledby="contact-title"
-      className="relative z-[var(--z-content)] flex min-h-[100svh] items-start pt-[clamp(6rem,16vh,12rem)] pb-[52vh] lg:items-center lg:py-32"
+      className="relative z-[var(--z-content)] flex items-start pt-[clamp(6rem,16vh,12rem)] pb-[clamp(5rem,12vh,8rem)] lg:min-h-[100svh] lg:items-center lg:py-32"
     >
       <div className="shell grid w-full lg:grid-cols-12">
         <div className="lg:col-span-7">
