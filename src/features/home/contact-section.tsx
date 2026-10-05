@@ -52,8 +52,9 @@ export function ContactSection() {
       className="relative z-[var(--z-content)] flex min-h-[100svh] items-start pt-[clamp(6rem,16vh,12rem)] pb-[52vh] lg:items-center lg:py-32"
     >
       <div className="shell grid w-full lg:grid-cols-12">
-        <div className="lg:col-span-6">
-          <h2 id="contact-title" ref={heading} className="text-headline">{t('ctaTitle')}</h2>
+        <div className="lg:col-span-7">
+          {/* SplitText rewrites the heading's DOM, so remount it when the copy changes language. */}
+          <h2 key={i18n.resolvedLanguage} id="contact-title" ref={heading} className="text-headline">{t('ctaTitle')}</h2>
           <p data-contact-fade className="mt-6 max-w-[44ch] text-lede text-fg-muted">{t('ctaDescription')}</p>
 
           <a

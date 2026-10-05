@@ -216,7 +216,6 @@
   text-align: center;
 }
 
-button.ktc-tilt-control { cursor: pointer; }
 button.ktc-tilt-control:disabled { cursor: wait; }
 
 /* Device shapes, not UI containers: they follow the phone, not the radius scale. */

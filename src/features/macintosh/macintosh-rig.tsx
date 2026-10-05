@@ -7,7 +7,7 @@ import { gsap } from '../../lib/gsap';
 import { getSectionIds, scrollState } from '../../lib/section-tracker';
 import { DESK_Y, MODEL, RIG } from './constants';
 import { MacintoshModel, type MacintoshModelHandle } from './macintosh-model';
-import { compactPoses, desktopPoses, dockBox, poseAt, type ResolvedPose } from './poses';
+import { compactPoses, desktopPoses, frameFromRect, poseAt, type Frame, type ResolvedPose } from './poses';
 import { ScreenRenderer, type ScreenContent } from './screen-renderer';
 
 interface MacintoshRigProps {
@@ -24,6 +24,16 @@ function damp(current: number, target: number, delta: number, lambda = DAMPING) 
   return THREE.MathUtils.lerp(current, target, 1 - Math.exp(-lambda * delta));
 }
 
+/** The hero's reserved box for the Mac, in canvas pixels. */
+function measureAnchor(canvas: HTMLCanvasElement, width: number, height: number): Frame | null {
+  const anchor = document.querySelector<HTMLElement>('[data-mac-anchor]');
+  if (!anchor) return null;
+  const box = anchor.getBoundingClientRect();
+  if (!box.height) return null;
+  const origin = canvas.getBoundingClientRect();
+  return frameFromRect({ left: box.left - origin.left, top: box.top - origin.top, width: box.width, height: box.height }, width, height);
+}
+
 export function MacintoshRig({ content, compact, reduced, shadows, onReady }: MacintoshRigProps) {
   const rig = useRef<THREE.Group>(null);
   const model = useRef<MacintoshModelHandle>(null);
@@ -35,6 +45,7 @@ export function MacintoshRig({ content, compact, reduced, shadows, onReady }: Ma
   const target = useMemo(() => ({}) as ResolvedPose, []);
   const current = useRef<ResolvedPose | null>(null);
   const ready = useRef(false);
+  const shownOpacity = useRef(1);
   const introStarted = useIntroStarted();
 
   useEffect(() => () => screen.dispose(), [screen]);
@@ -61,9 +72,9 @@ export function MacintoshRig({ content, compact, reduced, shadows, onReady }: Ma
 
     const ids = getSectionIds();
     const poses = compact ? compactPoses : desktopPoses;
-    const dock = compact ? dockBox(state.size.width, state.size.height) : null;
-    if (reduced || !ids.length) poseAt(['top'], poses, 0, 0, target);
-    else poseAt(ids, poses, scrollState.float, scrollState.hold, target, dock);
+    const anchor = compact ? measureAnchor(state.gl.domElement, state.size.width, state.size.height) : null;
+    if (reduced || !ids.length) poseAt(['top'], poses, 0, 0, target, anchor);
+    else poseAt(ids, poses, scrollState.float, scrollState.hold, target, anchor);
 
     if (!current.current) current.current = { ...target };
     const pose = current.current;
@@ -76,10 +87,11 @@ export function MacintoshRig({ content, compact, reduced, shadows, onReady }: Ma
     const enter = entrance.value;
     const time = state.clock.elapsedTime;
     const pointer = compact || reduced ? { x: 0, y: 0 } : state.pointer;
+    const bob = compact ? 0 : Math.sin(time * 0.8) * 0.04 * scale;
 
     group.position.set(
       pose.x * viewport.width,
-      pose.y * viewport.height + Math.sin(time * 0.8) * 0.04 * scale - (1 - enter) * viewport.height * 0.35,
+      pose.y * viewport.height + bob - (1 - enter) * viewport.height * 0.35,
       0,
     );
     group.rotation.set(
@@ -91,6 +103,11 @@ export function MacintoshRig({ content, compact, reduced, shadows, onReady }: Ma
 
     xray.value = pose.xray;
     explode.value = pose.explode;
+    const opacity = Math.round(pose.opacity * 100) / 100;
+    if (opacity !== shownOpacity.current) {
+      shownOpacity.current = opacity;
+      state.gl.domElement.style.opacity = String(opacity);
+    }
     screen.scroll(scrollState.progress, Math.abs(scrollState.velocity) > 0.35);
     screen.update(delta);
 

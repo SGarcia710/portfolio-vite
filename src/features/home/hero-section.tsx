@@ -33,8 +33,10 @@ export function HeroSection() {
       ref={section}
       id="top"
       aria-labelledby="hero-title"
-      className="relative z-[var(--z-content)] flex min-h-[100svh] items-end pb-[max(3rem,9vh)] lg:items-center lg:pb-0"
+      className="relative z-[var(--z-content)] flex min-h-[100svh] flex-col pt-[var(--header-height)] pb-[max(3rem,9vh)] lg:flex-row lg:items-center lg:pt-0 lg:pb-0"
     >
+      {/* Small screens: the Macintosh scene fits itself inside this box, so it never covers the copy. */}
+      <div data-mac-anchor aria-hidden="true" className="min-h-[clamp(12rem,36svh,21rem)] w-full flex-1 lg:hidden" />
       <div className="shell grid w-full lg:grid-cols-12">
         <div data-hero-intro className="lg:col-span-7 lg:pt-[var(--header-height)]">
           <h1 id="hero-title" ref={title} className="text-display">

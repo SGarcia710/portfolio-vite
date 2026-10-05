@@ -10,13 +10,13 @@ import { MacintoshRig } from './macintosh-rig';
 
 /**
  * Fixed WebGL layer behind the home page. On large screens the Macintosh
- * roams beside the content; on small screens it docks in a corner above it.
+ * roams beside the content; on small screens it sits above the hero copy and
+ * then settles as a dimmed, still backdrop.
  */
 export default function MacintoshScene({ onReady }: { onReady: () => void }) {
   const desktop = useMediaQuery(DESKTOP);
   const reduced = usePrefersReducedMotion();
   const active = useActiveSection() ?? 'top';
-  const docked = !desktop && !reduced && active !== 'top' && active !== 'contact';
   const { t, i18n } = useTranslation('common');
 
   const content = useMemo(() => ({
@@ -37,12 +37,10 @@ export default function MacintoshScene({ onReady }: { onReady: () => void }) {
     <div
       aria-hidden="true"
       className={cn(
-        'pointer-events-none inset-x-0 top-0 h-[100lvh]',
+        'pointer-events-none inset-x-0 top-0 z-[var(--z-scene)] h-[100lvh]',
         reduced ? 'absolute' : 'fixed',
-        desktop ? 'z-[var(--z-scene)]' : 'z-[var(--z-scene-overlay)]',
       )}
     >
-      {!desktop && <div className={cn('mac-dock', docked && 'is-visible')} />}
       <Canvas
         dpr={desktop ? [1, 2] : [1, 1.5]}
         camera={{ fov: 26, position: [0, 0.8, 18], near: 0.1, far: 60 }}

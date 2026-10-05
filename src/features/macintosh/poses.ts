@@ -19,11 +19,13 @@ export interface Pose {
   explode?: number;
   /** Full turns added while the section is held on screen. */
   spin?: number;
-  /** Fit inside the floating dock frame instead of using x/y/size. */
-  docked?: boolean;
+  /** Scene opacity; below 1 the Mac reads as a backdrop behind the content. */
+  opacity?: number;
+  /** Fit inside the hero's `[data-mac-anchor]` box; x/y then nudge from its center. */
+  anchored?: boolean;
 }
 
-export interface DockBox {
+export interface Frame {
   x: number;
   y: number;
   size: number;
@@ -32,17 +34,13 @@ export interface DockBox {
 
 type PoseMap = Record<string, Pose>;
 
-/** Floating frame the compact layout docks the Macintosh into. Mirrors `.mac-dock` in CSS. */
-export const DOCK = { width: 0.34, maxPx: 148, marginPx: 14 };
-
-export function dockBox(viewportWidth: number, viewportHeight: number): DockBox {
-  const side = Math.min(viewportWidth * DOCK.width, DOCK.maxPx);
-  const center = DOCK.marginPx + side / 2;
+/** Converts a box in canvas pixels into pose fractions, leaving a little air around the rig. */
+export function frameFromRect(rect: { left: number; top: number; width: number; height: number }, width: number, height: number): Frame {
   return {
-    x: 0.5 - center / viewportWidth,
-    y: -(0.5 - center / viewportHeight),
-    size: (side * 0.74) / viewportHeight,
-    maxWidth: (side * 0.84) / viewportWidth,
+    x: (rect.left + rect.width / 2) / width - 0.5,
+    y: 0.5 - (rect.top + rect.height / 2) / height,
+    size: (rect.height * 0.74) / height,
+    maxWidth: (rect.width * 0.8) / width,
   };
 }
 
@@ -55,27 +53,28 @@ export const desktopPoses: PoseMap = {
   contact: { x: 0.22, y: -0.04, size: 0.62, maxWidth: 0.5, rx: 0.06, ry: -0.2 },
 };
 
-const docked: Pose = { x: 0, y: 0, size: 0, rx: 0.12, ry: -0.36, docked: true };
+/** Small screens: the Mac owns the top of the hero, then settles as a still backdrop. */
+const backdrop: Pose = { x: 0.03, y: 0.02, size: 0.32, maxWidth: 0.82, rx: 0.12, ry: -0.24, opacity: 0.28 };
 
 export const compactPoses: PoseMap = {
-  top: { x: 0.02, y: 0.255, size: 0.29, maxWidth: 0.9, rx: 0.16, ry: -0.42 },
-  manifesto: { ...docked, xray: 1, explode: 1, spin: 1 },
-  experience: docked,
-  projects: docked,
-  lab: docked,
-  contact: { x: 0, y: -0.2, size: 0.3, maxWidth: 0.9, rx: 0.1, ry: -0.18 },
+  top: { x: 0.04, y: 0, size: 0, rx: 0.14, ry: -0.26, anchored: true },
+  manifesto: backdrop,
+  experience: backdrop,
+  projects: backdrop,
+  lab: backdrop,
+  contact: backdrop,
 };
 
-export type ResolvedPose = Required<Omit<Pose, 'docked'>>;
+export type ResolvedPose = Required<Omit<Pose, 'anchored'>>;
 
 const TAU = Math.PI * 2;
 
 const smooth = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 / 2);
 const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 
-function resolve(pose: Pose | undefined, turns: number, dock: DockBox | null): ResolvedPose {
+function resolve(pose: Pose | undefined, turns: number, anchor: Frame | null): ResolvedPose {
   const base = pose ?? desktopPoses.top;
-  const frame = base.docked && dock ? dock : base;
+  const frame = base.anchored && anchor ? { ...anchor, x: anchor.x + base.x, y: anchor.y + base.y } : base;
   return {
     x: frame.x,
     y: frame.y,
@@ -87,18 +86,19 @@ function resolve(pose: Pose | undefined, turns: number, dock: DockBox | null): R
     xray: base.xray ?? 0,
     explode: base.explode ?? 0,
     spin: base.spin ?? 0,
+    opacity: base.opacity ?? 1,
   };
 }
 
 /** Pose for a continuous section position (`float`) and hold progress. */
-export function poseAt(ids: string[], poses: PoseMap, float: number, hold: number, out: ResolvedPose, dock: DockBox | null = null) {
+export function poseAt(ids: string[], poses: PoseMap, float: number, hold: number, out: ResolvedPose, anchor: Frame | null = null) {
   const index = Math.max(0, Math.min(ids.length - 1, Math.floor(float)));
   const t = smooth(Math.min(1, Math.max(0, float - index)));
 
   let turnsBefore = 0;
   for (let i = 0; i < index; i += 1) turnsBefore += poses[ids[i]]?.spin ?? 0;
-  const current = resolve(poses[ids[index]], turnsBefore + (poses[ids[index]]?.spin ?? 0) * (float - index > 0 ? 1 : hold), dock);
-  const next = resolve(poses[ids[index + 1]] ?? poses[ids[index]], turnsBefore + (poses[ids[index]]?.spin ?? 0), dock);
+  const current = resolve(poses[ids[index]], turnsBefore + (poses[ids[index]]?.spin ?? 0) * (float - index > 0 ? 1 : hold), anchor);
+  const next = resolve(poses[ids[index + 1]] ?? poses[ids[index]], turnsBefore + (poses[ids[index]]?.spin ?? 0), anchor);
 
   (Object.keys(current) as (keyof ResolvedPose)[]).forEach((key) => {
     out[key] = lerp(current[key], next[key], t);

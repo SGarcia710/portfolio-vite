@@ -17,6 +17,29 @@ export function scrollToTarget(target: HTMLElement | number, options: { immediat
   window.scrollTo({ top: Math.max(0, top), behavior: options.immediate ? 'instant' : 'smooth' });
 }
 
+/** Lets React commit and pinned sections rebuild. A timer, not rAF: rAF never fires in hidden tabs. */
+const settle = () => new Promise((resolve) => setTimeout(resolve, 80));
+
+/**
+ * Runs a re-render that changes page height (e.g. a language switch rebuilding
+ * pinned sections) and keeps the element at the top of the viewport in place.
+ */
+export async function keepScrollAnchor(task: () => Promise<unknown>) {
+  // Closest first; outer sections back up inner elements that remount with the new copy.
+  const anchors = [...document.querySelectorAll<HTMLElement>('main [id], main section')]
+    .map((element) => ({ element, rect: element.getBoundingClientRect() }))
+    .filter(({ rect }) => rect.top <= 1 && rect.bottom > 0)
+    .sort((a, b) => b.rect.top - a.rect.top);
+
+  await task();
+  await settle();
+  ScrollTrigger.refresh();
+  const anchor = anchors.find(({ element }) => element.isConnected);
+  if (!anchor) return;
+  const delta = anchor.element.getBoundingClientRect().top - anchor.rect.top;
+  if (Math.abs(delta) > 1) scrollToTarget(window.scrollY + delta, { immediate: true });
+}
+
 export function setScrollLocked(locked: boolean) {
   if (lenis) {
     if (locked) lenis.stop();

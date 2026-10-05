@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { languages } from '../i18n';
 import { cn } from '../lib/cn';
+import { keepScrollAnchor } from '../lib/smooth-scroll';
 
 export function LanguageToggle({ className }: { className?: string }) {
   const { t, i18n } = useTranslation('common');
@@ -10,7 +11,7 @@ export function LanguageToggle({ className }: { className?: string }) {
   return (
     <button
       type="button"
-      onClick={() => i18n.changeLanguage(next)}
+      onClick={() => keepScrollAnchor(() => i18n.changeLanguage(next))}
       aria-label={t('language.label')}
       className={cn(
         'group relative inline-flex h-9 items-center rounded-full border border-line-strong p-0.5 text-meta uppercase',

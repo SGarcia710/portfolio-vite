@@ -64,7 +64,9 @@ public/
   models/         macintosh-128k.glb (optimized, meshopt)
   fonts/          Self-hosted Geist, Geist Mono, Geist Pixel (variable woff2)
   brand/          Logo, OG image, app icons
+  cursors/        Pointing-hand cursor (generated, 1x + 2x)
 tools/macintosh/  Blender script that builds the GLB from the Sketchfab source
+tools/cursors/    Pixel grid for the pointing-hand cursor (python3 tools/cursors/hand.py)
 assets/           Social teaser videos (not part of the site build)
 ```
 
@@ -88,9 +90,9 @@ its component and, if the Mac should move, a pose in `poses.ts`.
 
 - `macintosh-model.tsx` loads the GLB, swaps the screen material for the CRT shader, maps the
   58 named keycaps, and animates the mouse and its cable.
-- `poses.ts` defines a camera/model pose per section (`desktopPoses`, `compactPoses`) and the
-  docked mini-player used on small screens. `poseAt()` interpolates between them from the
-  scroll position.
+- `poses.ts` defines a pose per section (`desktopPoses`, `compactPoses`). On small screens the
+  Mac fits inside the hero's `[data-mac-anchor]` box, then settles as a dimmed, still backdrop
+  for every other section. `poseAt()` interpolates between poses from the scroll position.
 - `screen-renderer.ts` draws a 512×342 1-bit canvas (the real 128K resolution): the section
   name is typed on screen while the matching keys press on the 3D keyboard.
 - `crt-material.ts` is the screen shader: power-on, scanlines, vignette, raster border.

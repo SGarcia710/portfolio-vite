@@ -42,6 +42,19 @@
     border-radius: 0.25rem;
   }
 
+  /* Classic 1-bit pointing hand (tools/cursors/hand.py). Hotspot is the fingertip. */
+  a[href],
+  button:not(:disabled),
+  [role='button'],
+  [role='tab'],
+  label[for],
+  select,
+  summary {
+    cursor: url('/cursors/hand.png') 7 1, pointer;
+    cursor: -webkit-image-set(url('/cursors/hand.png') 1x, url('/cursors/hand@2x.png') 2x) 7 1, pointer;
+    cursor: image-set(url('/cursors/hand.png') 1x, url('/cursors/hand@2x.png') 2x) 7 1, pointer;
+  }
+
   h1,
   h2,
   h3,
@@ -278,29 +291,6 @@
   .skip-link:focus-visible {
     transform: translateY(0);
   }
-}
-
-/* Picture-in-picture frame for the docked Macintosh on small screens. Mirrors DOCK in poses.ts. */
-.mac-dock {
-  position: absolute;
-  right: 14px;
-  bottom: 14px;
-  width: min(34vw, 148px);
-  aspect-ratio: 1;
-  border: 1px solid var(--color-line-strong);
-  border-radius: 1.25rem;
-  background:
-    radial-gradient(80% 60% at 50% 100%, rgb(77 171 247 / 0.14), transparent),
-    rgb(14 17 20 / 0.94);
-  box-shadow: 0 20px 50px -12px rgb(0 0 0 / 0.7), inset 0 1px 0 rgb(248 249 250 / 0.06);
-  opacity: 0;
-  transform: translateY(12px) scale(0.92);
-  transition: opacity 0.5s var(--ease-out-expo), transform 0.7s var(--ease-out-expo);
-}
-
-.mac-dock.is-visible {
-  opacity: 1;
-  transform: none;
 }
 
 /* Project sheet (Radix Dialog) enter/exit. */

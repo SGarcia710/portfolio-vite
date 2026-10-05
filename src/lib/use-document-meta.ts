@@ -32,7 +32,7 @@ function upsertLink(rel: string, href: string) {
 }
 
 /** Keeps title, description, canonical and social tags in sync per route and language. */
-export function useDocumentMeta({ title, description, image = '/brand/og.png', noindex = false }: DocumentMeta) {
+export function useDocumentMeta({ title, description, image = '/brand/og-card.png', noindex = false }: DocumentMeta) {
   const { pathname } = useLocation();
   const { i18n } = useTranslation();
 

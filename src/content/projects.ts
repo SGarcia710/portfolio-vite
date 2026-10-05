@@ -1,3 +1,5 @@
+import castAndCrewImage from './assets/cast-and-crew.webp';
+
 export type ProjectPlatform = 'mobile' | 'web';
 
 export interface ProjectLinks {
@@ -24,7 +26,7 @@ export const clientProjects: ClientProject[] = [
     year: 2026,
     client: 'Cast & Crew',
     tags: ['React Native', 'TypeScript', 'OKTA', 'Expo', 'Fastlane', 'Figma', 'Claude Code', 'iOS', 'Android', 'Push Notifications'],
-    image: 'https://www.castandcrew.com/wp-content/uploads/2024/01/HeroImage03New_1800px-1-1.webp',
+    image: castAndCrewImage,
     links: { website: 'https://www.castandcrew.com/' },
   },
   {

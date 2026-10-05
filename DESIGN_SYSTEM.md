@@ -67,17 +67,17 @@ stays at the browser default size with `line-height: 1.6`.
   toggles, store links.
 - **Containers use `--radius-panel`** (`1.5rem`).
 - **Inline tags use `--radius-tag`** (`0.375rem`).
-- Device mockups (phone, Mac dock frame) follow the device, not this scale.
+- Device mockups (phone, Mac) follow the device, not this scale.
 
 ## Layout
 
 - `shell` utility: max width `--content-max` (90rem), side padding `--gutter`
   (`clamp(1.25rem → 3rem)`).
 - `--header-height` (4.5rem) is reserved at the top of every page.
-- Breakpoints: Tailwind defaults plus `xs` (30rem). The 3D scene switches to the docked
-  mini-player below `lg` (1024px).
-- Layering uses named z-index tokens: `--z-scene`, `--z-content`, `--z-scene-overlay`,
-  `--z-header`, `--z-overlay`, `--z-loader`, `--z-grain`. Don't use raw numbers.
+- Breakpoints: Tailwind defaults plus `xs` (30rem). Below `lg` (1024px) the 3D scene switches
+  to the compact layout: Mac above the hero copy, then a still backdrop.
+- Layering uses named z-index tokens: `--z-scene`, `--z-content`, `--z-header`,
+  `--z-overlay`, `--z-loader`, `--z-grain`. Don't use raw numbers.
 
 ## Motion
 
@@ -106,17 +106,24 @@ Defined in `base.css`:
 | `.link-draw` | Text link whose underline draws in on hover |
 | `.skip-link` | Keyboard "skip to content" link |
 | `.grain` | Fixed film-grain overlay (one per app) |
-| `.mac-dock` | Frame for the docked Macintosh on small screens (mirrors `DOCK` in `poses.ts`) |
 
 React building blocks in `src/components/`: `SiteHeader`, `SiteFooter`, `PageLayout` (+
 `Breadcrumbs`) for every non-home page, `Logo`, `LanguageToggle`, `SectionLink`.
 
 Icons: Phosphor, regular weight by default, `fill` only for brand marks (store logos).
 
+Cursor: everything clickable (`a[href]`, enabled buttons, `[role=button]`, tabs, labels,
+selects) shows the classic 1-bit pointing hand from `public/cursors/` (1x + 2x, hotspot at the
+fingertip). The art lives in `tools/cursors/hand.py`; edit the grid there and re-run it rather
+than touching the PNGs. Everything else keeps the system arrow.
+
 ## The Macintosh
 
 - Each home section has a pose (`features/macintosh/poses.ts`): position, rotation, scale,
-  blueprint amount and explode amount. Desktop and compact layouts have separate maps.
+  blueprint amount, explode amount and opacity. Desktop and compact layouts have separate maps.
+- Small screens: the hero reserves a `[data-mac-anchor]` box above the copy and the Mac fits
+  inside it, so it never covers text. Past the hero it moves to the center at 28% opacity
+  behind the content and stays still; sections animate over it.
 - The screen types the active section name in 1-bit at 512×342, and the matching keys press
   on the keyboard. The mouse scrollbar on screen tracks page scroll.
 - Blueprint mode (manifesto) recolors materials to `#0f1418` / accent blue and shows edges.
